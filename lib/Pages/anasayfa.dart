@@ -1,4 +1,4 @@
-import 'package:projeqr/Pages/main.dart';
+import 'package:projeqr/pages/main.dart';
 import 'package:flutter/material.dart';
 
 class AnaSayfa extends StatefulWidget {
