@@ -2,6 +2,7 @@ import 'package:projeqr/Pages/main.dart';
 import 'package:flutter/material.dart';
 
 //sa merhaba
+//bugün baya bir şey öğrendik
 class AnaSayfa extends StatefulWidget {
   @override
   _AnaSayfaState createState() => _AnaSayfaState();
