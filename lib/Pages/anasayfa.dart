@@ -12,7 +12,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.grey[600],
+        color: Colors.grey[1000],
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
