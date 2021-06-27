@@ -1,5 +1,5 @@
-import 'package:projeqr/Pages/%C3%BCyeol.dart';
-import 'package:projeqr/Pages/anasayfa.dart';
+import 'package:projeqr/pages/%C3%BCyeol.dart';
+import 'package:projeqr/pages/anasayfa.dart';
 import 'package:flutter/material.dart';
 
 void main() {
