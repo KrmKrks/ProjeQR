@@ -9,8 +9,8 @@ class UyeOl extends StatefulWidget {
   _UyeOlState createState() => _UyeOlState();
 }
 
-//todo İsim,soy isim , sicilno controllerinin oluşturulması lazım.
-//todo şifre ve şifre tekrarının kontrol edilmesi gerekiyor.
+// TODO: İsim,soy isim , sicilno controllerinin oluşturulması lazım.
+// TODO: şifre ve şifre tekrarının kontrol edilmesi gerekiyor.
 
 class _UyeOlState extends State<UyeOl> {
   @override

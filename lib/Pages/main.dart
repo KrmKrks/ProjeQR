@@ -12,8 +12,8 @@ void main() async {
   ));
 }
 
-//todo  main.dart içindeki login kısmını tamamen iptal ettim.
-//todo login ile alakalı kısımların buradan temizlenmesi lazım örnek olması adına şimdilik tutuyorum.
+// TODO:  main.dart içindeki login kısmını tamamen iptal ettim.
+// TODO: login ile alakalı kısımların buradan temizlenmesi lazım örnek olması adına şimdilik tutuyorum.
 class login extends StatefulWidget {
   @override
   _loginState createState() => _loginState();
