@@ -70,7 +70,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                             )),
                       ),
                       TextFormField(
-                        style: TextStyle(color: Color(0xFF000000)),
+                        style: TextStyle(color: Color(0xFF070707)),
                         cursorColor: Color(0xFF9b9b9b),
                         keyboardType: TextInputType.text,
                         obscureText: false,
