@@ -22,7 +22,7 @@ Future<bool> register(String email, String password) async {
     if (e.code == 'weak-password') {
       print('Seçtiğiniz şifre çok zayıf');
     } else if (e.code == 'email-already-in-use') {
-      print('Bu eamil adresi zaten kullanımda.');
+      print('Bu email adresi zaten kullanımda.');
     }
     return false;
   } catch (e) {

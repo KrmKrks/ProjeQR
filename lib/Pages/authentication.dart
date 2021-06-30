@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/flutterfire.dart';
+import 'package:projeqr/pages/üyeol.dart';
 
 import 'anasayfa.dart';
 
@@ -15,11 +16,11 @@ class Authentication extends StatefulWidget {
 final Color primaryColor = Color(0xff18203d);
 final Color secondaryColor = Color(0xff232c51);
 
+final TextEditingController nameController = TextEditingController();
+final TextEditingController passwordController = TextEditingController();
+
 class _AuthenticationState extends State<Authentication> {
   final Color logoGreen = Color(0xff25bcbb);
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +101,10 @@ class _AuthenticationState extends State<Authentication> {
                     }
                   },
                   color: logoGreen,
-                  child: Text('Giriş Yap',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                  child: Text(
+                    'Giriş Yap',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
                   textColor: Colors.white,
                 ),
                 SizedBox(height: 20),
@@ -131,17 +134,13 @@ class _AuthenticationState extends State<Authentication> {
                   elevation: 0,
                   minWidth: double.maxFinite,
                   height: 50,
-                  onPressed: () async {
-                    bool shouldNavigate = await register(
-                        nameController.text, passwordController.text);
-                    if (shouldNavigate) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AnaSayfa(),
-                        ),
-                      );
-                    }
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UyeOl(),
+                      ),
+                    );
                   },
                   color: logoGreen,
                   child: Text('Üye ol',

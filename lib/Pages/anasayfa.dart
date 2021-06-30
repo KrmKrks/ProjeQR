@@ -9,10 +9,13 @@ class AnaSayfa extends StatefulWidget {
   _AnaSayfaState createState() => _AnaSayfaState();
 }
 
+final Color primaryColor = Color(0xff18203d);
+
 class _AnaSayfaState extends State<AnaSayfa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor,
       body: Container(
         color: Colors.grey[1000],
         child: Padding(
@@ -31,11 +34,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        child: Image(
-                            image: NetworkImage(
-                                'https://www.turizmguncel.com/sites/turizmguncel/uploads/contents/55185/fe0e8d6e690501d2c42fba875eba2aca.jpeg')),
-                      ),
+                      Container(child: Image.asset('assets/THY-LOGO-DARK.png')),
                       TextFormField(
                         style: TextStyle(color: Color(0xFF000000)),
                         cursorColor: Color(0xFF9b9b9b),
