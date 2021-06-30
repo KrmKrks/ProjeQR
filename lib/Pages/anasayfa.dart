@@ -1,3 +1,4 @@
+import 'package:projeqr/pages/authentication.dart';
 import 'package:projeqr/pages/main.dart';
 import 'package:flutter/material.dart';
 
@@ -119,7 +120,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => login()));
+                                    builder: (context) => Authentication()));
                           },
                           child: Padding(
                             padding: EdgeInsets.only(
