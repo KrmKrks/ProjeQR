@@ -113,6 +113,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
                               borderRadius: new BorderRadius.circular(10)),
                         ),
                       ),
+
+                      // Giriş Sayfası yani Authentication sayfasına  yönlendiren kısım
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: FlatButton(
