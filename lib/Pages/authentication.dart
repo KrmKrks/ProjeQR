@@ -36,7 +36,7 @@ class _AuthenticationState extends State<Authentication> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  child: Image.asset('assets/CIFT-SATIR-DIKEY-TIRE.jpg'),
+                  child: Image.asset('assets/THY-LOGO-DARK.png'),
                   height: 220,
                 ),
                 SizedBox(height: 10),
