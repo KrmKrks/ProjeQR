@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
 import 'package:projeqr/pages/authentication.dart';
->>>>>>> e986244d5e1f149f879f3c8645bef4c51c4cd990
+
 import 'package:projeqr/pages/main.dart';
 import 'package:flutter/material.dart';
 
