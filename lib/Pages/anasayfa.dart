@@ -1,17 +1,26 @@
+<<<<<<< HEAD
+=======
+import 'package:projeqr/pages/authentication.dart';
+>>>>>>> e986244d5e1f149f879f3c8645bef4c51c4cd990
 import 'package:projeqr/pages/main.dart';
 import 'package:flutter/material.dart';
 
+//sa merhaba
+//bugün baya bir şey öğrendik
 class AnaSayfa extends StatefulWidget {
   @override
   _AnaSayfaState createState() => _AnaSayfaState();
 }
 
+final Color primaryColor = Color(0xff18203d);
+
 class _AnaSayfaState extends State<AnaSayfa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor,
       body: Container(
-        color: Colors.grey[800],
+        color: Colors.grey[1000],
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -28,11 +37,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        child: Image(
-                            image: NetworkImage(
-                                'https://www.turizmguncel.com/sites/turizmguncel/uploads/contents/55185/fe0e8d6e690501d2c42fba875eba2aca.jpeg')),
-                      ),
+                      Container(child: Image.asset('assets/THY-LOGO-DARK.png')),
                       TextFormField(
                         style: TextStyle(color: Color(0xFF000000)),
                         cursorColor: Color(0xFF9b9b9b),
@@ -68,7 +73,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                             )),
                       ),
                       TextFormField(
-                        style: TextStyle(color: Color(0xFF000000)),
+                        style: TextStyle(color: Color(0xFF070707)),
                         cursorColor: Color(0xFF9b9b9b),
                         keyboardType: TextInputType.text,
                         obscureText: false,
@@ -110,6 +115,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
                               borderRadius: new BorderRadius.circular(10)),
                         ),
                       ),
+
+                      // Giriş Sayfası yani Authentication sayfasına  yönlendiren kısım
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: FlatButton(
@@ -117,7 +124,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => login()));
+                                    builder: (context) => Authentication()));
                           },
                           child: Padding(
                             padding: EdgeInsets.only(

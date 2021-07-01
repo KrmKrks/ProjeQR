@@ -1,10 +1,19 @@
+<<<<<<< HEAD
+=======
+import 'package:projeqr/Pages/anasayfa.dart';
+import 'package:projeqr/net/flutterfire.dart';
+>>>>>>> e986244d5e1f149f879f3c8645bef4c51c4cd990
 import 'package:projeqr/pages/main.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/authentication.dart';
 
 class UyeOl extends StatefulWidget {
   @override
   _UyeOlState createState() => _UyeOlState();
 }
+
+// TODO: İsim,soy isim , sicilno controllerinin oluşturulması lazım.
+// TODO: şifre ve şifre tekrarının kontrol edilmesi gerekiyor.
 
 class _UyeOlState extends State<UyeOl> {
   @override
@@ -65,7 +74,7 @@ class _UyeOlState extends State<UyeOl> {
                       TextFormField(
                         style: TextStyle(color: Color(0xFF000000)),
                         cursorColor: Color(0xFF9b9b9b),
-                        keyboardType: TextInputType.text,
+                        controller: nameController,
                         obscureText: false,
                         decoration: InputDecoration(
                             prefixIcon: Icon(
@@ -99,7 +108,7 @@ class _UyeOlState extends State<UyeOl> {
                       TextFormField(
                         style: TextStyle(color: Color(0xFF000000)),
                         cursorColor: Color(0xFF9b9b9b),
-                        keyboardType: TextInputType.text,
+                        controller: passwordController,
                         obscureText: false,
                         decoration: InputDecoration(
                             prefixIcon: Icon(
@@ -133,11 +142,17 @@ class _UyeOlState extends State<UyeOl> {
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: FlatButton(
-                          onPressed: () {
-                            Navigator.push(
+                          onPressed: () async {
+                            bool shouldNavigate = await register(
+                                nameController.text, passwordController.text);
+                            if (shouldNavigate) {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => login()));
+                                  builder: (context) => AnaSayfa(),
+                                ),
+                              );
+                            }
                           },
                           child: Padding(
                             padding: EdgeInsets.only(
