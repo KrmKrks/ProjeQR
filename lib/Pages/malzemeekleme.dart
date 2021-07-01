@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'authentication.dart';
 
@@ -10,147 +12,96 @@ class MalzemeEkleme extends StatefulWidget {
 }
 
 class _MalzemeEklemeState extends State<MalzemeEkleme> {
+  TextEditingController mobilyaTuruController = TextEditingController();
+  TextEditingController adetController = TextEditingController();
+  TextEditingController notController = TextEditingController();
+  TextEditingController mudurlukController = TextEditingController();
+  TextEditingController imageUrlController = TextEditingController();
+
+  late Map<String, dynamic> productToAdd;
+
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection("products");
+
+  addProdct() {
+    productToAdd = {
+      "Mobilya Türü": mobilyaTuruController.text,
+      "Adet": adetController.text,
+      "Gelen veya Giden Müdürlük": mudurlukController.text,
+      "Not": notController.text,
+    };
+    collectionReference
+        .add(productToAdd)
+        .whenComplete(() => print("Added to Database"));
+  }
+
+  final Color logoGreen = Color(0xFF5f59f7);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
-      body: Container(
-        color: Colors.grey[1000],
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                //Card(
-                //elevation: 4.0,
-                //color: Colors.white,
-                //margin: EdgeInsets.only(left: 20,right: 20),
-                //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(child: Image.asset('assets/THY-LOGO-DARK.png')),
-                      TextFormField(
-                        style: TextStyle(color: Color(0xFF000000)),
-                        cursorColor: Color(0xFF9b9b9b),
-                        keyboardType: TextInputType.text,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.email,
-                              color: Colors.grey,
-                            ),
-                            hintText: 'Malzeme Adı',
-                            hintStyle: TextStyle(
-                              color: Color(0xFF9b9b9b),
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                            )),
-                      ),
-                      TextFormField(
-                        style: TextStyle(color: Color(0xFF000000)),
-                        cursorColor: Color(0xFF9b9b9b),
-                        keyboardType: TextInputType.text,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.email,
-                              color: Colors.grey,
-                            ),
-                            hintText: 'Alınan Yer',
-                            hintStyle: TextStyle(
-                              color: Color(0xFF9b9b9b),
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                            )),
-                      ),
-                      TextFormField(
-                        style: TextStyle(color: Color(0xFF070707)),
-                        cursorColor: Color(0xFF9b9b9b),
-                        keyboardType: TextInputType.text,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.email,
-                              color: Colors.grey,
-                            ),
-                            hintText: 'SERİ NO',
-                            hintStyle: TextStyle(
-                              color: Color(0xFF9b9b9b),
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: FlatButton(
-                          onPressed: () {},
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: 8,
-                              bottom: 8,
-                              left: 10,
-                              right: 10,
-                            ),
-                            child: Text(
-                              'QR KOD ÜRET',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                decoration: TextDecoration.none,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ),
-                          color: Colors.blue[500],
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10)),
-                        ),
-                      ),
-
-                      // Giriş Sayfası yani Authentication sayfasına  yönlendiren kısım
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: FlatButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Authentication()));
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: 8,
-                              bottom: 8,
-                              left: 10,
-                              right: 10,
-                            ),
-                            child: Text(
-                              'Anasayfaya Dön',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                decoration: TextDecoration.none,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ),
-                          color: Colors.blue[500],
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10)),
-                        ),
-                      ),
-                    ],
-                  ),
+        backgroundColor: primaryColor,
+        body: Container(
+          margin: EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 30,
                 ),
-              ),
-              //)
-            ],
+                Text(
+                  "Eklemek istediğiniz malzemenin detaylarını giriniz.",
+                  textAlign: TextAlign.center,
+                  style:
+                      GoogleFonts.openSans(color: Colors.white, fontSize: 15),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextField(mobilyaTuruController, "Mobilya Türü"),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextField(adetController, "Adet Giriniz"),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextField(mudurlukController,
+                    "Gelen veya Giden Müdürlüğü Belirtiniz"),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextField(notController,
+                    "Eklemek istediğiniz notunuz var ise ekleyiniz"),
+                FlatButton(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Kaydet"),
+                  ),
+                  color: logoGreen,
+                  onPressed: () {
+                    addProdct();
+                  },
+                )
+              ],
+            ),
           ),
-        ),
+        ));
+  }
+
+  _buildTextField(TextEditingController controller, String labelText) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+          color: secondaryColor, border: Border.all(color: Colors.blue)),
+      child: TextField(
+        controller: controller,
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            labelText: labelText,
+            labelStyle: TextStyle(color: Colors.white),
+            border: InputBorder.none),
       ),
     );
   }
