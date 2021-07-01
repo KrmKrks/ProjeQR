@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/flutterfire.dart';
+import 'package:projeqr/pages/malzemeekleme.dart';
 import 'package:projeqr/pages/üyeol.dart';
 
 import 'anasayfa.dart';
@@ -13,14 +14,14 @@ class Authentication extends StatefulWidget {
   _AuthenticationState createState() => _AuthenticationState();
 }
 
-final Color primaryColor = Color(0xff18203d);
-final Color secondaryColor = Color(0xff232c51);
+final Color primaryColor = Color(0xFF1A1752);
+final Color secondaryColor = Color(0xFF69900);
 
 final TextEditingController nameController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
 class _AuthenticationState extends State<Authentication> {
-  final Color logoGreen = Color(0xff25bcbb);
+  final Color logoGreen = Color(0xFF5f59f7);
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +109,9 @@ class _AuthenticationState extends State<Authentication> {
                   textColor: Colors.white,
                 ),
                 SizedBox(height: 20),
-                MaterialButton(
-                  elevation: 0,
+
+                /* MaterialButton(
+                 elevation: 0,
                   minWidth: double.maxFinite,
                   height: 50,
                   onPressed: () {
@@ -127,7 +129,7 @@ class _AuthenticationState extends State<Authentication> {
                   ),
                   textColor: Colors.white,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20),*/
 
                 // Kullanıcının Sıfırdan üyelik açmak için kullanacağı alan
                 MaterialButton(
@@ -148,6 +150,23 @@ class _AuthenticationState extends State<Authentication> {
                   textColor: Colors.white,
                 ),
                 SizedBox(height: 20),
+                MaterialButton(
+                  elevation: 0,
+                  minWidth: double.minPositive,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MalzemeEkleme(),
+                        ));
+                  },
+                  color: logoGreen,
+                  child: Text(
+                    'Smoking Break..!',
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                  textColor: Colors.white,
+                ),
                 Align(
                   alignment: Alignment.bottomCenter,
                 )
