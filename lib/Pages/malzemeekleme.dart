@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'authentication.dart';
+import 'girissayfasi.dart';
 
 class MalzemeEkleme extends StatefulWidget {
   MalzemeEkleme({Key? key}) : super(key: key);
@@ -18,21 +18,18 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   TextEditingController notController = TextEditingController();
   TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
-  
 
   late Map<String, dynamic> productToAdd;
 
   CollectionReference collectionReference =
       FirebaseFirestore.instance.collection("products");
 
-      
   addProdct() {
     productToAdd = {
       "Mobilya Türü": mobilyaTuruController.text,
       "Adet": adetController.text,
       "Gelen veya Giden Müdürlük": mudurlukController.text,
       "Not": notController.text,
-    
     };
     collectionReference
         .add(productToAdd)
@@ -83,7 +80,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     child: Text("Kaydet"),
                   ),
                   color: logoGreen,
-                  onPressed: (){
+                  onPressed: () {
                     addProdct();
                   },
                 )

@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projeqr/Pages/ikincisayfa.dart';
+
 import 'package:projeqr/Pages/malzemeekleme.dart';
-import 'package:projeqr/net/flutterfire.dart';
+import 'package:projeqr/net/authentication.dart';
 
 import 'package:projeqr/pages/üyeol.dart';
 import 'anasayfa.dart';
 
-class Authentication extends StatefulWidget {
-  Authentication({Key? key}) : super(key: key);
+class Girissayfasi extends StatefulWidget {
+  Girissayfasi({Key? key}) : super(key: key);
 
   @override
-  _AuthenticationState createState() => _AuthenticationState();
+  _GirissayfasiState createState() => _GirissayfasiState();
 }
 
-// TODO: Dosyanın İsminin düzenlenmesi gerekiyor.
 final Color primaryColor = Color(0xFF1A1752);
 final Color secondaryColor = Color(0xFF69900);
 
 final TextEditingController nameController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
-class _AuthenticationState extends State<Authentication> {
+class _GirissayfasiState extends State<Girissayfasi> {
   final Color logoGreen = Color(0xFF5f59f7);
 
   @override

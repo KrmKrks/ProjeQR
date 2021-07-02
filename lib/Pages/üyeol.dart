@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:projeqr/Pages/anasayfa.dart';
-import 'package:projeqr/Pages/main.dart';
-import 'package:projeqr/net/flutterfire.dart';
-import 'package:projeqr/pages/authentication.dart';
-import 'package:projeqr/pages/main.dart';
+import 'package:projeqr/net/authentication.dart';
+
+import 'package:projeqr/pages/girissayfasi.dart';
+
 import 'package:flutter/material.dart';
-import 'malzemeekleme.dart';
 
 class UyeOl extends StatefulWidget {
   UyeOl({Key? key}) : super(key: key);
@@ -193,7 +191,7 @@ class _UyeOlState extends State<UyeOl> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Authentication(),
+                        builder: (context) => Girissayfasi(),
                       ),
                     );
                   }
