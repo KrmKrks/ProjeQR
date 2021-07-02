@@ -21,6 +21,8 @@ final Color secondaryColor = Color(0xFF69900);
 final TextEditingController nameController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
+AuthService _authService = AuthService();
+
 class _GirissayfasiState extends State<Girissayfasi> {
   final Color logoGreen = Color(0xFF5f59f7);
 
@@ -90,17 +92,18 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   elevation: 0,
                   minWidth: double.maxFinite,
                   height: 50,
-                  onPressed: () async {
-                    bool shouldNavigate = await signIn(
-                        nameController.text, passwordController.text);
-                    if (shouldNavigate) {
-                      Navigator.push(
+                  onPressed: () {
+                    _authService.signIn(nameController.text, passwordController.text).then((value) {
+                      return Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => AnaSayfa(),
                         ),
                       );
-                    }
+                    });
+                     
+                      
+                    
                   },
                   color: logoGreen,
                   child: Text(

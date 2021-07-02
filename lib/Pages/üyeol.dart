@@ -23,22 +23,10 @@ final TextEditingController sicilController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 final TextEditingController confirmpasswordController = TextEditingController();
 
+AuthService _authService = AuthService();
+
 late Map<String, dynamic> usersToAdd;
 
-CollectionReference collectionReference =
-    FirebaseFirestore.instance.collection('users');
-
-addUser() {
-  usersToAdd = {
-    'İsim': nameController.text,
-    'Soyisim': surnameController.text,
-    'Email': mailController.text,
-    'Sicil no': sicilController.text,
-  };
-  collectionReference
-      .add(usersToAdd)
-      .whenComplete(() => print('Added to database'));
-}
 
 class _UyeOlState extends State<UyeOl> {
   final Color logoGreen = Color(0xFF5f59f7);
@@ -184,18 +172,18 @@ class _UyeOlState extends State<UyeOl> {
                 elevation: 0,
                 minWidth: double.minPositive,
                 height: 50,
-                onPressed: () async {
-                  bool shouldNavigate = await register(
-                      nameController.text, passwordController.text);
-                  if (shouldNavigate) {
-                    Navigator.push(
+                onPressed: () {
+                   _authService.createPerson(nameController.text, surnameController.text, mailController.text, sicilController.text, passwordController.text).then((value) {
+                     return Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Girissayfasi(),
-                      ),
-                    );
-                  }
-                },
+                        builder: (context) => Girissayfasi()));
+                   });
+                    
+                      
+                    
+                  },
+                
 
                 /*{addUser();
                     Navigator.push(
