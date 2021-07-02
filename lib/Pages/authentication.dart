@@ -8,7 +8,6 @@ import 'package:projeqr/net/flutterfire.dart';
 import 'package:projeqr/pages/üyeol.dart';
 import 'anasayfa.dart';
 
-
 class Authentication extends StatefulWidget {
   Authentication({Key? key}) : super(key: key);
 
@@ -16,6 +15,7 @@ class Authentication extends StatefulWidget {
   _AuthenticationState createState() => _AuthenticationState();
 }
 
+// TODO: Dosyanın İsminin düzenlenmesi gerekiyor.
 final Color primaryColor = Color(0xFF1A1752);
 final Color secondaryColor = Color(0xFF69900);
 
@@ -98,7 +98,7 @@ class _AuthenticationState extends State<Authentication> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ikincisayfa(),
+                          builder: (context) => AnaSayfa(),
                         ),
                       );
                     }
