@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projeqr/Pages/ikincisayfa.dart';
+import 'package:projeqr/Pages/malzemeekleme.dart';
 import 'package:projeqr/net/flutterfire.dart';
-import 'package:projeqr/pages/malzemeekleme.dart';
-import 'package:projeqr/pages/üyeol.dart';
 
+import 'package:projeqr/pages/üyeol.dart';
 import 'anasayfa.dart';
+
 
 class Authentication extends StatefulWidget {
   Authentication({Key? key}) : super(key: key);
@@ -58,7 +60,7 @@ class _AuthenticationState extends State<Authentication> {
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    labelText: "Kullanıcı Adı",
+                    labelText: "Mail Adresi",
                     labelStyle: TextStyle(color: Colors.white),
                     icon: Icon(
                       Icons.account_circle,
@@ -96,7 +98,7 @@ class _AuthenticationState extends State<Authentication> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AnaSayfa(),
+                          builder: (context) => ikincisayfa(),
                         ),
                       );
                     }

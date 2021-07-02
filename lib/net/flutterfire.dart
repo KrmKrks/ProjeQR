@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 // kayıt olma ve kayıtlı kullanıcının giriş yapması için oluşturulmuş kısım
 
 Future<bool> signIn(String email, String password) async {
