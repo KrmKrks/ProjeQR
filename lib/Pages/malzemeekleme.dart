@@ -76,12 +76,16 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 SizedBox(
                   height: 30,
                 ),
+
+                // dökümanın ID sini almaya çalıştığımız deneme yeri  şuanda burası
                 Text(
                   documentId.id.toString(),
                   textAlign: TextAlign.center,
                   style:
                       GoogleFonts.openSans(color: Colors.white, fontSize: 15),
                 ),
+
+                //
                 SizedBox(
                   height: 20,
                 ),
