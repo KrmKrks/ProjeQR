@@ -5,29 +5,29 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<User?> signIn(String email, String password) async{
-
-    var user = await _auth.signInWithEmailAndPassword(email: email, password: password);
-    return user.user; 
+  Future<User?> signIn(String email, String password) async {
+    var user = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+    return user.user;
   }
 
   signOut() async {
     return await _auth.signOut();
-      }
+  }
 
-  Future<User?> createPerson(String name, String surname, String email, String sicilno, String password) async{
-    var user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  Future<User?> createPerson(String name, String surname, String email,
+      String sicilno, String password) async {
+    var user = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
 
     await _firestore.collection('kayıt olan').doc(user.user!.uid).set({
-      'isim' : name,
-      'soyisim' : surname,
-      'email' : email,
-      'sicil no' : sicilno,
-
+      'isim': name,
+      'soyisim': surname,
+      'email': email,
+      'sicil no': sicilno,
     });
     return user.user;
-  }    
-  
+  }
 }
 
 // kayıt olma ve kayıtlı kullanıcının giriş yapması için oluşturulmuş kısım
