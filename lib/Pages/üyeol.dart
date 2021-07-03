@@ -12,7 +12,6 @@ class UyeOl extends StatefulWidget {
   _UyeOlState createState() => _UyeOlState();
 }
 
-// TODO: İsim,soy isim , sicilno controllerinin oluşturulması lazım.
 // TODO: şifre ve şifre tekrarının kontrol edilmesi gerekiyor.
 
 final Color primaryColor = Color(0xFF1A1752);
@@ -26,7 +25,6 @@ final TextEditingController confirmpasswordController = TextEditingController();
 AuthService _authService = AuthService();
 
 late Map<String, dynamic> usersToAdd;
-
 
 class _UyeOlState extends State<UyeOl> {
   final Color logoGreen = Color(0xFF5f59f7);
@@ -173,17 +171,20 @@ class _UyeOlState extends State<UyeOl> {
                 minWidth: double.minPositive,
                 height: 50,
                 onPressed: () {
-                   _authService.createPerson(nameController.text, surnameController.text, mailController.text, sicilController.text, passwordController.text).then((value) {
-                     return Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Girissayfasi()));
-                   });
-                    
-                      
-                    
-                  },
-                
+                  _authService
+                      .createPerson(
+                          nameController.text,
+                          surnameController.text,
+                          mailController.text,
+                          sicilController.text,
+                          passwordController.text)
+                      .then((value) {
+                    return Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Girissayfasi()));
+                  });
+                },
 
                 /*{addUser();
                     Navigator.push(

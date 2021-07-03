@@ -1,9 +1,12 @@
-import 'dart:ffi';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:projeqr/net/authentication.dart';
 import 'girissayfasi.dart';
+
+final documentId = FirebaseFirestore.instance.collection("products").doc();
+AuthService _authService = AuthService();
 
 class MalzemeEkleme extends StatefulWidget {
   MalzemeEkleme({Key? key}) : super(key: key);
@@ -13,13 +16,15 @@ class MalzemeEkleme extends StatefulWidget {
 }
 
 class _MalzemeEklemeState extends State<MalzemeEkleme> {
+  @override
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   TextEditingController mobilyaTuruController = TextEditingController();
   TextEditingController adetController = TextEditingController();
   TextEditingController notController = TextEditingController();
   TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
-
-  late Map<String, dynamic> productToAdd;
+/*late Map<String, dynamic> productToAdd;
 
   CollectionReference collectionReference =
       FirebaseFirestore.instance.collection("products");
@@ -31,9 +36,21 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       "Gelen veya Giden Müdürlük": mudurlukController.text,
       "Not": notController.text,
     };
+    ;
     collectionReference
         .add(productToAdd)
         .whenComplete(() => print("Added to Database"));
+  }*/
+
+  Future<void> addProduct(
+      String mobilyaTuru, String adet, String mudurluk, String not) async {
+    await _firestore.collection('products').doc().set({
+      'Mobilya Türü': mobilyaTuru,
+      'Adet': adet,
+      'Müdürlük': mudurluk,
+      'Not': not,
+    });
+    return;
   }
 
   final Color logoGreen = Color(0xFF5f59f7);
@@ -57,9 +74,18 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       GoogleFonts.openSans(color: Colors.white, fontSize: 15),
                 ),
                 SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  documentId.id.toString(),
+                  textAlign: TextAlign.center,
+                  style:
+                      GoogleFonts.openSans(color: Colors.white, fontSize: 15),
+                ),
+                SizedBox(
                   height: 20,
                 ),
-                _buildTextField(mobilyaTuruController, "Mobilya Türü"),
+                _buildTextField(mobilyaTuruController, "Adet Giriniz"),
                 SizedBox(
                   height: 20,
                 ),
@@ -74,6 +100,9 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 ),
                 _buildTextField(notController,
                     "Eklemek istediğiniz notunuz var ise ekleyiniz"),
+                SizedBox(
+                  height: 20,
+                ),
                 FlatButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -81,8 +110,29 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                   ),
                   color: logoGreen,
                   onPressed: () {
-                    addProdct();
+                    addProduct(
+                      mobilyaTuruController.text,
+                      adetController.text,
+                      mudurlukController.text,
+                      notController.text,
+                    ).then((value) {
+                      return Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MalzemeEkleme()));
+                    });
                   },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                FlatButton(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Döküman Id Göster"),
+                  ),
+                  color: logoGreen,
+                  onPressed: () {},
                 )
               ],
             ),
