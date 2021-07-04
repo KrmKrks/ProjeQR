@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'girissayfasi.dart';
 
-final documentId = FirebaseFirestore.instance.collection("products").doc();
 AuthService _authService = AuthService();
 
 class MalzemeEkleme extends StatefulWidget {
@@ -17,13 +16,15 @@ class MalzemeEkleme extends StatefulWidget {
 
 class _MalzemeEklemeState extends State<MalzemeEkleme> {
   @override
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  CollectionReference _firestore =
+      FirebaseFirestore.instance.collection('products');
 
   TextEditingController mobilyaTuruController = TextEditingController();
   TextEditingController adetController = TextEditingController();
   TextEditingController notController = TextEditingController();
   TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
+
 /*late Map<String, dynamic> productToAdd;
 
   CollectionReference collectionReference =
@@ -35,6 +36,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       "Adet": adetController.text,
       "Gelen veya Giden Müdürlük": mudurlukController.text,
       "Not": notController.text,
+      'Document ID': data[documetID]
     };
     ;
     collectionReference
@@ -44,12 +46,15 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
   Future<void> addProduct(
       String mobilyaTuru, String adet, String mudurluk, String not) async {
-    await _firestore.collection('products').doc().set({
+    String documnetID = _firestore.doc().id;
+    await _firestore.doc(documnetID).set({
       'Mobilya Türü': mobilyaTuru,
       'Adet': adet,
       'Müdürlük': mudurluk,
       'Not': not,
+      'Document ID': documnetID,
     });
+
     return;
   }
 
@@ -77,15 +82,15 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                   height: 30,
                 ),
 
-                // dökümanın ID sini almaya çalıştığımız deneme yeri  şuanda burası
+                /* dökümanın ID sini almaya çalıştığımız deneme yeri  şuanda burası
                 Text(
-                  documentId.id.toString(),
+                  ,
                   textAlign: TextAlign.center,
                   style:
                       GoogleFonts.openSans(color: Colors.white, fontSize: 15),
                 ),
 
-                //
+                */
                 SizedBox(
                   height: 20,
                 ),
@@ -143,21 +148,21 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
           ),
         ));
   }
+}
 
-  _buildTextField(TextEditingController controller, String labelText) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-          color: secondaryColor, border: Border.all(color: Colors.blue)),
-      child: TextField(
-        controller: controller,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 10),
-            labelText: labelText,
-            labelStyle: TextStyle(color: Colors.white),
-            border: InputBorder.none),
-      ),
-    );
-  }
+_buildTextField(TextEditingController controller, String labelText) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    decoration: BoxDecoration(
+        color: secondaryColor, border: Border.all(color: Colors.blue)),
+    child: TextField(
+      controller: controller,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          labelText: labelText,
+          labelStyle: TextStyle(color: Colors.white),
+          border: InputBorder.none),
+    ),
+  );
 }
