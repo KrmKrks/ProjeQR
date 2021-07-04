@@ -25,25 +25,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
 
-/*late Map<String, dynamic> productToAdd;
-
-  CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection("products");
-
-  addProdct() {
-    productToAdd = {
-      "Mobilya Türü": mobilyaTuruController.text,
-      "Adet": adetController.text,
-      "Gelen veya Giden Müdürlük": mudurlukController.text,
-      "Not": notController.text,
-      'Document ID': data[documetID]
-    };
-    ;
-    collectionReference
-        .add(productToAdd)
-        .whenComplete(() => print("Added to Database"));
-  }*/
-
   Future<void> addProduct(
       String mobilyaTuru, String adet, String mudurluk, String not) async {
     String documnetID = _firestore.doc().id;
@@ -78,19 +59,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                   style:
                       GoogleFonts.openSans(color: Colors.white, fontSize: 15),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-
-                /* dökümanın ID sini almaya çalıştığımız deneme yeri  şuanda burası
-                Text(
-                  ,
-                  textAlign: TextAlign.center,
-                  style:
-                      GoogleFonts.openSans(color: Colors.white, fontSize: 15),
-                ),
-
-                */
                 SizedBox(
                   height: 20,
                 ),
