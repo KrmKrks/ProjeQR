@@ -93,7 +93,9 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   minWidth: double.maxFinite,
                   height: 50,
                   onPressed: () {
-                    _authService.signIn(nameController.text, passwordController.text).then((value) {
+                    _authService
+                        .signIn(nameController.text, passwordController.text)
+                        .then((value) {
                       return Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -101,9 +103,6 @@ class _GirissayfasiState extends State<Girissayfasi> {
                         ),
                       );
                     });
-                     
-                      
-                    
                   },
                   color: logoGreen,
                   child: Text(
@@ -113,27 +112,6 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   textColor: Colors.white,
                 ),
                 SizedBox(height: 20),
-
-                /* MaterialButton(
-                 elevation: 0,
-                  minWidth: double.maxFinite,
-                  height: 50,
-                  onPressed: () {
-                    //Here goes the logic for Google SignIn discussed in the next section
-                  },
-                  color: Colors.blue,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(FontAwesomeIcons.google),
-                      SizedBox(width: 10),
-                      Text('Google hesabın ile üye ol',
-                          style: TextStyle(color: Colors.white, fontSize: 16)),
-                    ],
-                  ),
-                  textColor: Colors.white,
-                ),
-                SizedBox(height: 20),*/
 
                 // Kullanıcının Sıfırdan üyelik açmak için kullanacağı alan
                 MaterialButton(

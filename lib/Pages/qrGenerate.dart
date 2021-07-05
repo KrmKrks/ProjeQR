@@ -25,11 +25,11 @@ class _QrGeneratorState extends State<QrGenerator> {
               QrImage(
                   backgroundColor: Colors.red,
                   padding: const EdgeInsets.all(10),
-                  data: docu.doc().id,
+                  data: 'FOtKj5Jk29VkVE7FUv6Y',
                   size: 320,
                   embeddedImage: AssetImage('assets/Mini_logo.png'),
                   embeddedImageStyle: QrEmbeddedImageStyle(
-                    size: Size(60, 60),
+                    size: Size(40, 40),
                   )),
               MaterialButton(
                 onPressed: () {

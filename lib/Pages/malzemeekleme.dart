@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/urunListeleme.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'girissayfasi.dart';
 
 AuthService _authService = AuthService();
@@ -84,7 +85,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 FlatButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Qr Code Üret"),
+                    child: Text("Kaydet"),
                   ),
                   color: logoGreen,
                   onPressed: () {
@@ -97,7 +98,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       return Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => urunListeleme()));
+                              builder: (context) => Girissayfasi()));
                     });
                   },
                 ),
@@ -114,7 +115,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => urunListeleme()));
+                            builder: (context) => Girissayfasi()));
                   },
                 )
               ],

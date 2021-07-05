@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projeqr/net/authentication.dart';
+import 'package:projeqr/pages/anasayfa.dart';
 
 import 'package:projeqr/pages/girissayfasi.dart';
 
@@ -140,28 +141,6 @@ class _UyeOlState extends State<UyeOl> {
               ),
               SizedBox(height: 30),
 
-              // Kullanıcının bir hesabı var ise kullanacağı alan
-
-              /* MaterialButton(
-                 elevation: 0,
-                  minWidth: double.maxFinite,
-                  height: 50,
-                  onPressed: () {
-                    //Here goes the logic for Google SignIn discussed in the next section
-                  },
-                  color: Colors.blue,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(FontAwesomeIcons.google),
-                      SizedBox(width: 10),
-                      Text('Google hesabın ile üye ol',
-                          style: TextStyle(color: Colors.white, fontSize: 16)),
-                    ],
-                  ),
-                  textColor: Colors.white,
-                ),
-                SizedBox(height: 20),*/
               // Kullanıcının Sıfırdan üyelik açmak için kullanacağı alan
 // TODO: Hem bilgileri register kısmından kaydedicek
 // TODO: Hem giriş sayfasına yönlendirecek
@@ -179,21 +158,10 @@ class _UyeOlState extends State<UyeOl> {
                           sicilController.text,
                           passwordController.text)
                       .then((value) {
-                    return Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Girissayfasi()));
+                    return Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AnaSayfa()));
                   });
                 },
-
-                /*{addUser();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Authentication(),
-                      ),
-                  );
-                }*/
                 color: logoGreen,
                 child: Text(
                   'ÜYE OL',
