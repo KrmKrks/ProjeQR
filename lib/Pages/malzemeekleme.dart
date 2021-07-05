@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:projeqr/net/authentication.dart';
+import 'package:projeqr/pages/urunListeleme.dart';
 import 'girissayfasi.dart';
 
 AuthService _authService = AuthService();
@@ -25,7 +26,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
 
-  Future<void> addProduct(
+  Future<String> addProduct(
       String mobilyaTuru, String adet, String mudurluk, String not) async {
     String documnetID = _firestore.doc().id;
     await _firestore.doc(documnetID).set({
@@ -36,7 +37,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       'Document ID': documnetID,
     });
 
-    return;
+    return _firestore.id;
   }
 
   final Color logoGreen = Color(0xFF5f59f7);
@@ -83,7 +84,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 FlatButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Kaydet"),
+                    child: Text("Qr Code Üret"),
                   ),
                   color: logoGreen,
                   onPressed: () {
@@ -96,7 +97,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       return Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MalzemeEkleme()));
+                              builder: (context) => urunListeleme()));
                     });
                   },
                 ),
@@ -109,7 +110,12 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     child: Text("Döküman Id Göster"),
                   ),
                   color: logoGreen,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => urunListeleme()));
+                  },
                 )
               ],
             ),

@@ -23,12 +23,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
 
   # Flutter Fire
   firebase_core: ^1.3.0
   firebase_auth: ^1.4.1
   cloud_firestore: ^2.2.2
+  firebase_storage: "^9.0.0"
+
+  qr_flutter: ^4.0.0
 
   font_awesome_flutter:
   google_fonts:

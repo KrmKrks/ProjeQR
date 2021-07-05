@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/qrGenerate.dart';
 
 import 'malzemeekleme.dart';
-import 'ürünçıkarmasayfası.dart';
+import 'urunListeleme.dart';
 
 //sa merhaba
 //bugün baya bir şey öğrendik
@@ -56,12 +57,46 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => uruncikarma(),
+                      builder: (context) => urunListeleme(),
                     ),
                   );
                 },
                 color: logoGreen,
                 child: Text('Ürün çıkar',
+                    style: TextStyle(color: Colors.white, fontSize: 16)),
+                textColor: Colors.white,
+              ),
+              MaterialButton(
+                elevation: 0,
+                minWidth: double.maxFinite,
+                height: 50,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => urunListeleme(),
+                    ),
+                  );
+                },
+                color: logoGreen,
+                child: Text('Listele',
+                    style: TextStyle(color: Colors.white, fontSize: 16)),
+                textColor: Colors.white,
+              ),
+              MaterialButton(
+                elevation: 0,
+                minWidth: double.maxFinite,
+                height: 50,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QrGenerator(),
+                    ),
+                  );
+                },
+                color: logoGreen,
+                child: Text('Deneme Kısmı',
                     style: TextStyle(color: Colors.white, fontSize: 16)),
                 textColor: Colors.white,
               ),
