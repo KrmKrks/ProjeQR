@@ -54,15 +54,15 @@ class urunListelemeState extends State<urunListeleme> {
                         color: Colors.yellow,
                       ),
                       title: Text(
-                        docRef['Document ID'],
+                        docRef['Mobilya Türü'],
                         style: TextStyle(color: Colors.white),
                       ),
                       subtitle: Column(
                         children: <Widget>[
-                          Text(
-                            docRef['Mobilya Türü'],
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          // Text(
+                          //   docRef['Mobilya Türü'],
+                          //   style: TextStyle(color: Colors.white),
+                          // ),
                           Text(
                             docRef['Adet'],
                             style: TextStyle(color: Colors.white),

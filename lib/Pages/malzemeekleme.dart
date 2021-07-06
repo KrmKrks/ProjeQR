@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:projeqr/net/authentication.dart';
+import 'package:projeqr/pages/qrGenerate.dart';
 import 'package:projeqr/pages/urunListeleme.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'girissayfasi.dart';
@@ -64,7 +65,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 SizedBox(
                   height: 20,
                 ),
-                _buildTextField(mobilyaTuruController, "Adet Giriniz"),
+                _buildTextField(mobilyaTuruController, "Mobilya Türü"),
                 SizedBox(
                   height: 20,
                 ),
@@ -98,7 +99,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       return Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Girissayfasi()));
+                              builder: (context) => QrGenerator()));
                     });
                   },
                 ),
