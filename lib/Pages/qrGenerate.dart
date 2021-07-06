@@ -28,7 +28,7 @@ class _QrGeneratorState extends State<QrGenerator> {
               QrImage(
                 backgroundColor: Colors.white,
                 padding: const EdgeInsets.all(10),
-                data: 'FOtKj5Jk29VkVE7FUv6Y',
+                data: '',
                 size: 300,
                 embeddedImage: AssetImage('assets/Mini_logo.png'),
                 embeddedImageStyle: QrEmbeddedImageStyle(

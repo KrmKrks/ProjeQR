@@ -30,13 +30,13 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
   Future<String> addProduct(
       String mobilyaTuru, String adet, String mudurluk, String not) async {
-    String documnetID = _firestore.doc().id;
-    await _firestore.doc(documnetID).set({
+    String documentID = _firestore.doc().id;
+    await _firestore.doc(documentID).set({
       'Mobilya Türü': mobilyaTuru,
       'Adet': adet,
       'Müdürlük': mudurluk,
       'Not': not,
-      'Document ID': documnetID,
+      'Document ID': documentID,
     });
 
     return _firestore.id;
@@ -95,11 +95,13 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       adetController.text,
                       mudurlukController.text,
                       notController.text,
-                    ).then((value) {
-                      return Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => QrGenerator()));
+                    ).then((documentID) {
+                      print(QrImage(data: documentID));
+
+                      // return Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => QrGenerator()));
                     });
                   },
                 ),
@@ -116,7 +118,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Girissayfasi()));
+                            builder: (context) => urunListeleme()));
                   },
                 )
               ],
