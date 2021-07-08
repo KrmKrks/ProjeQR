@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/girissayfasi.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class urunListeleme extends StatefulWidget {
   urunListeleme({Key? key}) : super(key: key);
@@ -48,121 +49,192 @@ class urunListelemeState extends State<urunListeleme> {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     var docRef = snapshot.data!.docs[index];
-                    return ListTile(
-                      leading: Icon(
-                        Icons.account_circle_rounded,
-                        color: Colors.yellow,
-                      ),
-                      title: Text(
-                        docRef['Mobilya Türü'],
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Column(
-                        children: <Widget>[
-                          // Text(
-                          //   docRef['Mobilya Türü'],
-                          //   style: TextStyle(color: Colors.white),
-                          // ),
-                          Text(
-                            docRef['Adet'],
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            docRef['Müdürlük'],
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            docRef['Not'],
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.edit),
-                        color: Colors.yellow,
-                        onPressed: () {
-                          mobilyaTuruController.text = docRef['Mobilya Türü'];
-                          adetController.text = docRef['Adet'];
-                          mudurlukController.text = docRef['Müdürlük'];
-                          notController.text = docRef['Not'];
-
+                    return Card(
+                      color: Colors.black,
+                      child: ListTile(
+                        onTap: () {
                           showDialog(
-                              context: context,
-                              builder: (context) => Dialog(
-                                    child: Container(
-                                      color: primaryColor,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: ListView(
-                                          shrinkWrap: true,
-                                          children: <Widget>[
-                                            _buildTextField(
-                                                mobilyaTuruController,
-                                                "Mobilya Türü"),
-                                            SizedBox(
-                                              height: 20,
+                            context: context,
+                            builder: (context) => Dialog(
+                              child: Container(
+                                color: primaryColor,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    children: <Widget>[
+                                      Column(
+                                        children: [
+                                          QrImage(
+                                            backgroundColor: Colors.white,
+                                            padding: const EdgeInsets.all(10),
+                                            data: docRef['Document ID'],
+                                            size: 300,
+                                            embeddedImage: AssetImage(
+                                                'assets/Mini_logo.png'),
+                                            embeddedImageStyle:
+                                                QrEmbeddedImageStyle(
+                                              size: Size(40, 40),
                                             ),
-                                            _buildTextField(
-                                                adetController, "Adet Giriniz"),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            _buildTextField(mudurlukController,
-                                                "Gelen veya Giden Müdürlüğü Belirtiniz"),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            _buildTextField(notController,
-                                                "Eklemek istediğiniz notunuz var ise ekleyiniz"),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            FlatButton(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child:
-                                                    Text("Dökümanı Güncelle"),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Text(docRef['Mobilya Türü'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(docRef['Adet'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(docRef['Müdürlük'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(docRef['Not'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        leading: Icon(
+                          Icons.account_circle_rounded,
+                          color: Colors.yellow,
+                        ),
+                        title: Text(
+                          docRef['Mobilya Türü'],
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Column(
+                          children: <Widget>[
+                            // Text(
+                            //   docRef['Mobilya Türü'],
+                            //   style: TextStyle(color: Colors.white),
+                            // ),
+                            Text(
+                              docRef['Adet'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              docRef['Müdürlük'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              docRef['Not'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(Icons.edit),
+                          color: Colors.yellow,
+                          onPressed: () {
+                            mobilyaTuruController.text = docRef['Mobilya Türü'];
+                            adetController.text = docRef['Adet'];
+                            mudurlukController.text = docRef['Müdürlük'];
+                            notController.text = docRef['Not'];
+
+                            showDialog(
+                                context: context,
+                                builder: (context) => Dialog(
+                                      child: Container(
+                                        color: primaryColor,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: ListView(
+                                            shrinkWrap: true,
+                                            children: <Widget>[
+                                              _buildTextField(
+                                                  mobilyaTuruController,
+                                                  "Mobilya Türü"),
+                                              SizedBox(
+                                                height: 20,
                                               ),
-                                              color: logoGreen,
-                                              onPressed: () {
-                                                snapshot
-                                                    .data!.docs[index].reference
-                                                    .update({
-                                                  'Mobilya Türü':
-                                                      mobilyaTuruController
-                                                          .text,
-                                                  'Adet': adetController.text,
-                                                  'Müdürlük':
-                                                      mudurlukController.text,
-                                                  'Not': notController.text,
-                                                }).whenComplete(() =>
-                                                        Navigator.pop(context));
-                                              },
-                                            ),
-                                            FlatButton(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text("Ürünü Sil"),
+                                              _buildTextField(adetController,
+                                                  "Adet Giriniz"),
+                                              SizedBox(
+                                                height: 20,
                                               ),
-                                              color: logoGreen,
-                                              onPressed: () {
-                                                snapshot
-                                                    .data!.docs[index].reference
-                                                    .delete()
-                                                    .whenComplete(() =>
-                                                        Navigator.pop(context));
-                                              },
-                                            ),
-                                          ],
+                                              _buildTextField(
+                                                  mudurlukController,
+                                                  "Gelen veya Giden Müdürlüğü Belirtiniz"),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              _buildTextField(notController,
+                                                  "Eklemek istediğiniz notunuz var ise ekleyiniz"),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              FlatButton(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child:
+                                                      Text("Dökümanı Güncelle"),
+                                                ),
+                                                color: logoGreen,
+                                                onPressed: () {
+                                                  snapshot.data!.docs[index]
+                                                      .reference
+                                                      .update({
+                                                    'Mobilya Türü':
+                                                        mobilyaTuruController
+                                                            .text,
+                                                    'Adet': adetController.text,
+                                                    'Müdürlük':
+                                                        mudurlukController.text,
+                                                    'Not': notController.text,
+                                                  }).whenComplete(() =>
+                                                          Navigator.pop(
+                                                              context));
+                                                },
+                                              ),
+                                              FlatButton(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text("Ürünü Sil"),
+                                                ),
+                                                color: logoGreen,
+                                                onPressed: () {
+                                                  snapshot.data!.docs[index]
+                                                      .reference
+                                                      .delete()
+                                                      .whenComplete(() =>
+                                                          Navigator.pop(
+                                                              context));
+                                                },
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ));
-                        },
+                                    ));
+                          },
+                        ),
                       ),
                     );
                   });

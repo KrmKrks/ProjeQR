@@ -95,14 +95,16 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       adetController.text,
                       mudurlukController.text,
                       notController.text,
-                    ).then((documentID) {
-                      print(QrImage(data: documentID));
-
-                      // return Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => QrGenerator()));
-                    });
+                    ).then(
+                      (value) {
+                        return Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => urunListeleme(),
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
                 SizedBox(
@@ -111,7 +113,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 FlatButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Döküman Id Göster"),
+                    child: Text("Ürün Listelemeye Dön"),
                   ),
                   color: logoGreen,
                   onPressed: () {
