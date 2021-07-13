@@ -38,7 +38,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
             SizedBox(height: 100),
             Wrap(
               direction: Axis.horizontal,
-              spacing: 40,
+              spacing: 30,
               runSpacing: 50,
               children: [
                 MaterialButton(
