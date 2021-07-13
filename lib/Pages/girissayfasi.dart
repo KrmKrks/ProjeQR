@@ -118,7 +118,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AnaSayfa(),
+                        builder: (context) => UyeOl(),
                       ),
                     );
                   },
@@ -135,7 +135,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => UyeOl(),
+                          builder: (context) => AnaSayfa(),
                         ));
                   },
                   color: logoGreen,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:projeqr/pages/girissayfasi.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'models.dart';
+
 class UrunListeleme extends StatefulWidget {
   UrunListeleme({Key? key}) : super(key: key);
 
@@ -44,32 +46,56 @@ class UrunListelemeState extends State<UrunListeleme> {
       body: SafeArea(
         child: Column(
           children: [
-            // Container(
-            //   height: 30,
-            //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            //   margin: EdgeInsets.symmetric(vertical: 30),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Icon(Icons.search),
-            //       Text('Search'),
-            //       Icon(Icons.settings),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // Container(
-            //   height: 30,
-            //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            //   margin: EdgeInsets.symmetric(vertical: 30),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [],
-            //   ),
-            // ),
-            // SizedBox(height: 10),
+            Container(
+              height: 50,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              margin: EdgeInsets.symmetric(vertical: 20),
+              decoration: BoxDecoration(
+                color: Colors.black26,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.search),
+                  Text(
+                    'Search',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  Icon(Icons.settings),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 120,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          margin: EdgeInsets.only(left: 20),
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(10)),
+                          height: 90,
+                          width: 90,
+                          child: Image.asset(categories[index]['iconPath']),
+                        ),
+                        Text(categories[index]['name'])
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 10),
             Flexible(
               child: StreamBuilder(
                 stream: ref.snapshots(),
