@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../pages/girissayfasi.dart';
-import '../pages/urunListeleme.dart';
+import 'package:projeqr/pages/girissayfasi.dart';
+
+import 'package:projeqr/pages/urunListeleme.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -13,9 +14,6 @@ class QrGenerator extends StatefulWidget {
 }
 
 CollectionReference doc = FirebaseFirestore.instance.collection('products');
-getDocument() {
-  FirebaseFirestore.instance.collection('Products').doc().id;
-}
 
 class _QrGeneratorState extends State<QrGenerator> {
   @override
@@ -58,7 +56,7 @@ class _QrGeneratorState extends State<QrGenerator> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => urunListeleme(),
+                            builder: (context) => UrunListeleme(),
                           ),
                         );
                       },

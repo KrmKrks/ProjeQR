@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
-
-import 'package:projeqr/pages/girissayfasi.dart';
-
 import 'package:flutter/material.dart';
 
 class UyeOl extends StatefulWidget {

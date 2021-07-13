@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:projeqr/Pages/malzemeekleme.dart';
 import 'package:projeqr/net/authentication.dart';
-
+import 'package:projeqr/pages/anasayfa.dart';
 import 'package:projeqr/pages/üyeol.dart';
-import 'anasayfa.dart';
 
 class Girissayfasi extends StatefulWidget {
   Girissayfasi({Key? key}) : super(key: key);
@@ -15,10 +11,10 @@ class Girissayfasi extends StatefulWidget {
   _GirissayfasiState createState() => _GirissayfasiState();
 }
 
-final Color primaryColor = Color(0xFF1A1752);
+final Color primaryColor = Color(0xFF232b38);
 final Color secondaryColor = Color(0xFF69900);
 
-final TextEditingController nameController = TextEditingController();
+final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
 AuthService _authService = AuthService();
@@ -57,7 +53,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   height: 30,
                 ),
                 TextFormField(
-                  controller: nameController,
+                  controller: emailController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 10),
@@ -94,7 +90,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   height: 50,
                   onPressed: () {
                     _authService
-                        .signIn(nameController.text, passwordController.text)
+                        .signIn(emailController.text, passwordController.text)
                         .then((value) {
                       return Navigator.push(
                         context,
@@ -122,7 +118,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UyeOl(),
+                        builder: (context) => AnaSayfa(),
                       ),
                     );
                   },
@@ -139,7 +135,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MalzemeEkleme(),
+                          builder: (context) => UyeOl(),
                         ));
                   },
                   color: logoGreen,

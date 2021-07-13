@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:projeqr/net/authentication.dart';
-import 'package:projeqr/pages/qrGenerate.dart';
+import 'package:projeqr/pages/girissayfasi.dart';
 import 'package:projeqr/pages/urunListeleme.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'girissayfasi.dart';
 
 AuthService _authService = AuthService();
 
@@ -100,7 +97,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                         return Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => urunListeleme(),
+                            builder: (context) => UrunListeleme(),
                           ),
                         );
                       },
@@ -120,7 +117,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => urunListeleme()));
+                            builder: (context) => UrunListeleme()));
                   },
                 )
               ],
