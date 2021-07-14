@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
+import 'package:projeqr/pages/themes/themes.dart';
 import 'package:projeqr/pages/üyeol.dart';
 
 class Girissayfasi extends StatefulWidget {
@@ -21,21 +22,40 @@ AuthService _authService = AuthService();
 
 class _GirissayfasiState extends State<Girissayfasi> {
   final Color logoGreen = Color(0xFF5f59f7);
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: primaryColor,
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          alignment: Alignment.topCenter,
-          margin: EdgeInsets.all(40),
-          child: SingleChildScrollView(
+        body: SafeArea(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            alignment: Alignment.topCenter,
+            margin: EdgeInsets.all(15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        alignment: Alignment.centerRight,
+                        icon: const Icon(Icons.brightness_4_rounded),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
+                ),
                 Container(
                   child: Image.asset('assets/THY-LOGO-DARK.png'),
                   height: 220,
