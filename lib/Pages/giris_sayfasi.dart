@@ -27,7 +27,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).primaryColor,
         body: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -58,7 +58,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.openSans(
                     color: Theme.of(context).colorScheme.primary,
-                    fontSize: 16,
+                    fontSize: Theme.of(context).textTheme.headline1?.fontSize,
                   ),
                 ),
                 SizedBox(

@@ -39,7 +39,7 @@ class UrunListelemeState extends State<UrunListeleme> {
   @override
   build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Column(
           children: [
