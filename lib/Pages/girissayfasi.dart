@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
-import 'package:projeqr/pages/themes/themes.dart';
+import 'package:projeqr/pages/provider/theme_provider.dart';
+import 'package:projeqr/pages/widget/change_theme_button_widget.dart';
 import 'package:projeqr/pages/üyeol.dart';
+import 'package:provider/provider.dart';
 
 class Girissayfasi extends StatefulWidget {
   Girissayfasi({Key? key}) : super(key: key);
@@ -12,7 +14,6 @@ class Girissayfasi extends StatefulWidget {
   _GirissayfasiState createState() => _GirissayfasiState();
 }
 
-final Color primaryColor = Color(0xFF232b38);
 final Color secondaryColor = Color(0xFF69900);
 
 final TextEditingController emailController = TextEditingController();
@@ -22,18 +23,11 @@ AuthService _authService = AuthService();
 
 class _GirissayfasiState extends State<Girissayfasi> {
   final Color logoGreen = Color(0xFF5f59f7);
-  @override
-  void initState() {
-    super.initState();
-    currentTheme.addListener(() {
-      setState(() {});
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: primaryColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -47,17 +41,15 @@ class _GirissayfasiState extends State<Girissayfasi> {
                 Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        alignment: Alignment.centerRight,
-                        icon: const Icon(Icons.brightness_4_rounded),
-                        onPressed: () {},
-                      )
-                    ],
+                    children: [ChangeThemeButtonWidget()],
                   ),
                 ),
                 Container(
-                  child: Image.asset('assets/THY-LOGO-DARK.png'),
+                  child: Image.asset(
+                    Provider.of<ThemeProvider>(context).isDarkMode
+                        ? 'assets/THY-LOGO-DARK.png'
+                        : 'assets/THY-LOGO-WHITE.png',
+                  ),
                   height: 220,
                 ),
                 SizedBox(height: 10),
@@ -65,7 +57,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   'Kullanıcı adınızı ve e-mail adresinizi girerek Qrcode depo uygulamasına erişebilirsiniz.',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.openSans(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                     fontSize: 16,
                   ),
                 ),
@@ -74,14 +66,16 @@ class _GirissayfasiState extends State<Girissayfasi> {
                 ),
                 TextFormField(
                   controller: emailController,
-                  style: TextStyle(color: Colors.white),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 10),
                     labelText: "Mail Adresi",
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
                     icon: Icon(
                       Icons.account_circle,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
@@ -89,14 +83,16 @@ class _GirissayfasiState extends State<Girissayfasi> {
                 TextFormField(
                   obscureText: true,
                   controller: passwordController,
-                  style: TextStyle(color: Colors.white),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 10),
                     labelText: "Parola",
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
                     icon: Icon(
                       Icons.lock,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
@@ -123,9 +119,11 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   color: logoGreen,
                   child: Text(
                     'Giriş Yap',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 16),
                   ),
-                  textColor: Colors.white,
+                  textColor: Theme.of(context).colorScheme.primary,
                 ),
                 SizedBox(height: 20),
 
@@ -144,8 +142,10 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   },
                   color: logoGreen,
                   child: Text('Üye ol',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                  textColor: Colors.white,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 16)),
+                  textColor: Theme.of(context).colorScheme.primary,
                 ),
                 SizedBox(height: 20),
                 MaterialButton(
@@ -161,9 +161,11 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   color: logoGreen,
                   child: Text(
                     'Smoking Break..!',
-                    style: TextStyle(color: Colors.white, fontSize: 12),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 12),
                   ),
-                  textColor: Colors.white,
+                  textColor: Theme.of(context).colorScheme.primary,
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,

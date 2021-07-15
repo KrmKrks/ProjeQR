@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/girissayfasi.dart';
 
 import 'package:projeqr/pages/urunListeleme.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
 
+//TODO: Deneme alanı idi Qr code package' ı için şimdi tamamen kaldırılacak veya başka birşeye evriltilecek
 class QrGenerator extends StatefulWidget {
   QrGenerator({Key? key}) : super(key: key);
 
@@ -19,7 +19,6 @@ class _QrGeneratorState extends State<QrGenerator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
       body: StreamBuilder(
           stream: doc.snapshots(),
           builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {

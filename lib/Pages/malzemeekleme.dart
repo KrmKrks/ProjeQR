@@ -43,102 +43,100 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: primaryColor,
-        body: Container(
-          margin: EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 30,
+    return SafeArea(
+      child: Scaffold(
+          body: Container(
+        margin: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                "Eklemek istediğiniz malzemenin detaylarını giriniz.",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.openSans(color: Colors.white, fontSize: 15),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              _buildTextField(mobilyaTuruController, "Mobilya Türü", context),
+              SizedBox(
+                height: 20,
+              ),
+              _buildTextField(adetController, "Adet Giriniz", context),
+              SizedBox(
+                height: 20,
+              ),
+              _buildTextField(mudurlukController,
+                  "Gelen veya Giden Müdürlüğü Belirtiniz", context),
+              SizedBox(
+                height: 20,
+              ),
+              _buildTextField(notController,
+                  "Eklemek istediğiniz notunuz var ise ekleyiniz", context),
+              SizedBox(
+                height: 20,
+              ),
+              FlatButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Kaydet"),
                 ),
-                Text(
-                  "Eklemek istediğiniz malzemenin detaylarını giriniz.",
-                  textAlign: TextAlign.center,
-                  style:
-                      GoogleFonts.openSans(color: Colors.white, fontSize: 15),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                _buildTextField(mobilyaTuruController, "Mobilya Türü"),
-                SizedBox(
-                  height: 20,
-                ),
-                _buildTextField(adetController, "Adet Giriniz"),
-                SizedBox(
-                  height: 20,
-                ),
-                _buildTextField(mudurlukController,
-                    "Gelen veya Giden Müdürlüğü Belirtiniz"),
-                SizedBox(
-                  height: 20,
-                ),
-                _buildTextField(notController,
-                    "Eklemek istediğiniz notunuz var ise ekleyiniz"),
-                SizedBox(
-                  height: 20,
-                ),
-                FlatButton(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Kaydet"),
-                  ),
-                  color: logoGreen,
-                  onPressed: () {
-                    addProduct(
-                      mobilyaTuruController.text,
-                      adetController.text,
-                      mudurlukController.text,
-                      notController.text,
-                    ).then(
-                      (value) {
-                        return Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UrunListeleme(),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                FlatButton(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Ürün Listelemeye Dön"),
-                  ),
-                  color: logoGreen,
-                  onPressed: () {
-                    Navigator.push(
+                color: logoGreen,
+                onPressed: () {
+                  addProduct(
+                    mobilyaTuruController.text,
+                    adetController.text,
+                    mudurlukController.text,
+                    notController.text,
+                  ).then(
+                    (value) {
+                      return Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => UrunListeleme()));
-                  },
-                )
-              ],
-            ),
+                          builder: (context) => UrunListeleme(),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              FlatButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Ürün Listelemeye Dön"),
+                ),
+                color: logoGreen,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => UrunListeleme()));
+                },
+              )
+            ],
           ),
-        ));
+        ),
+      )),
+    );
   }
 }
 
-_buildTextField(TextEditingController controller, String labelText) {
+_buildTextField(TextEditingController controller, String labelText, context) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     decoration: BoxDecoration(
         color: secondaryColor, border: Border.all(color: Colors.blue)),
     child: TextField(
       controller: controller,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(color: Theme.of(context).colorScheme.primary),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
           labelText: labelText,
-          labelStyle: TextStyle(color: Colors.white),
+          labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
           border: InputBorder.none),
     ),
   );

@@ -1,6 +1,9 @@
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'provider/theme_provider.dart';
 
 class UyeOl extends StatefulWidget {
   UyeOl({Key? key}) : super(key: key);
@@ -11,7 +14,6 @@ class UyeOl extends StatefulWidget {
 
 // TODO: şifre ve şifre tekrarının kontrol edilmesi gerekiyor.
 
-final Color primaryColor = Color(0xFF1A1752);
 final TextEditingController nameController = TextEditingController();
 final TextEditingController surnameController = TextEditingController();
 final TextEditingController mailController = TextEditingController();
@@ -29,7 +31,7 @@ class _UyeOlState extends State<UyeOl> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -41,7 +43,11 @@ class _UyeOlState extends State<UyeOl> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                child: Image.asset('assets/THY-LOGO-DARK.png'),
+                child: Image.asset(
+                  Provider.of<ThemeProvider>(context).isDarkMode
+                      ? 'assets/THY-LOGO-DARK.png'
+                      : 'assets/THY-LOGO-WHITE.png',
+                ),
                 height: 220,
               ),
               SizedBox(height: 10),

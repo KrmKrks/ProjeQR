@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/girissayfasi.dart';
 import 'package:projeqr/pages/malzemeekleme.dart';
+import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:projeqr/pages/qrGenerate.dart';
 import 'package:projeqr/pages/urunListeleme.dart';
+import 'package:provider/provider.dart';
 
 //sa merhaba
 //bugün baya bir şey öğrendik
 class AnaSayfa extends StatefulWidget {
   @override
   _AnaSayfaState createState() => _AnaSayfaState();
-  final Color primaryColor = Color(0xFF232b38);
 }
 
 class _AnaSayfaState extends State<AnaSayfa> {
@@ -18,11 +18,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).primaryColor,
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.topCenter,
       margin: EdgeInsets.all(5),
-      color: primaryColor,
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +32,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
               height: 100,
             ),
             Container(
-              child: Image.asset('assets/THY-LOGO-DARK.png'),
+              child: Image.asset(Provider.of<ThemeProvider>(context).isDarkMode
+                  ? 'assets/THY-LOGO-DARK.png'
+                  : 'assets/THY-LOGO-WHITE.png'),
               height: 220,
             ),
             SizedBox(height: 100),
