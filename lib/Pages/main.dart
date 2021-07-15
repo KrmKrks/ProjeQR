@@ -20,6 +20,7 @@ class QrApp extends StatelessWidget {
           final themeProvider = Provider.of<ThemeProvider>(context);
 
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             themeMode: themeProvider.themeMode,
             theme: AppThemes.lightTheme,
             darkTheme: AppThemes.darkTheme,
