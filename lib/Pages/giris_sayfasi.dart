@@ -4,7 +4,7 @@ import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:projeqr/pages/widget/change_theme_button_widget.dart';
-import 'package:projeqr/pages/üyeol.dart';
+import 'package:projeqr/pages/%C3%BCye_ol.dart';
 import 'package:provider/provider.dart';
 
 class Girissayfasi extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/giris_sayfasi.dart';
-import 'package:projeqr/pages/urunListeleme.dart';
+import 'package:projeqr/pages/urun_listeleme.dart';
 
 AuthService _authService = AuthService();
 

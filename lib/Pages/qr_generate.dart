@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'package:projeqr/pages/urunListeleme.dart';
+import 'package:projeqr/pages/urun_listeleme.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
 
