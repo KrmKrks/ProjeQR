@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/malzemeekleme.dart';
+import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
-import 'package:projeqr/pages/qrGenerate.dart';
-import 'package:projeqr/pages/urunListeleme.dart';
+import 'package:projeqr/pages/qr_generate.dart';
+import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:provider/provider.dart';
 
 //sa merhaba
