@@ -58,24 +58,26 @@ class _UyeOlState extends State<UyeOl> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   labelText: "İsim",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   icon: Icon(
                     Icons.account_circle,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
               SizedBox(height: 20),
               TextFormField(
                 controller: surnameController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   labelText: "Soyisim",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   icon: Icon(
                     Icons.lock,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -83,14 +85,15 @@ class _UyeOlState extends State<UyeOl> {
 
               TextFormField(
                 controller: mailController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   labelText: "Mail Adresi",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   icon: Icon(
                     Icons.lock,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -98,14 +101,15 @@ class _UyeOlState extends State<UyeOl> {
 
               TextFormField(
                 controller: sicilController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   labelText: "Sicil Numarası",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   icon: Icon(
                     Icons.lock,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -114,14 +118,15 @@ class _UyeOlState extends State<UyeOl> {
               TextFormField(
                 obscureText: true,
                 controller: passwordController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   labelText: "Yeni Şifre Yarat",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   icon: Icon(
                     Icons.lock,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -130,14 +135,15 @@ class _UyeOlState extends State<UyeOl> {
               TextFormField(
                 obscureText: true,
                 controller: confirmpasswordController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   labelText: "Şifre Tekrarı",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   icon: Icon(
                     Icons.lock,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
