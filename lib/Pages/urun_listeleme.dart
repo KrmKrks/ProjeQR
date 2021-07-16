@@ -108,7 +108,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                         itemBuilder: (context, index) {
                           var docRef = snapshot.data!.docs[index];
                           return Card(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).backgroundColor,
                             shadowColor: Theme.of(context).shadowColor,
                             child: ListTile(
                               onTap: () {
