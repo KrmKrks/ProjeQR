@@ -18,7 +18,8 @@ _buildTextField(TextEditingController controller, String labelText, context) {
     decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
     child: TextField(
       controller: controller,
-      style: TextStyle(color: Theme.of(context).colorScheme.primary),
+      style: TextStyle(
+          color: Theme.of(context as BuildContext).colorScheme.primary),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
           labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
@@ -84,10 +85,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                               borderRadius: BorderRadius.circular(10)),
                           height: 90,
                           width: 90,
-                          child: Image.asset(categories[index]['iconPath']),
+                          child: Image.asset(
+                              categories[index]['iconPath'] as String),
                         ),
                         Text(
-                          categories[index]['name'],
+                          categories[index]['name'] as String,
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.primary),
                         )
@@ -128,7 +130,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                   backgroundColor: Colors.white,
                                                   padding:
                                                       const EdgeInsets.all(10),
-                                                  data: docRef['Document ID'],
+                                                  data: docRef['Document ID']
+                                                      as String,
                                                   size: 300,
                                                   embeddedImage: AssetImage(
                                                       'assets/Mini_logo.png'),
@@ -142,7 +145,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             SizedBox(
                                               height: 15,
                                             ),
-                                            Text(docRef['Mobilya Türü'],
+                                            Text(
+                                                docRef['Mobilya Türü']
+                                                    as String,
                                                 style: TextStyle(
                                                     color: Theme.of(context)
                                                         .colorScheme
@@ -151,7 +156,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            Text(docRef['Adet'],
+                                            Text(docRef['Adet'] as String,
                                                 style: TextStyle(
                                                     color: Theme.of(context)
                                                         .colorScheme
@@ -160,7 +165,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            Text(docRef['Müdürlük'],
+                                            Text(docRef['Müdürlük'] as String,
                                                 style: TextStyle(
                                                     color: Theme.of(context)
                                                         .colorScheme
@@ -169,7 +174,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            Text(docRef['Not'],
+                                            Text(docRef['Not'] as String,
                                                 style: TextStyle(
                                                     color: Theme.of(context)
                                                         .colorScheme
@@ -190,7 +195,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                 color: Theme.of(context).iconTheme.color,
                               ),
                               title: Text(
-                                docRef['Mobilya Türü'],
+                                docRef['Mobilya Türü'] as String,
                                 style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.primary),
@@ -202,21 +207,21 @@ class UrunListelemeState extends State<UrunListeleme> {
                                   //   style: TextStyle(color: Colors.white),
                                   // ),
                                   Text(
-                                    docRef['Adet'],
+                                    docRef['Adet'] as String,
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
                                             .primary),
                                   ),
                                   Text(
-                                    docRef['Müdürlük'],
+                                    docRef['Müdürlük'] as String,
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
                                             .primary),
                                   ),
                                   Text(
-                                    docRef['Not'],
+                                    docRef['Not'] as String,
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
@@ -231,10 +236,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                                 color: Theme.of(context).iconTheme.color,
                                 onPressed: () {
                                   mobilyaTuruController.text =
-                                      docRef['Mobilya Türü'];
-                                  adetController.text = docRef['Adet'];
-                                  mudurlukController.text = docRef['Müdürlük'];
-                                  notController.text = docRef['Not'];
+                                      docRef['Mobilya Türü'] as String;
+                                  adetController.text =
+                                      docRef['Adet'] as String;
+                                  mudurlukController.text =
+                                      docRef['Müdürlük'] as String;
+                                  notController.text = docRef['Not'] as String;
 
                                   showDialog(
                                       context: context,
@@ -251,28 +258,28 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                     _buildTextField(
                                                         mobilyaTuruController,
                                                         "Mobilya Türü",
-                                                        context),
+                                                        context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
                                                     _buildTextField(
                                                         adetController,
                                                         "Adet Giriniz",
-                                                        context),
+                                                        context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
                                                     _buildTextField(
                                                         mudurlukController,
                                                         "Gelen veya Giden Müdürlüğü Belirtiniz",
-                                                        context),
+                                                        context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
                                                     _buildTextField(
                                                         notController,
                                                         "Eklemek istediğiniz notunuz var ise ekleyiniz",
-                                                        context),
+                                                        context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
@@ -311,8 +318,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(8.0),
-                                                        child:
-                                                            Text("Ürünü Sil"),
+                                                        child: const Text(
+                                                            "Ürünü Sil"),
                                                       ),
                                                       color: logoGreen,
                                                       onPressed: () {

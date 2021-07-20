@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -61,21 +63,25 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
               SizedBox(
                 height: 20,
               ),
-              _buildTextField(mobilyaTuruController, "Mobilya Türü", context),
+              _buildTextField(mobilyaTuruController, "Mobilya Türü", context)
+                  as Widget,
               SizedBox(
                 height: 20,
               ),
-              _buildTextField(adetController, "Adet Giriniz", context),
+              _buildTextField(adetController, "Adet Giriniz", context)
+                  as Widget,
               SizedBox(
                 height: 20,
               ),
               _buildTextField(mudurlukController,
-                  "Gelen veya Giden Müdürlüğü Belirtiniz", context),
+                  "Gelen veya Giden Müdürlüğü Belirtiniz", context) as Widget,
               SizedBox(
                 height: 20,
               ),
-              _buildTextField(notController,
-                  "Eklemek istediğiniz notunuz var ise ekleyiniz", context),
+              _buildTextField(
+                  notController,
+                  "Eklemek istediğiniz notunuz var ise ekleyiniz",
+                  context) as Widget,
               SizedBox(
                 height: 20,
               ),
@@ -132,7 +138,8 @@ _buildTextField(TextEditingController controller, String labelText, context) {
         color: secondaryColor, border: Border.all(color: Colors.blue)),
     child: TextField(
       controller: controller,
-      style: TextStyle(color: Theme.of(context).colorScheme.primary),
+      style: TextStyle(
+          color: Theme.of(context as BuildContext).colorScheme.primary),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
           labelText: labelText,
