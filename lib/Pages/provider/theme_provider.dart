@@ -21,6 +21,7 @@ class AppThemes {
     shadowColor: Colors.blue,
     textTheme: TextTheme(
       headline1: TextStyle(
+        fontFamily: 'Roboto',
         fontSize: 16,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,
