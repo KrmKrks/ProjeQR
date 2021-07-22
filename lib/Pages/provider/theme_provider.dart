@@ -38,6 +38,7 @@ class AppThemes {
     shadowColor: Colors.white,
     textTheme: TextTheme(
       headline1: TextStyle(
+        fontFamily: 'Roboto',
         fontSize: 16.0,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,

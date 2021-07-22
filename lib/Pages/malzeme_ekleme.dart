@@ -27,8 +27,8 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
 
-  Future<String> addProduct(
-      String mobilyaTuru, String adet, String mudurluk, String not) async {
+  Future<String> addProduct(String mobilyaTuru, String adet, String mudurluk,
+      String not, String kategori) async {
     String documentID = _firestore.doc().id;
     await _firestore.doc(documentID).set({
       'Mobilya Türü': mobilyaTuru,
@@ -36,10 +36,19 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       'Müdürlük': mudurluk,
       'Not': not,
       'Document ID': documentID,
+      'Kategori': selectedKategori,
     });
 
     return _firestore.id;
   }
+
+  var selectedKategori;
+  final List<String> _kategori = <String>[
+    'Masa',
+    'Sandalye',
+    'Dolap',
+    'Keson',
+  ];
 
   final Color logoGreen = Color(0xFF5f59f7);
 
@@ -85,6 +94,43 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
               SizedBox(
                 height: 20,
               ),
+              Container(
+                color: Theme.of(context).primaryColor,
+                child: DropdownButtonFormField(
+                  items: _kategori
+                      .map(
+                        (value) => DropdownMenuItem(
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                          value: value,
+                        ),
+                      )
+                      .toList(),
+                  dropdownColor: Theme.of(context).primaryColor,
+                  onChanged: (selectedKategoriType) {
+                    setState(
+                      () {
+                        selectedKategori = selectedKategoriType;
+                      },
+                    );
+                  },
+                  value: selectedKategori,
+                  hint: Text(
+                    'Masa',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+              ),
               FlatButton(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -93,11 +139,12 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 color: logoGreen,
                 onPressed: () {
                   addProduct(
-                    mobilyaTuruController.text,
-                    adetController.text,
-                    mudurlukController.text,
-                    notController.text,
-                  ).then(
+                          mobilyaTuruController.text,
+                          adetController.text,
+                          mudurlukController.text,
+                          notController.text,
+                          selectedKategori.toString())
+                      .then(
                     (value) {
                       return Navigator.push(
                         context,
