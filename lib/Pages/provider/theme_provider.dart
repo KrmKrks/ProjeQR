@@ -19,6 +19,7 @@ class AppThemes {
     colorScheme: ColorScheme.light(primary: Colors.black),
     iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
     shadowColor: Colors.blue,
+    buttonColor: Color(0xFF00b5c9),
     textTheme: TextTheme(
       headline1: TextStyle(
         fontFamily: 'Roboto',
@@ -36,6 +37,7 @@ class AppThemes {
     colorScheme: ColorScheme.light(primary: Colors.yellow),
     iconTheme: IconThemeData(color: Colors.amber[800], opacity: 0.8),
     shadowColor: Colors.white,
+    buttonColor: Color(0xFF00b5c9),
     textTheme: TextTheme(
       headline1: TextStyle(
         fontFamily: 'Roboto',

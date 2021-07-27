@@ -51,6 +51,8 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   ];
 
   final Color logoGreen = Color(0xFF5f59f7);
+  final _formKey = GlobalKey<FormState>();
+  bool _autovalidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,118 +61,134 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
           body: Container(
         margin: EdgeInsets.all(20),
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                "Eklemek istediğiniz malzemenin detaylarını giriniz.",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.openSans(color: Colors.white, fontSize: 15),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              _buildTextField(mobilyaTuruController, "Mobilya Türü", context)
-                  as Widget,
-              SizedBox(
-                height: 20,
-              ),
-              _buildTextField(adetController, "Adet Giriniz", context)
-                  as Widget,
-              SizedBox(
-                height: 20,
-              ),
-              _buildTextField(mudurlukController,
-                  "Gelen veya Giden Müdürlüğü Belirtiniz", context) as Widget,
-              SizedBox(
-                height: 20,
-              ),
-              _buildTextField(
-                  notController,
-                  "Eklemek istediğiniz notunuz var ise ekleyiniz",
-                  context) as Widget,
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                color: Theme.of(context).primaryColor,
-                child: DropdownButtonFormField(
-                  items: _kategori
-                      .map(
-                        (value) => DropdownMenuItem(
-                          child: Text(
-                            value,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontFamily: 'Roboto',
+          child: Form(
+            key: _formKey,
+            autovalidate: _autovalidate,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  "Eklemek istediğiniz malzemenin detaylarını giriniz.",
+                  textAlign: TextAlign.center,
+                  style:
+                      GoogleFonts.openSans(color: Colors.white, fontSize: 15),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextFormField(
+                    mobilyaTuruController, "Mobilya Türü", context) as Widget,
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextFormField(adetController, "Adet Giriniz", context)
+                    as Widget,
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextFormField(mudurlukController,
+                    "Gelen veya Giden Müdürlüğü Belirtiniz", context) as Widget,
+                SizedBox(
+                  height: 20,
+                ),
+                _buildTextFormField(
+                    notController,
+                    "Eklemek istediğiniz notunuz var ise ekleyiniz",
+                    context) as Widget,
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  color: Theme.of(context).primaryColor,
+                  child: DropdownButtonFormField(
+                    items: _kategori
+                        .map(
+                          (value) => DropdownMenuItem(
+                            child: Text(
+                              value,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontFamily: 'Roboto',
+                              ),
                             ),
+                            value: value,
                           ),
-                          value: value,
-                        ),
-                      )
-                      .toList(),
-                  dropdownColor: Theme.of(context).primaryColor,
-                  onChanged: (selectedKategoriType) {
-                    setState(
-                      () {
-                        selectedKategori = selectedKategoriType;
-                      },
-                    );
-                  },
-                  value: selectedKategori,
-                  hint: Text(
-                    'Masa',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: Theme.of(context).primaryColor,
+                        )
+                        .toList(),
+                    dropdownColor: Theme.of(context).primaryColor,
+                    onChanged: (selectedKategoriType) {
+                      setState(
+                        () {
+                          selectedKategori = selectedKategoriType;
+                        },
+                      );
+                    },
+                    value: selectedKategori,
+                    validator: (value) =>
+                        value == null ? 'Kategori seçiniz.' : null,
+                    hint: Text(
+                      'Kategori',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.bold,
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              FlatButton(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Kaydet"),
+                FlatButton(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Kaydet"),
+                  ),
+                  color: Theme.of(context).buttonColor,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      addProduct(
+                              mobilyaTuruController.text,
+                              adetController.text,
+                              mudurlukController.text,
+                              notController.text,
+                              selectedKategori.toString())
+                          .then(
+                        (value) {
+                          return Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UrunListeleme(),
+                            ),
+                          );
+                        },
+                      );
+                      _formKey.currentState!.save();
+                    } else {
+                      setState(() {
+                        _autovalidate = true; //enable realtime validation
+                      });
+                    }
+                  },
                 ),
-                color: logoGreen,
-                onPressed: () {
-                  addProduct(
-                          mobilyaTuruController.text,
-                          adetController.text,
-                          mudurlukController.text,
-                          notController.text,
-                          selectedKategori.toString())
-                      .then(
-                    (value) {
-                      return Navigator.push(
+                SizedBox(
+                  height: 20,
+                ),
+                FlatButton(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Ürün Listelemeye Dön"),
+                  ),
+                  color: Theme.of(context).buttonColor,
+                  onPressed: () {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => UrunListeleme(),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              FlatButton(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Ürün Listelemeye Dön"),
-                ),
-                color: logoGreen,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UrunListeleme()));
-                },
-              )
-            ],
+                            builder: (context) => UrunListeleme()));
+                  },
+                )
+              ],
+            ),
           ),
         ),
       )),
@@ -178,12 +196,15 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   }
 }
 
-_buildTextField(TextEditingController controller, String labelText, context) {
+_buildTextFormField(
+    TextEditingController controller, String labelText, context) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     decoration: BoxDecoration(
         color: secondaryColor, border: Border.all(color: Colors.blue)),
-    child: TextField(
+    child: TextFormField(
+      validator: (value) =>
+          value!.isEmpty ? 'Bu alanı boş geçemezsiniz.' : null,
       controller: controller,
       style: TextStyle(
           color: Theme.of(context as BuildContext).colorScheme.primary),

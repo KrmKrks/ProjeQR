@@ -159,7 +159,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                             builder: (context) => AnaSayfa(),
                           ));
                     },
-                    color: logoGreen,
+                    color: Theme.of(context).buttonColor,
                     child: Text(
                       'Smoking Break..!',
                       style: TextStyle(
