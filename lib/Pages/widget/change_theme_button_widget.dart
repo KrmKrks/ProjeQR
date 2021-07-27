@@ -16,14 +16,15 @@ class _ChangeThemeButtonWidgetState extends State<ChangeThemeButtonWidget> {
     return Transform.scale(
       scale: 1.5,
       child: Switch.adaptive(
-          value: themeProvider.isDarkMode,
-          activeThumbImage: AssetImage('assets/images/half-moon.png'),
-          inactiveThumbImage: AssetImage('assets/images/clouds-and-sun.png'),
-          inactiveTrackColor: Colors.yellow,
-          onChanged: (value) {
-            final provider = Provider.of<ThemeProvider>(context, listen: false);
-            provider.toggleTheme(value);
-          }),
+        value: themeProvider.isDarkMode,
+        activeThumbImage: AssetImage('assets/images/half-moon.png'),
+        inactiveThumbImage: AssetImage('assets/images/clouds-and-sun.png'),
+        inactiveTrackColor: Colors.yellow,
+        onChanged: (value) {
+          final provider = Provider.of<ThemeProvider>(context, listen: false);
+          provider.toggleTheme(value);
+        },
+      ),
     );
   }
 }

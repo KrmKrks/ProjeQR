@@ -117,7 +117,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                         );
                       });
                     },
-                    color: logoGreen,
+                    color: Theme.of(context).buttonColor,
                     child: Text(
                       'Giriş Yap',
                       style: TextStyle(
