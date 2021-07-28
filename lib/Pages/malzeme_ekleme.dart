@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/giris_sayfasi.dart';
+import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
+import 'package:provider/provider.dart';
 
 AuthService _authService = AuthService();
 
@@ -48,6 +50,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
     'Sandalye',
     'Dolap',
     'Keson',
+    'Diğer',
   ];
 
   final Color logoGreen = Color(0xFF5f59f7);
@@ -58,9 +61,15 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Container(
-        margin: EdgeInsets.all(20),
-        child: SingleChildScrollView(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: Provider.of<ThemeProvider>(context).isDarkMode
+                    ? gradientDarkMode
+                    : gradientLightMode),
+          ),
           child: Form(
             key: _formKey,
             autovalidate: _autovalidate,
@@ -142,7 +151,11 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 FlatButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Kaydet"),
+                    child: Text(
+                      "Kaydet",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
                   ),
                   color: Theme.of(context).buttonColor,
                   onPressed: () {
@@ -177,7 +190,11 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                 FlatButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Ürün Listelemeye Dön"),
+                    child: Text(
+                      "Ürün Listelemeye Dön",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
                   ),
                   color: Theme.of(context).buttonColor,
                   onPressed: () {
@@ -191,7 +208,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
             ),
           ),
         ),
-      )),
+      ),
     );
   }
 }

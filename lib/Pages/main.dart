@@ -4,7 +4,7 @@ import 'package:projeqr/pages/giris_sayfasi.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-Future main() async {
+Future<dynamic> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(QrApp());

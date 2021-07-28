@@ -18,11 +18,19 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).primaryColor,
+      //color: Theme.of(context).primaryColor,
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      alignment: Alignment.topCenter,
+      //alignment: Alignment.topCenter,
       margin: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: Provider.of<ThemeProvider>(context).isDarkMode
+                ? gradientDarkMode
+                : gradientLightMode),
+      ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +63,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     );
                   },
-                  color: logoGreen,
+                  color: Theme.of(context).buttonColor,
                   child: Text('Yeni Ürün Ekle',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,
@@ -73,7 +81,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     );
                   },
-                  color: logoGreen,
+                  color: Theme.of(context).buttonColor,
                   child: Text('Listeye Git',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,
@@ -91,7 +99,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     );
                   },
-                  color: logoGreen,
+                  color: Theme.of(context).buttonColor,
                   child: Text('Qr Tara',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,
@@ -109,7 +117,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     );
                   },
-                  color: logoGreen,
+                  color: Theme.of(context).buttonColor,
                   child: Text('Deneme Kısmı',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,

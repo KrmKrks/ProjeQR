@@ -12,13 +12,13 @@ class ThemeProvider extends ChangeNotifier {
 
 class AppThemes {
   static final lightTheme = ThemeData(
-    primaryColor: Colors.grey[200],
+    primaryColor: Color(0xFF71A8E7),
     backgroundColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.light(primary: Colors.black),
-    iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
+    colorScheme: ColorScheme.light(primary: Colors.white),
+    iconTheme: IconThemeData(color: Color(0xFF212d40), opacity: 0.8),
     shadowColor: Colors.blue,
-    buttonColor: Color(0xFF00b5c9),
+    buttonColor: Color(0xFFff9f1c) /*Color(0xFF91f3fc)*/,
     textTheme: TextTheme(
       headline1: TextStyle(
         fontFamily: 'Roboto',
@@ -30,13 +30,16 @@ class AppThemes {
   );
 
   static final darkTheme = ThemeData(
-    primaryColor: Color(0xFF232b38),
-    backgroundColor: Color(0xFF1E304E),
-    scaffoldBackgroundColor: Color(0xFF232b38),
-    colorScheme: ColorScheme.light(primary: Colors.yellow),
+    primaryColor: Color(0xFF2C5364)
+
+    /*Color(0xFF232b38)*/,
+    backgroundColor: Colors.white /*Color(0xFF536B94)*/,
+    cardColor: Color(0xFF536B94),
+    scaffoldBackgroundColor: Color(0xFF3F4D64),
+    colorScheme: ColorScheme.light(primary: Color(0xFFd9dad7)),
     iconTheme: IconThemeData(color: Colors.amber[800], opacity: 0.8),
     shadowColor: Colors.white,
-    buttonColor: Color(0xFF00b5c9),
+    buttonColor: Color(0xFFB9182A) /*Color(0xFFc24d2c)*/,
     textTheme: TextTheme(
       headline1: TextStyle(
         fontFamily: 'Roboto',
@@ -47,3 +50,13 @@ class AppThemes {
     ),
   );
 }
+
+List<Color> gradientDarkMode = [
+  Color(0xFF141E30),
+  Color(0xFF243B55),
+];
+List<Color> gradientLightMode = [
+  Color(0xFF91EAE4),
+  Color(0xFF71A8E7),
+  Color(0xFF7F7FD5),
+];
