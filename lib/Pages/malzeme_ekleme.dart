@@ -11,7 +11,6 @@ import 'package:projeqr/pages/giris_sayfasi.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:provider/provider.dart';
 
-
 AuthService _authService = AuthService();
 
 class MalzemeEkleme extends StatefulWidget {
@@ -62,17 +61,17 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: Provider.of<ThemeProvider>(context).isDarkMode
-                    ? gradientDarkMode
-                    : gradientLightMode),
-          ),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: Provider.of<ThemeProvider>(context).isDarkMode
+                  ? gradientDarkMode
+                  : gradientLightMode),
+        ),
+        child: SafeArea(
           child: Form(
             key: _formKey,
             autovalidate: _autovalidate,

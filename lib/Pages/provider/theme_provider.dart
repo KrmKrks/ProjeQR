@@ -33,7 +33,7 @@ class AppThemes {
     primaryColor: Color(0xFF2C5364)
 
     /*Color(0xFF232b38)*/,
-    backgroundColor: Colors.white /*Color(0xFF536B94)*/,
+    backgroundColor: Color(0xFF8AA8DD),
     cardColor: Color(0xFF536B94),
     scaffoldBackgroundColor: Color(0xFF3F4D64),
     colorScheme: ColorScheme.light(primary: Color(0xFFd9dad7)),
