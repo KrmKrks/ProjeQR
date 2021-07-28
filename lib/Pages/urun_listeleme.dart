@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
+
+
 import 'package:qr_flutter/qr_flutter.dart';
 import 'models.dart';
 
