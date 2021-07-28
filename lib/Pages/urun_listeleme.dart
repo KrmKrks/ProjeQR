@@ -44,7 +44,6 @@ class UrunListelemeState extends State<UrunListeleme> {
   @override
   build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(

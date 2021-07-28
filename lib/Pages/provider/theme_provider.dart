@@ -15,7 +15,7 @@ class AppThemes {
     primaryColor: Color(0xFF71A8E7),
     backgroundColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.light(primary: Colors.white),
+    colorScheme: ColorScheme.light(primary: Colors.black),
     iconTheme: IconThemeData(color: Color(0xFF212d40), opacity: 0.8),
     shadowColor: Colors.blue,
     buttonColor: Color(0xFFff9f1c) /*Color(0xFF91f3fc)*/,
@@ -56,7 +56,10 @@ List<Color> gradientDarkMode = [
   Color(0xFF243B55),
 ];
 List<Color> gradientLightMode = [
-  Color(0xFF91EAE4),
-  Color(0xFF71A8E7),
-  Color(0xFF7F7FD5),
+  Color(0xFF71B280),
+  Color(0xFF134E5E),
+  // Color(0xFF91EAE4),
+  // Color(0xFF71A8E7),
+  // Color(0xFF7F7FD5),
 ];
+//Color(0xFF2BC0E4), Color(0xFFEAECC6)
