@@ -7,7 +7,6 @@ import 'package:projeqr/pages/qr_generate.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:provider/provider.dart';
 
-
 //sa merhaba
 //bugün baya bir şey öğrendik
 class AnaSayfa extends StatefulWidget {
@@ -21,7 +20,6 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   Widget build(BuildContext context) {
     return Container(
-      //color: Theme.of(context).primaryColor,
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       //alignment: Alignment.topCenter,
@@ -34,30 +32,32 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 ? gradientDarkMode
                 : gradientLightMode),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 100,
-            ),
-            Container(
-              child: Image.asset(Provider.of<ThemeProvider>(context).isDarkMode
-                  ? 'assets/THY-LOGO-DARK.png'
-                  : 'assets/THY-LOGO-WHITE.png'),
-              height: 220,
-            ),
-            SizedBox(height: 100),
-            Wrap(
-              direction: Axis.horizontal,
-              spacing: 30,
-              runSpacing: 50,
+
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 70,
+          ),
+          Container(
+            child: Image.asset(Provider.of<ThemeProvider>(context).isDarkMode
+                ? 'assets/THY-LOGO-DARK.png'
+                : 'assets/THY-LOGO-WHITE.png'),
+            height: 210,
+          ),
+          Expanded(
+            child: GridView.count(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).devicePixelRatio / 0.2,
+                vertical: MediaQuery.of(context).devicePixelRatio / 0.1,
+              ),
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
               children: [
                 MaterialButton(
                   elevation: 0,
-                  minWidth: 160,
-                  height: 70,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -70,12 +70,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   child: Text('Yeni Ürün Ekle',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,
-                  shape: const StadiumBorder(),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
                 MaterialButton(
                   elevation: 0,
-                  minWidth: 160,
-                  height: 70,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -88,12 +87,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   child: Text('Listeye Git',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,
-                  shape: const StadiumBorder(),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
                 MaterialButton(
                   elevation: 0,
-                  minWidth: 160,
-                  height: 70,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -106,12 +104,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   child: Text('Qr Tara',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,
-                  shape: const StadiumBorder(),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
                 MaterialButton(
                   elevation: 0,
-                  minWidth: 160,
-                  height: 70,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -124,15 +121,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   child: Text('Deneme Kısmı',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   textColor: Colors.white,
-                  shape: const StadiumBorder(),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
               ],
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-            )
-          ],
-        ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+          )
+        ],
       ),
     );
   }
