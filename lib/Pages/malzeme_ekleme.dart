@@ -41,6 +41,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       'Not': not,
       'Document ID': documentID,
       'Kategori': selectedKategori,
+      'CreatedAt': DateTime.now(),
     });
 
     return _firestore.id;

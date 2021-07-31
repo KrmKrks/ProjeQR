@@ -67,11 +67,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     );
                   },
                   color: Theme.of(context).buttonColor,
-                  child: Text('Yeni Ürün Ekle',
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                  child: Text(
+                    'Yeni Ürün Ekle',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                  ),
                 ),
                 MaterialButton(
                   elevation: 0,

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/category.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:provider/provider.dart';
-
-import 'package:qr_flutter/qr_flutter.dart';
 import 'models.dart';
 
 class UrunListeleme extends StatefulWidget {
@@ -40,6 +40,13 @@ TextEditingController mudurlukController = TextEditingController();
 
 final Color logoGreen = Color(0xFF5f59f7);
 
+// fireStore_Get_Products() {
+//   List<String> prodList = [];
+//   FirebaseFirestore.instance
+//       .collection('products')
+//       .orderBy('Kategori', Equalto, categories['name']);
+// }
+
 class UrunListelemeState extends State<UrunListeleme> {
   @override
   build(BuildContext context) {
@@ -63,6 +70,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                 ),
+//----------------------------------------------------------------------------------------------
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -80,6 +88,7 @@ class UrunListelemeState extends State<UrunListeleme> {
               SizedBox(
                 height: 10,
               ),
+//-------------------------------------------------------------------------------------------------
               Container(
                 height: 120,
                 child: ListView.builder(
@@ -97,8 +106,25 @@ class UrunListelemeState extends State<UrunListeleme> {
                                 borderRadius: BorderRadius.circular(10)),
                             height: 90,
                             width: 90,
-                            child: Image.asset(
-                                categories[index]['iconPath'] as String),
+                            child: GestureDetector(
+                              // onTap: () {
+                              //   Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => Categories(
+                              //           documentID:
+                              //               widget.docRef['Document ID'] as String,
+                              //           mobilyaTuru:
+                              //               docRef['Mobilya Türü'] as String,
+                              //           adet: docRef['Adet'] as String,
+                              //           mudurluk: docRef['Müdürlük'] as String,
+                              //           not: docRef['Not'] as String),
+                              //     ),
+                              //   );
+                              // },
+                              child: Image.asset(
+                                  categories[index]['iconPath'] as String),
+                            ),
                           ),
                           Text(
                             categories[index]['name'] as String,
@@ -112,9 +138,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                 ),
               ),
               SizedBox(height: 10),
+//-------------------------------------------------------------------------
               Flexible(
                 child: StreamBuilder(
-                  stream: ref.snapshots(),
+                  stream:
+                      ref.orderBy('CreatedAt', descending: true).snapshots(),
                   builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
