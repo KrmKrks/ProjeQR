@@ -107,21 +107,16 @@ class UrunListelemeState extends State<UrunListeleme> {
                             height: 90,
                             width: 90,
                             child: GestureDetector(
-                              // onTap: () {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => Categories(
-                              //           documentID:
-                              //               widget.docRef['Document ID'] as String,
-                              //           mobilyaTuru:
-                              //               docRef['Mobilya Türü'] as String,
-                              //           adet: docRef['Adet'] as String,
-                              //           mudurluk: docRef['Müdürlük'] as String,
-                              //           not: docRef['Not'] as String),
-                              //     ),
-                              //   );
-                              // },
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Categories(
+                                        categoriesGet: categories[index]['name']
+                                            as String),
+                                  ),
+                                );
+                              },
                               child: Image.asset(
                                   categories[index]['iconPath'] as String),
                             ),
@@ -138,6 +133,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                 ),
               ),
               SizedBox(height: 10),
+
 //-------------------------------------------------------------------------
               Flexible(
                 child: StreamBuilder(
@@ -319,7 +315,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                         },
                       );
                     } else
-                      return Text('');
+                      return Text('Herhangi bir veri bulunamadı');
                   },
                 ),
               ),

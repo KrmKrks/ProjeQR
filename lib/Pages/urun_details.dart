@@ -41,7 +41,7 @@ class _UrunDetailsState extends State<UrunDetails> {
                 QrImage(
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.all(10),
-                  data: widget.documentID /*docRef['Document ID']*/,
+                  data: widget.documentID,
                   size: 300,
                   embeddedImage: AssetImage('assets/Mini_logo.png'),
                   embeddedImageStyle: QrEmbeddedImageStyle(
@@ -53,28 +53,28 @@ class _UrunDetailsState extends State<UrunDetails> {
             SizedBox(
               height: 15,
             ),
-            Text(widget.mobilyaTuru /*docRef ['Mobilya Türü']*/,
+            Text(widget.mobilyaTuru,
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 25)),
             SizedBox(
               height: 20,
             ),
-            Text(widget.adet /*docRef ['Adet']*/,
+            Text(widget.adet,
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 25)),
             SizedBox(
               height: 20,
             ),
-            Text(widget.mudurluk /*docRef ['Müdürlük']*/,
+            Text(widget.mudurluk,
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 25)),
             SizedBox(
               height: 20,
             ),
-            Text(widget.not /*docRef ['Not']*/,
+            Text(widget.not,
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 25)),

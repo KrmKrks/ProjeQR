@@ -8,9 +8,6 @@ import 'package:projeqr/pages/widget/change_theme_button_widget.dart';
 import 'package:projeqr/pages/%C3%BCye_ol.dart';
 import 'package:provider/provider.dart';
 
-
-
-
 class Girissayfasi extends StatefulWidget {
   Girissayfasi({Key? key}) : super(key: key);
 
@@ -32,6 +29,10 @@ class _GirissayfasiState extends State<Girissayfasi> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+      padding: EdgeInsets.symmetric(
+        vertical: MediaQuery.of(context).devicePixelRatio / 20,
+        horizontal: MediaQuery.of(context).devicePixelRatio / 0.3,
+      ),
       decoration: BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment.topCenter,

@@ -1,17 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:projeqr/pages/urun_details.dart';
+import 'package:provider/provider.dart';
 
 class Categories extends StatefulWidget {
-  String documentID, mobilyaTuru, adet, mudurluk, not;
-  Categories(
-      {Key? key,
-      required this.documentID,
-      required this.mobilyaTuru,
-      required this.adet,
-      required this.mudurluk,
-      required this.not})
-      : super(key: key);
+  String categoriesGet;
+  Categories({Key? key, required this.categoriesGet}) : super(key: key);
 
   @override
   _CategoriesState createState() => _CategoriesState();
@@ -47,8 +42,21 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: MediaQuery.of(context).devicePixelRatio / 0.1,
+        horizontal: MediaQuery.of(context).devicePixelRatio / 0.18,
+      ),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: Provider.of<ThemeProvider>(context).isDarkMode
+                ? gradientDarkMode
+                : gradientLightMode),
+      ),
       child: StreamBuilder(
-        stream: ref.snapshots(),
+        stream:
+            ref.where('Kategori', isEqualTo: widget.categoriesGet).snapshots(),
         builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -197,18 +205,9 @@ class _CategoriesState extends State<Categories> {
               },
             );
           } else
-            return Text('');
+            return Text('Herhangi bir ürün bulunamadı!');
         },
       ),
     );
-    //    child: StreamBuilder(
-    //               stream: ref.snapshots(),
-    //               builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
-    //                 if (snapshot.hasData && snapshot.data!.docs['Kategori']== ) {
-    //                   return ListView.builder(
-    //                     itemCount: snapshot.data!.docs.length,
-    //                     itemBuilder: (context, index) {
-    //                       var docRef = snapshot.data!.docs[index];}
-    // );
   }
 }
