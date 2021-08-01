@@ -48,7 +48,7 @@ class _ScanQRState extends State<ScanQR> {
         FlutterBarcodeScanner.scanBarcode('#2A99CF', 'Cencel', true, ScanMode.QR);
       } catch (e) {
         setState(() {
-          qrString = 'QR okunamadı';
+          qrString = 'QR okunmadı';
         }
 
         );
