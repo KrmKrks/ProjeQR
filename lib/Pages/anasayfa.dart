@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/giris_sayfasi.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
 
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 
 import 'package:projeqr/pages/qr_generate.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
+import 'package:projeqr/pages/qrtarama.dart';
 import 'package:provider/provider.dart';
 
 //sa merhaba
@@ -101,7 +103,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UrunListeleme(),
+                        builder: (context) => ScanQR(),
                       ),
                     );
                   },
@@ -118,7 +120,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => QrGenerator(),
+                        builder: (context) => QrGenerator (),
                       ),
                     );
                   },
