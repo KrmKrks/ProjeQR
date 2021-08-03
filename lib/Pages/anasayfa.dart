@@ -117,12 +117,12 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 MaterialButton(
                   elevation: 0,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => QrGenerator (),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => QrGenerator (scanResult),
+                    //   ),
+                    // );
                   },
                   color: Theme.of(context).buttonColor,
                   child: Text('Deneme Kısmı',

@@ -7,7 +7,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 //TODO: Deneme alanı idi Qr code package' ı için şimdi tamamen kaldırılacak veya başka birşeye evriltilecek
 class QrGenerator extends StatefulWidget {
-  QrGenerator({Key? key}) : super(key: key);
+  String scanResult;
+  QrGenerator({Key? key, required this.scanResult}) : super(key: key);
 
   @override
   _QrGeneratorState createState() => _QrGeneratorState();
@@ -20,7 +21,9 @@ class _QrGeneratorState extends State<QrGenerator> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: doc.snapshots(),
+          stream: doc
+              .where('Document ID', isEqualTo: widget.scanResult)
+              .snapshots(),
           builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
             return Container(
               child: Padding(
