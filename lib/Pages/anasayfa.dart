@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/giris_sayfasi.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
-
 import 'package:projeqr/pages/malzeme_ekleme.dart';
-
-import 'package:projeqr/pages/qr_generate.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
 import 'package:provider/provider.dart';
@@ -120,7 +116,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(
+<<<<<<< HEAD
                     //     builder: (context) => QrGenerator (scanResult),
+=======
+                    //     builder: (context) => QrGenerator (),
+>>>>>>> 4572e48884b6e2aefb013ddf9b05fa20abd02d7d
                     //   ),
                     // );
                   },

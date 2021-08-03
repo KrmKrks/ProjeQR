@@ -2,8 +2,13 @@
 //import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+<<<<<<< HEAD
 import 'package:projeqr/pages/qr_generate.dart';
+=======
+import 'package:projeqr/pages/qr_result_page.dart';
+>>>>>>> 4572e48884b6e2aefb013ddf9b05fa20abd02d7d
 
 class ScanQR extends StatefulWidget {
   //ScanQR({Key? key}) : super(key: key);
@@ -14,7 +19,8 @@ class ScanQR extends StatefulWidget {
 
 class _ScanQRState extends State<ScanQR> {
   late double height, width;
-  String qrString = 'Tarama Yapılmadı';
+
+  String qrCode = '';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,11 @@ class _ScanQRState extends State<ScanQR> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
+<<<<<<< HEAD
             qrString,
+=======
+            'Qr Tara',
+>>>>>>> 4572e48884b6e2aefb013ddf9b05fa20abd02d7d
             style: TextStyle(color: Colors.blue, fontSize: 30),
           ),
           ElevatedButton(
@@ -43,6 +53,7 @@ class _ScanQRState extends State<ScanQR> {
 
   Future<void> scan() async {
     try {
+<<<<<<< HEAD
       FlutterBarcodeScanner.scanBarcode('#2A99CF', 'Cencel', true, ScanMode.QR);
       Navigator.push(
         context,
@@ -55,6 +66,24 @@ class _ScanQRState extends State<ScanQR> {
       setState(() {
         qrString = 'QR okunmadı';
       });
+=======
+      final qrCode = await FlutterBarcodeScanner.scanBarcode(
+          '#2A99CF', 'Cencel', true, ScanMode.QR);
+
+      if (!mounted) return;
+
+      setState(() {
+        this.qrCode = qrCode;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => QrResult(scanResult: qrCode),
+          ),
+        );
+      });
+    } on PlatformException {
+      qrCode = 'Failed to get platform version.';
+>>>>>>> 4572e48884b6e2aefb013ddf9b05fa20abd02d7d
     }
   }
 }
