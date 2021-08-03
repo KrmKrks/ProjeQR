@@ -116,11 +116,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(
-<<<<<<< HEAD
-                    //     builder: (context) => QrGenerator (scanResult),
-=======
                     //     builder: (context) => QrGenerator (),
->>>>>>> 4572e48884b6e2aefb013ddf9b05fa20abd02d7d
                     //   ),
                     // );
                   },
