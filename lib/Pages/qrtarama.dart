@@ -30,7 +30,7 @@ class _ScanQRState extends State<ScanQR> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            qrString,
+            'Qr Tara',
             style: TextStyle(color: Colors.blue, fontSize: 30),
           ),
           ElevatedButton(
@@ -45,18 +45,22 @@ class _ScanQRState extends State<ScanQR> {
 
   Future<void> scan() async {
     try {
-      FlutterBarcodeScanner.scanBarcode('#2A99CF', 'Cencel', true, ScanMode.QR);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              QrGenerator(scanResult: ScanMode.values as String),
-        ),
-      );
-    } catch (e) {
+      final qrCode = await FlutterBarcodeScanner.scanBarcode(
+          '#2A99CF', 'Cencel', true, ScanMode.QR);
+
+      if (!mounted) return;
+
       setState(() {
-        qrString = 'QR okunmadı';
+        this.qrCode = qrCode;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => QrResult(scanResult: qrCode),
+          ),
+        );
       });
+    } on PlatformException {
+      qrCode = 'Failed to get platform version.';
     }
   }
 }
