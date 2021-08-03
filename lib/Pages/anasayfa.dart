@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/giris_sayfasi.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
-
 import 'package:projeqr/pages/malzeme_ekleme.dart';
-
-import 'package:projeqr/pages/qr_generate.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
 import 'package:provider/provider.dart';
@@ -117,12 +113,12 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 MaterialButton(
                   elevation: 0,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => QrGenerator (),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => QrGenerator (),
+                    //   ),
+                    // );
                   },
                   color: Theme.of(context).buttonColor,
                   child: Text('Deneme Kısmı',

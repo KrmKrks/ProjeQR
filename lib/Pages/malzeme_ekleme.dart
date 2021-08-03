@@ -1,13 +1,9 @@
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/pages/provider/theme_provider.dart';
-
 import 'package:projeqr/net/authentication.dart';
-import 'package:projeqr/pages/giris_sayfasi.dart';
-
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +18,7 @@ class MalzemeEkleme extends StatefulWidget {
 
 class _MalzemeEklemeState extends State<MalzemeEkleme> {
   @override
-  CollectionReference _firestore =
+  final CollectionReference _firestore =
       FirebaseFirestore.instance.collection('products');
 
   TextEditingController mobilyaTuruController = TextEditingController();
@@ -233,7 +229,8 @@ _buildTextFormField(
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     decoration: BoxDecoration(
-        color: secondaryColor, border: Border.all(color: Colors.blue)),
+        // color: secondaryColor,
+        border: Border.all(color: Colors.blue)),
     child: TextFormField(
       validator: (value) =>
           value!.isEmpty ? 'Bu alanı boş geçemezsiniz.' : null,
