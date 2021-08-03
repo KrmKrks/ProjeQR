@@ -103,7 +103,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ScanQR(),
+                        builder: (context) => MyHomePage(),
                       ),
                     );
                   },

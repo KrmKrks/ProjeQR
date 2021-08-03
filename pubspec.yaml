@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   qr_code_scanner: ^0.5.2
+  flutter_qr_bar_scanner: 2.0.0
+  
   flutter_barcode_scanner: ^2.0.0
 
   # Flutter Fire
@@ -42,7 +44,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
-   
+  
   
 
 dev_dependencies:
