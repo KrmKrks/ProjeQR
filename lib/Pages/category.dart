@@ -55,8 +55,10 @@ class _CategoriesState extends State<Categories> {
                 : gradientLightMode),
       ),
       child: StreamBuilder(
-        stream:
-            ref.where('Kategori', isEqualTo: widget.categoriesGet).snapshots(),
+        stream: ref
+            .where('Kategori', isEqualTo: widget.categoriesGet)
+            .orderBy('CreatedAt', descending: true)
+            .snapshots(),
         builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
