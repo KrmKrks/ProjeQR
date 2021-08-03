@@ -42,6 +42,7 @@ class AppThemes {
     buttonColor: Color(0xFFB9182A) /*Color(0xFFc24d2c)*/,
     textTheme: TextTheme(
       headline1: TextStyle(
+        decoration: TextDecoration.none,
         fontFamily: 'Roboto',
         fontSize: 16.0,
         fontWeight: FontWeight.bold,
