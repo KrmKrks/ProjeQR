@@ -28,6 +28,7 @@
 	<string>Main</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera permission is required for QR scanning.</string>
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
