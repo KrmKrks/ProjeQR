@@ -2,9 +2,9 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
+import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 AuthService _authService = AuthService();

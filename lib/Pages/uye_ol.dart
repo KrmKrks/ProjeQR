@@ -1,9 +1,10 @@
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/giris_sayfasi.dart';
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
-import '../provider/theme_provider.dart';
+
 
 class UyeOl extends StatefulWidget {
   UyeOl({Key? key}) : super(key: key);
@@ -27,6 +28,8 @@ late Map<String, dynamic> usersToAdd;
 
 class _UyeOlState extends State<UyeOl> {
   final Color logoGreen = Color(0xFF5f59f7);
+  //final _formKey2 = GlobalKey<FormState>();
+  //bool _autovalidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +41,17 @@ class _UyeOlState extends State<UyeOl> {
         alignment: Alignment.topCenter,
         margin: EdgeInsets.all(40),
         child: SingleChildScrollView(
+         
           child: Column(
+            
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
+           
+              //children: [
+              //Form(
+                //key: _formKey2,
+                
+          //child: Column(
             children: <Widget>[
               Container(
                 child: Image.asset(
@@ -53,6 +64,7 @@ class _UyeOlState extends State<UyeOl> {
               SizedBox(height: 10),
 
               TextFormField(
+                //autovalidate: false,
                 controller: nameController,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -65,6 +77,14 @@ class _UyeOlState extends State<UyeOl> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
+                //validator: (value) {
+                  //if (value!.isEmpty) {
+                    //return 'Bu Alan Bos Birakilamaz';
+                    
+                  //} else {
+                    //return null;
+                  //}
+                //},
               ),
               SizedBox(height: 20),
               TextFormField(
@@ -80,6 +100,14 @@ class _UyeOlState extends State<UyeOl> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
+                 //validator: (value) {
+                  //if (value!.isEmpty) {
+                    //return 'Bu Alan Bos Birakilamaz';
+                    
+                  //} else {
+                    //return null;
+                  //}
+                //},
               ),
               SizedBox(height: 30),
 
@@ -96,6 +124,14 @@ class _UyeOlState extends State<UyeOl> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
+                 //validator: (value) {
+                  //if (value!.isEmpty) {
+                    //return 'Bu Alan Bos Birakilamaz';
+                    
+                  //} else {
+                    //return null;
+                  //}
+                //},
               ),
               SizedBox(height: 30),
 
@@ -112,7 +148,16 @@ class _UyeOlState extends State<UyeOl> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
+                 //validator: (value) {
+                  //if (value!.isEmpty) {
+                    //return 'Bu Alan Bos Birakilamaz';
+                    
+                  //} else {
+                    //return null;
+                  //}
+                //},
               ),
+              
               SizedBox(height: 30),
 
               TextFormField(
@@ -129,6 +174,14 @@ class _UyeOlState extends State<UyeOl> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
+                 //validator: (value) {
+                  //if (value!.isEmpty) {
+                    //return 'Bu Alan Bos Birakilamaz';
+                    
+                  //} else {
+                    //return null;
+                  //}
+                //},
               ),
               SizedBox(height: 30),
 
@@ -146,6 +199,14 @@ class _UyeOlState extends State<UyeOl> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
+                 //validator: (value) {
+                  //if (value!.isEmpty) {
+                    //return 'Bu Alan Bos Birakilamaz';
+                    
+                  //} else {
+                    //return null;
+                  //}
+                //},
               ),
               SizedBox(height: 30),
 
@@ -158,6 +219,9 @@ class _UyeOlState extends State<UyeOl> {
                 minWidth: double.minPositive,
                 height: 50,
                 onPressed: () {
+                  //if(_formKey2.currentState!.validate()){
+                    
+                  
                   _authService
                       .createPerson(
                           nameController.text,
@@ -167,8 +231,15 @@ class _UyeOlState extends State<UyeOl> {
                           passwordController.text)
                       .then((value) {
                     return Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AnaSayfa()));
+                        MaterialPageRoute(builder: (context) => Girissayfasi()));
                   });
+                  //_formKey2.currentState!.save();
+                        //} else {
+                          //setState(() {
+                            //_autovalidate = true; //enable realtime validation
+                          //});
+                        //}
+                  
                 },
                 color: logoGreen,
                 child: Text(
@@ -182,9 +253,18 @@ class _UyeOlState extends State<UyeOl> {
                 alignment: Alignment.bottomCenter,
               )
             ],
+          //),
+              //),
+              //],
+                
+          
+          
           ),
+          
+          
         ),
       ),
     );
   }
 }
+

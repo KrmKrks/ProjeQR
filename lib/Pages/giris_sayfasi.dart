@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
-import 'package:projeqr/widget/change_theme_button_widget.dart';
 import 'package:projeqr/pages/uye_ol.dart';
+import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/widget/change_theme_button_widget.dart';
 import 'package:provider/provider.dart';
 
 class Girissayfasi extends StatefulWidget {
@@ -74,13 +74,9 @@ class _GirissayfasiState extends State<Girissayfasi> {
                         color: Theme.of(context).colorScheme.primary,
                         fontSize:
                             Theme.of(context).textTheme.headline1?.fontSize,
-                        fontWeight:
-                            Theme.of(context).textTheme.headline1?.fontWeight,
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+
                     TextFormField(
                       controller: emailController,
                       style: TextStyle(
