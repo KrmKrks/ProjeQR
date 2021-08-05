@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +16,7 @@ class _ChangeThemeButtonWidgetState extends State<ChangeThemeButtonWidget> {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Transform.scale(
-      scale: 1.5,
+      scale: Platform.isAndroid ? 1.5 : 1,
       child: Switch.adaptive(
         value: themeProvider.isDarkMode,
         activeThumbImage: AssetImage('assets/images/half-moon.png'),

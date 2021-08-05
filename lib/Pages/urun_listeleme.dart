@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:projeqr/pages/category.dart';
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/pages/urun_details.dart';
-import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'models.dart';
 
