@@ -2,8 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/category.dart';
+<<<<<<< HEAD
 import 'package:projeqr/provider/theme_provider.dart';
+=======
+//import 'package:projeqr/pages/provider/theme_provider.dart';
+>>>>>>> cba96b952608e452fcca816bfe0b52d82c3c9023
 import 'package:projeqr/pages/urun_details.dart';
+import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'models.dart';
 

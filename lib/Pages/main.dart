@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:projeqr/pages/giris_sayfasi.dart';
+<<<<<<< HEAD
+=======
+//import 'package:projeqr/pages/provider/theme_provider.dart';
+>>>>>>> cba96b952608e452fcca816bfe0b52d82c3c9023
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 

@@ -1,9 +1,14 @@
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
+<<<<<<< HEAD
 import '../provider/theme_provider.dart';
+=======
+//import 'provider/theme_provider.dart';
+>>>>>>> cba96b952608e452fcca816bfe0b52d82c3c9023
 
 class UyeOl extends StatefulWidget {
   UyeOl({Key? key}) : super(key: key);
