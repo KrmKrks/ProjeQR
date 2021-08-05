@@ -2,11 +2,7 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
 import 'package:projeqr/provider/theme_provider.dart';
-=======
-//import 'package:projeqr/pages/provider/theme_provider.dart';
->>>>>>> cba96b952608e452fcca816bfe0b52d82c3c9023
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/provider/theme_provider.dart';
