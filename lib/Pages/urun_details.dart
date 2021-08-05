@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/provider/theme_provider.dart';
+import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 

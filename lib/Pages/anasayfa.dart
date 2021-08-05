@@ -5,8 +5,6 @@ import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
 import 'package:provider/provider.dart';
 
-//sa merhaba
-//bugün baya bir şey öğrendik
 class AnaSayfa extends StatefulWidget {
   @override
   _AnaSayfaState createState() => _AnaSayfaState();
