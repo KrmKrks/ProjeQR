@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/provider/theme_provider.dart';
+//import 'package:projeqr/pages/provider/theme_provider.dart';
 import 'package:projeqr/pages/urun_details.dart';
+import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class Categories extends StatefulWidget {
