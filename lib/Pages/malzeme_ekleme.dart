@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
+<<<<<<< HEAD
 import 'package:projeqr/provider/theme_provider.dart';
+=======
+import 'package:projeqr/widget/build_textformfield_widget.dart';
+>>>>>>> feadf7654c85e563a4428ba9eb3849f2d506c7fa
 import 'package:provider/provider.dart';
 
 AuthService _authService = AuthService();
@@ -92,25 +96,25 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     SizedBox(
                       height: 20,
                     ),
-                    _buildTextFormField(
+                    buildTextFormField(
                             mobilyaTuruController, "Mobilya Türü", context)
                         as Widget,
                     SizedBox(
                       height: 20,
                     ),
-                    _buildTextFormField(adetController, "Adet Giriniz", context)
+                    buildTextFormField(adetController, "Adet Giriniz", context)
                         as Widget,
                     SizedBox(
                       height: 20,
                     ),
-                    _buildTextFormField(
+                    buildTextFormField(
                         mudurlukController,
                         "Gelen veya Giden Müdürlüğü Belirtiniz",
                         context) as Widget,
                     SizedBox(
                       height: 20,
                     ),
-                    _buildTextFormField(
+                    buildTextFormField(
                         notController,
                         "Eklemek istediğiniz notunuz var ise ekleyiniz",
                         context) as Widget,
@@ -222,26 +226,4 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       ),
     );
   }
-}
-
-_buildTextFormField(
-    TextEditingController controller, String labelText, context) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-    decoration: BoxDecoration(
-        // color: secondaryColor,
-        border: Border.all(color: Colors.blue)),
-    child: TextFormField(
-      validator: (value) =>
-          value!.isEmpty ? 'Bu alanı boş geçemezsiniz.' : null,
-      controller: controller,
-      style: TextStyle(
-          color: Theme.of(context as BuildContext).colorScheme.primary),
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          labelText: labelText,
-          labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-          border: InputBorder.none),
-    ),
-  );
 }

@@ -154,7 +154,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                                 color: Theme.of(context).iconTheme.color,
                               ),
                               title: Text(
-                                docRef['Mobilya Türü'] as String,
+                                "Mobilya Türü:"
+                                " \t${docRef['Mobilya Türü']} ",
                                 style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.primary),

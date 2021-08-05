@@ -230,8 +230,15 @@ class _UyeOlState extends State<UyeOl> {
                           sicilController.text,
                           passwordController.text)
                       .then((value) {
+<<<<<<< HEAD
                     return Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Girissayfasi()));
+=======
+                    return Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Girissayfasi()));
+>>>>>>> feadf7654c85e563a4428ba9eb3849f2d506c7fa
                   });
                   _formKey2.currentState!.save();
                         } else {

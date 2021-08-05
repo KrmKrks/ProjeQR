@@ -54,16 +54,16 @@ class _GirissayfasiState extends State<Girissayfasi> {
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [ChangeThemeButtonWidget()],
-                      ),
-                    ),
-
-                    Container(
-                      child: Image.asset(
-                        Provider.of<ThemeProvider>(context).isDarkMode
-                            ? 'assets/THY-LOGO-DARK.png'
-                            : 'assets/THY-LOGO-WHITE.png',
-                        height: 220,
+                        children: [
+                          Image.asset(
+                              Provider.of<ThemeProvider>(context).isDarkMode
+                                  ? 'assets/THY-LOGO-DARK.png'
+                                  : 'assets/THY-LOGO-WHITE.png',
+                              height: 220),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 170),
+                              child: ChangeThemeButtonWidget()),
+                        ],
                       ),
                     ),
 

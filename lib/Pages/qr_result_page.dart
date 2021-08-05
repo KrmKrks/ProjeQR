@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
+import 'package:projeqr/widget/build_textformfield_widget.dart';
 
 class QrResult extends StatefulWidget {
   String scanResult;
@@ -35,7 +36,7 @@ class _QrResultState extends State<QrResult> {
                         color: Theme.of(context).iconTheme.color,
                       ),
                       title: Text(
-                        docRef['Mobilya Türü'] as String,
+                        "Mobilya Türü:" " \t${docRef['Mobilya Türü']} ",
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),
@@ -81,28 +82,28 @@ class _QrResultState extends State<QrResult> {
                                         child: ListView(
                                           shrinkWrap: true,
                                           children: <Widget>[
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 mobilyaTuruController,
                                                 "Mobilya Türü",
                                                 context) as Widget,
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 adetController,
                                                 "Adet Giriniz",
                                                 context) as Widget,
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 mudurlukController,
                                                 "Gelen veya Giden Müdürlüğü Belirtiniz",
                                                 context) as Widget,
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 notController,
                                                 "Eklemek istediğiniz notunuz var ise ekleyiniz",
                                                 context) as Widget,
@@ -154,18 +155,6 @@ class _QrResultState extends State<QrResult> {
                                   ));
                         },
                       ),
-                      onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => UrunDetails(
-                        //           documentID: docRef['Document ID'] as String,
-                        //           mobilyaTuru: docRef['Mobilya Türü'] as String,
-                        //           adet: docRef['Adet'] as String,
-                        //           mudurluk: docRef['Müdürlük'] as String,
-                        //           not: docRef['Not'] as String)),
-                        // );
-                      },
                     ),
                   );
                 },
@@ -175,21 +164,4 @@ class _QrResultState extends State<QrResult> {
           }),
     );
   }
-}
-
-_buildTextField(TextEditingController controller, String labelText, context) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-    decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-    child: TextField(
-      controller: controller,
-      style: TextStyle(
-          color: Theme.of(context as BuildContext).colorScheme.primary),
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-          labelText: labelText,
-          border: InputBorder.none),
-    ),
-  );
 }
