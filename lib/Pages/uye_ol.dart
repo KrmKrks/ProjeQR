@@ -1,6 +1,7 @@
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/giris_sayfasi.dart';
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 import '../provider/theme_provider.dart';
@@ -166,8 +167,10 @@ class _UyeOlState extends State<UyeOl> {
                           sicilController.text,
                           passwordController.text)
                       .then((value) {
-                    return Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AnaSayfa()));
+                    return Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Girissayfasi()));
                   });
                 },
                 color: logoGreen,

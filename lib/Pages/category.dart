@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/pages/urun_details.dart';
+import 'package:projeqr/widget/build_textformfield_widget.dart';
 import 'package:provider/provider.dart';
 
 class Categories extends StatefulWidget {
@@ -10,23 +11,6 @@ class Categories extends StatefulWidget {
 
   @override
   _CategoriesState createState() => _CategoriesState();
-}
-
-_buildTextField(TextEditingController controller, String labelText, context) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-    decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-    child: TextField(
-      controller: controller,
-      style: TextStyle(
-          color: Theme.of(context as BuildContext).colorScheme.primary),
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-          labelText: labelText,
-          border: InputBorder.none),
-    ),
-  );
 }
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
@@ -75,7 +59,7 @@ class _CategoriesState extends State<Categories> {
                         color: Theme.of(context).iconTheme.color,
                       ),
                       title: Text(
-                        docRef['Mobilya Türü'] as String,
+                        "Mobilya Türü:" " \t${docRef['Mobilya Türü']} ",
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),
@@ -121,28 +105,28 @@ class _CategoriesState extends State<Categories> {
                                         child: ListView(
                                           shrinkWrap: true,
                                           children: <Widget>[
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 mobilyaTuruController,
                                                 "Mobilya Türü",
                                                 context) as Widget,
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 adetController,
                                                 "Adet Giriniz",
                                                 context) as Widget,
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 mudurlukController,
                                                 "Gelen veya Giden Müdürlüğü Belirtiniz",
                                                 context) as Widget,
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            _buildTextField(
+                                            buildTextFormField(
                                                 notController,
                                                 "Eklemek istediğiniz notunuz var ise ekleyiniz",
                                                 context) as Widget,
