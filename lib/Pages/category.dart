@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/urun_details.dart';
-<<<<<<< HEAD
 import 'package:projeqr/provider/theme_provider.dart';
-=======
 import 'package:projeqr/widget/build_textformfield_widget.dart';
->>>>>>> feadf7654c85e563a4428ba9eb3849f2d506c7fa
 import 'package:provider/provider.dart';
 
 class Categories extends StatefulWidget {
