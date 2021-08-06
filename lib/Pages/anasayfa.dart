@@ -65,9 +65,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
                   color: Theme.of(context).buttonColor,
                   child: Text(
                     'Yeni Ürün Ekle',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: Theme.of(context).textTheme.button,
                   ),
-                  textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10.0),
@@ -85,9 +84,10 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     );
                   },
                   color: Theme.of(context).buttonColor,
-                  child: Text('Listeye Git',
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
-                  textColor: Colors.white,
+                  child: Text(
+                    'Listeye Git',
+                    style: Theme.of(context).textTheme.button,
+                  ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
@@ -102,9 +102,10 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     );
                   },
                   color: Theme.of(context).buttonColor,
-                  child: Text('Qr Tara',
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
-                  textColor: Colors.white,
+                  child: Text(
+                    'Qr Tara',
+                    style: Theme.of(context).textTheme.button,
+                  ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
@@ -119,9 +120,10 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     // );
                   },
                   color: Theme.of(context).buttonColor,
-                  child: Text('Deneme Kısmı',
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
-                  textColor: Colors.white,
+                  child: Text(
+                    'Deneme Kısmı',
+                    style: Theme.of(context).textTheme.button,
+                  ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),

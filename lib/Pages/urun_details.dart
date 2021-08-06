@@ -54,7 +54,8 @@ class _UrunDetailsState extends State<UrunDetails> {
               height: 15,
             ),
             Text(
-              widget.mobilyaTuru,
+              "Mobilya Türü:"
+              " \t${widget.mobilyaTuru} ",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: 25,
@@ -64,7 +65,9 @@ class _UrunDetailsState extends State<UrunDetails> {
             SizedBox(
               height: 20,
             ),
-            Text(widget.adet,
+            Text(
+                "Adet:"
+                " \t${widget.adet}",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 25,
@@ -73,7 +76,9 @@ class _UrunDetailsState extends State<UrunDetails> {
             SizedBox(
               height: 20,
             ),
-            Text(widget.mudurluk,
+            Text(
+                "Gelen veya Giden Müdürlük:"
+                " \t${widget.mudurluk}",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 25,
@@ -82,7 +87,9 @@ class _UrunDetailsState extends State<UrunDetails> {
             SizedBox(
               height: 20,
             ),
-            Text(widget.not,
+            Text(
+                "Not:"
+                " \t${widget.not}",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 25,

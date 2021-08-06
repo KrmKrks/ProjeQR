@@ -14,8 +14,6 @@ class Girissayfasi extends StatefulWidget {
   _GirissayfasiState createState() => _GirissayfasiState();
 }
 
-final Color secondaryColor = Color(0xFF69900);
-
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
@@ -132,13 +130,13 @@ class _GirissayfasiState extends State<Girissayfasi> {
                         });
                       },
                       color: Theme.of(context).buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
                       child: Text(
                         'Giriş Yap',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 16),
+                        style: Theme.of(context).textTheme.button,
                       ),
-                      textColor: Theme.of(context).colorScheme.primary,
                     ),
 
                     SizedBox(height: 20),
@@ -157,11 +155,11 @@ class _GirissayfasiState extends State<Girissayfasi> {
                         );
                       },
                       color: Theme.of(context).buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
                       child: Text('Üye ol',
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 16)),
-                      textColor: Theme.of(context).colorScheme.primary,
+                          style: Theme.of(context).textTheme.button),
                     ),
 
                     SizedBox(height: 20),

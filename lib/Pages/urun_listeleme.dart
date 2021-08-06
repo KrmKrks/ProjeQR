@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:projeqr/pages/category.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/widget/build_textformfield_widget.dart';
 import 'package:provider/provider.dart';
 import 'models.dart';
 
@@ -16,36 +17,12 @@ class UrunListeleme extends StatefulWidget {
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
 
-_buildTextField(TextEditingController controller, String labelText, context) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-    decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-    child: TextField(
-      controller: controller,
-      style: TextStyle(
-          color: Theme.of(context as BuildContext).colorScheme.primary),
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-          labelText: labelText,
-          border: InputBorder.none),
-    ),
-  );
-}
-
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController adetController = TextEditingController();
 TextEditingController notController = TextEditingController();
 TextEditingController mudurlukController = TextEditingController();
 
 final Color logoGreen = Color(0xFF5f59f7);
-
-// fireStore_Get_Products() {
-//   List<String> prodList = [];
-//   FirebaseFirestore.instance
-//       .collection('products')
-//       .orderBy('Kategori', Equalto, categories['name']);
-// }
 
 class UrunListelemeState extends State<UrunListeleme> {
   @override
@@ -158,26 +135,51 @@ class UrunListelemeState extends State<UrunListeleme> {
                                 " \t${docRef['Mobilya Türü']} ",
                                 style: TextStyle(
                                     color:
-                                        Theme.of(context).colorScheme.primary),
+                                        Theme.of(context).colorScheme.primary,
+                                    fontSize: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .fontSize),
                               ),
                               subtitle: Column(
                                 children: <Widget>[
+                                  SizedBox(height: 5),
                                   Text(
-                                    docRef['Adet'] as String,
+                                    "Adet:"
+                                    " \t${docRef['Adet']}",
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
                                             .primary),
                                   ),
+                                  SizedBox(height: 5),
                                   Text(
-                                    docRef['Müdürlük'] as String,
+                                    "Müdürlük:",
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .primary),
+                                            .primary,
+                                        fontWeight: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .fontWeight,
+                                        fontSize: 14),
                                   ),
                                   Text(
-                                    docRef['Not'] as String,
+                                    " \t${docRef['Müdürlük']}",
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontWeight: Theme.of(context)
+                                          .textTheme
+                                          .headline1!
+                                          .fontWeight,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "Not:"
+                                    " \t${docRef['Not']}",
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
@@ -202,52 +204,77 @@ class UrunListelemeState extends State<UrunListeleme> {
                                   showDialog(
                                       context: context,
                                       builder: (context) => Dialog(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20.0))),
                                             child: Container(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                    begin: Alignment.topCenter,
+                                                    end: Alignment.bottomCenter,
+                                                    colors: Provider.of<
+                                                                    ThemeProvider>(
+                                                                context)
+                                                            .isDarkMode
+                                                        ? gradientDarkMode
+                                                        : gradientLightMode),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 child: ListView(
                                                   shrinkWrap: true,
                                                   children: <Widget>[
-                                                    _buildTextField(
+                                                    buildTextFormField(
                                                         mobilyaTuruController,
                                                         "Mobilya Türü",
                                                         context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    _buildTextField(
+                                                    buildTextFormField(
                                                         adetController,
-                                                        "Adet Giriniz",
+                                                        "Adet",
                                                         context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    _buildTextField(
+                                                    buildTextFormField(
                                                         mudurlukController,
-                                                        "Gelen veya Giden Müdürlüğü Belirtiniz",
+                                                        "Müdürlük",
                                                         context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    _buildTextField(
+                                                    buildTextFormField(
                                                         notController,
-                                                        "Eklemek istediğiniz notunuz var ise ekleyiniz",
+                                                        "Not",
                                                         context) as Widget,
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    FlatButton(
+                                                    MaterialButton(
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(8.0),
                                                         child: Text(
-                                                            "Dökümanı Güncelle"),
+                                                          "Dökümanı Güncelle",
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .button,
+                                                        ),
                                                       ),
-                                                      color: logoGreen,
+                                                      color: Theme.of(context)
+                                                          .buttonColor,
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      10.0))),
                                                       onPressed: () {
                                                         snapshot
                                                             .data!
@@ -269,15 +296,26 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                     context));
                                                       },
                                                     ),
-                                                    FlatButton(
+                                                    MaterialButton(
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(8.0),
-                                                        child: const Text(
-                                                            "Ürünü Sil"),
+                                                        child: Text(
+                                                          "Ürünü Sil",
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .button,
+                                                        ),
                                                       ),
-                                                      color: logoGreen,
+                                                      color: Theme.of(context)
+                                                          .buttonColor,
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      10.0))),
                                                       onPressed: () {
                                                         snapshot
                                                             .data!

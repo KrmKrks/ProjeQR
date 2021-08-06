@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeqr/provider/theme_provider.dart';
-// import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 // final themeDecoration = BoxDecoration(
 //   gradient: LinearGradient(

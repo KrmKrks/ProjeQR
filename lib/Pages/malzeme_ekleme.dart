@@ -87,11 +87,10 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     Text(
                       "Eklemek istediğiniz malzemenin detaylarını giriniz.",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: 15),
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     buildTextFormField(
                             mobilyaTuruController, "Mobilya Türü", context)
@@ -99,39 +98,32 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                     SizedBox(
                       height: 20,
                     ),
-                    buildTextFormField(adetController, "Adet Giriniz", context)
+                    buildTextFormField(adetController, "Adet", context)
                         as Widget,
                     SizedBox(
                       height: 20,
                     ),
-                    buildTextFormField(
-                        mudurlukController,
-                        "Gelen veya Giden Müdürlüğü Belirtiniz",
-                        context) as Widget,
+                    buildTextFormField(mudurlukController, "Müdürlük", context)
+                        as Widget,
                     SizedBox(
                       height: 20,
                     ),
-                    buildTextFormField(
-                        notController,
-                        "Eklemek istediğiniz notunuz var ise ekleyiniz",
-                        context) as Widget,
+                    buildTextFormField(notController, "Not", context) as Widget,
                     SizedBox(
                       height: 20,
                     ),
                     Container(
-                      color: Theme.of(context).primaryColor,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Theme.of(context).primaryColor,
+                      ),
                       child: DropdownButtonFormField(
                         items: _kategori
                             .map(
                               (value) => DropdownMenuItem(
-                                child: Text(
-                                  value,
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontFamily: 'Roboto',
-                                  ),
-                                ),
+                                child: Text(value,
+                                    style:
+                                        Theme.of(context).textTheme.headline2),
                                 value: value,
                               ),
                             )
@@ -147,27 +139,24 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                         value: selectedKategori,
                         validator: (value) =>
                             value == null ? 'Kategori seçiniz.' : null,
-                        hint: Text(
-                          'Kategori',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.bold,
-                            backgroundColor: Theme.of(context).primaryColor,
-                          ),
-                        ),
+                        hint: Text('  Kategori',
+                            style: Theme.of(context).textTheme.headline1),
                       ),
                     ),
-                    FlatButton(
+                    SizedBox(
+                      height: 8,
+                    ),
+                    MaterialButton(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "Kaydet",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
+                          style: Theme.of(context).textTheme.button,
                         ),
                       ),
                       color: Theme.of(context).buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           addProduct(
@@ -195,18 +184,19 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       },
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 8,
                     ),
-                    FlatButton(
+                    MaterialButton(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "Ürün Listelemeye Dön",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
+                          style: Theme.of(context).textTheme.button,
                         ),
                       ),
                       color: Theme.of(context).buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       onPressed: () {
                         Navigator.push(
                             context,
