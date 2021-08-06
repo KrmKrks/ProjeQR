@@ -33,45 +33,30 @@ class _QrResultState extends State<QrResult> {
                       Text(
                         "Mobilya Türü:"
                         " \t${docRef['Mobilya Türü']} ",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 25,
-                          decoration: TextDecoration.none,
-                        ),
+                        style: Theme.of(context).textTheme.headline1,
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       Text(
-                          "Adet:"
-                          " \t${docRef['Adet']}",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 25,
-                            decoration: TextDecoration.none,
-                          )),
+                        "Adet:"
+                        " \t${docRef['Adet']}",
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
                       SizedBox(
                         height: 20,
                       ),
                       Text(
                           " Müdürlük:"
                           " \t${docRef['Müdürlük']}",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 25,
-                            decoration: TextDecoration.none,
-                          )),
+                          style: Theme.of(context).textTheme.headline1),
                       SizedBox(
                         height: 20,
                       ),
                       Text(
                           "Not:"
                           " \t${docRef['Not']}",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 25,
-                            decoration: TextDecoration.none,
-                          )),
+                          style: Theme.of(context).textTheme.headline1),
                       SizedBox(
                         height: 20,
                       ),
