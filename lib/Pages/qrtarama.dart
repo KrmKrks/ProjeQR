@@ -74,6 +74,7 @@ class _ScanQRState extends State<ScanQR> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      height: 70,
 
                       onPressed: scan, //TIKLANAN YER BURASI
                     ),
