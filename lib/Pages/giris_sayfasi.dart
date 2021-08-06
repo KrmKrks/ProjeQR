@@ -32,19 +32,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
           vertical: MediaQuery.of(context).devicePixelRatio / 20,
           horizontal: MediaQuery.of(context).devicePixelRatio / 0.3,
         ),
-<<<<<<< HEAD
         decoration: themeDecoration(context),
-=======
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? gradientDarkMode
-                  : gradientLightMode),
-        ),
-        
->>>>>>> 1d8cf7e398187eafe5bf5391fbee961c64517b6b
         child: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,
