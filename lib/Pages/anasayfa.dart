@@ -3,6 +3,7 @@ import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:provider/provider.dart';
 
 class AnaSayfa extends StatefulWidget {
@@ -20,14 +21,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
       width: MediaQuery.of(context).size.width,
       //alignment: Alignment.topCenter,
       margin: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: Provider.of<ThemeProvider>(context).isDarkMode
-                ? gradientDarkMode
-                : gradientLightMode),
-      ),
+      decoration: themeDecoration(context),
+      //
+      // BoxDecoration(
+      //   gradient: LinearGradient(
+      //       begin: Alignment.topCenter,
+      //       end: Alignment.bottomCenter,
+      //       colors: Provider.of<ThemeProvider>(context).isDarkMode
+      //           ? gradientDarkMode
+      //           : gradientLightMode),
+      // ),
 
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

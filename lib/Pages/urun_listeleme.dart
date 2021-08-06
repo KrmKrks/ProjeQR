@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:projeqr/pages/category.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
 import 'package:provider/provider.dart';
 import 'models.dart';
@@ -29,14 +30,7 @@ class UrunListelemeState extends State<UrunListeleme> {
   build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? gradientDarkMode
-                  : gradientLightMode),
-        ),
+        decoration: themeDecoration(context),
         child: SafeArea(
           child: Column(
             children: [
@@ -167,14 +161,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                                   ),
                                   Text(
                                     " \t${docRef['Müdürlük']}",
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                      fontWeight: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .fontWeight,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
                                   ),
                                   SizedBox(height: 5),
                                   Text(

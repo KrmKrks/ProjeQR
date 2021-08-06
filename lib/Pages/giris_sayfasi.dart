@@ -4,6 +4,7 @@ import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:projeqr/pages/uye_ol.dart';
 import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/change_theme_button_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -31,14 +32,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
           vertical: MediaQuery.of(context).devicePixelRatio / 20,
           horizontal: MediaQuery.of(context).devicePixelRatio / 0.3,
         ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? gradientDarkMode
-                  : gradientLightMode),
-        ),
+        decoration: themeDecoration(context),
         child: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,
