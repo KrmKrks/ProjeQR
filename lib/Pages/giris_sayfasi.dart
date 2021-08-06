@@ -41,6 +41,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   ? gradientDarkMode
                   : gradientLightMode),
         ),
+        
         child: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,

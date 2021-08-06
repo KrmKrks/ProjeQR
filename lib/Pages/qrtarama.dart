@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:projeqr/pages/qr_result_page.dart';
+import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/widget/change_theme_button_widget.dart';
+import 'package:provider/provider.dart';
 
 class ScanQR extends StatefulWidget {
   //ScanQR({Key? key}) : super(key: key);
@@ -20,29 +23,79 @@ class _ScanQRState extends State<ScanQR> {
 
   @override
   Widget build(BuildContext context) {
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('QR Kodu Tara'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+   return Scaffold(
+      
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).devicePixelRatio / 20,
+          horizontal: MediaQuery.of(context).devicePixelRatio / 0.3,
+        ),
+         decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: Provider.of<ThemeProvider>(context).isDarkMode
+                  ? gradientDarkMode
+                  : gradientLightMode),
+        ),
+        child: SafeArea(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            alignment: Alignment.topCenter,
+            margin: EdgeInsets.all(15),
+            child: ListView(
+              children: [
+                Column(
+                  children: <Widget>[
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                              Provider.of<ThemeProvider>(context).isDarkMode
+                                  ? 'assets/THY-LOGO-DARK.png'
+                                  : 'assets/THY-LOGO-WHITE.png',
+                              height: 220 ),
+                          //Padding(
+                              //padding: EdgeInsets.fromLTRB(0, 0, 0, 170),
+                              //child: ChangeThemeButtonWidget()
+                              //),
+                        ],
+                      ),
+                    ),
+        
           Text(
-            'Qr Tara',
-            style: TextStyle(color: Colors.blue, fontSize: 30),
+            'THY Logolu QR Kodu Tarayiniz',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+            
           ),
-          ElevatedButton(
+          MaterialButton(
+            
+            
+            child: Text('QR Kodu Tara',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+              backgroundColor: Theme.of(context).buttonColor, fontSize: 20,
+              ),
+            ),
+            
             onPressed: scan, //TIKLANAN YER BURASI
-            child: Text('QR Kodu Tara'),
           ),
-          SizedBox(width: width),
+          
+          
+          //SizedBox(width: width),
+        
+      
         ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-    );
+   );
   }
-
   Future<void> scan() async {
     try {
       final qrCode = await FlutterBarcodeScanner.scanBarcode(
@@ -63,4 +116,5 @@ class _ScanQRState extends State<ScanQR> {
       qrCode = 'Failed to get platform version.';
     }
   }
+          
 }
