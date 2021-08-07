@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/mdv_takip_page.dart';
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
@@ -115,16 +116,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 MaterialButton(
                   elevation: 0,
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => QrGenerator (),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MdvTakip(),
+                      ),
+                    );
                   },
                   color: Theme.of(context).buttonColor,
                   child: Text(
-                    'Deneme Kısmı',
+                    'Mdv Takip',
                     style: Theme.of(context).textTheme.button,
                   ),
                   shape: RoundedRectangleBorder(

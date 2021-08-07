@@ -23,26 +23,27 @@ class AppThemes {
     shadowColor: Colors.white,
     buttonColor: Color(0xDAFFA01C),
     textTheme: TextTheme(
-        headline1: TextStyle(
-          fontFamily: 'Roboto',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          fontStyle: FontStyle.normal,
+      headline1: TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        color: Color(0xFFDFE7D0),
+      ),
+      headline2: TextStyle(
+        decoration: TextDecoration.none,
+        fontFamily: 'Roboto',
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        fontStyle: FontStyle.normal,
+        color: Color(0xFFDFE7D0),
+      ),
+      button: TextStyle(
           color: Color(0xFFDFE7D0),
-        ),
-        headline2: TextStyle(
-          decoration: TextDecoration.none,
-          fontFamily: 'Roboto',
-          fontSize: 16,
+          fontSize: 18,
           fontWeight: FontWeight.normal,
-          fontStyle: FontStyle.normal,
-          color: Color(0xFFDFE7D0),
-        ),
-        button: TextStyle(
-            color: Color(0xFFDFE7D0),
-            fontSize: 18,
-            fontWeight: FontWeight.normal,
-            fontStyle: FontStyle.normal)),
+          fontStyle: FontStyle.normal),
+    ),
   );
 
   static final darkTheme = ThemeData(

@@ -68,7 +68,9 @@ class _GirissayfasiState extends State<Girissayfasi> {
                             Theme.of(context).textTheme.headline1?.fontSize,
                       ),
                     ),
-
+                    SizedBox(
+                      height: 10,
+                    ),
                     TextFormField(
                       controller: emailController,
                       style: TextStyle(
