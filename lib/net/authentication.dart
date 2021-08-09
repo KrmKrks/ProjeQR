@@ -6,17 +6,20 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<User?> signIn(String email, String password) async {
-    var user = await _auth.signInWithEmailAndPassword(
-        email: email, password: password);
-    return user.user;
+  Future<String?> signIn(String email, String password) async {
+    try {
+      var user = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 
   signOut() async {
     return await _auth.signOut();
   }
 
-  Future<User?> createPerson(String name, String surname, String email,
+  Future<String?> signUp(String name, String surname, String email,
       String sicilno, String password) async {
     try {
       var user = await _auth.createUserWithEmailAndPassword(
@@ -25,10 +28,13 @@ class AuthService {
         'isim': name,
         'soyisim': surname,
         'email': email,
-        'sicil no': sicilno,
+        'THY sicil no': sicilno,
         'UserId': user.user!.uid,
+        'Password': password,
+        'Role': 'Member',
       });
-      return user.user;
-    } on FirebaseAuthException catch (e) {}
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 }

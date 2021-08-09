@@ -56,7 +56,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
   final Color logoGreen = Color(0xFF5f59f7);
   final _formKey = GlobalKey<FormState>();
-  bool _autovalidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +71,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
             children: [
               Form(
                 key: _formKey,
-                autovalidate: _autovalidate,
+                autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: <Widget>[
                     SizedBox(
@@ -170,11 +169,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                             },
                           );
                           _formKey.currentState!.save();
-                        } else {
-                          setState(() {
-                            _autovalidate = true; //enable realtime validation
-                          });
-                        }
+                        } else {}
                       },
                     ),
                     SizedBox(

@@ -159,12 +159,15 @@ class _CategoriesState extends State<Categories> {
                                                     .data!.docs[index].reference
                                                     .update({
                                                   'Mobilya Türü':
-                                                      mobilyaTuruController
-                                                          .text,
-                                                  'Adet': adetController.text,
-                                                  'Müdürlük':
-                                                      mudurlukController.text,
-                                                  'Not': notController.text,
+                                                      mobilyaTuruController.text
+                                                          .trim(),
+                                                  'Adet': adetController.text
+                                                      .trim(),
+                                                  'Müdürlük': mudurlukController
+                                                      .text
+                                                      .trim(),
+                                                  'Not':
+                                                      notController.text.trim(),
                                                   'UpdatedDate': DateTime.now(),
                                                   'UserId':
                                                       _auth.currentUser!.uid,
@@ -221,8 +224,9 @@ class _CategoriesState extends State<Categories> {
                   );
                 },
               );
-            } else
+            } else {
               return Text('Herhangi bir ürün bulunamadı!');
+            }
           },
         ),
       ),

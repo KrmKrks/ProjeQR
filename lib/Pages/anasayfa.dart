@@ -20,19 +20,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      //alignment: Alignment.topCenter,
       margin: EdgeInsets.all(5),
       decoration: themeDecoration(context, BorderRadius.circular(0)),
-      //
-      // BoxDecoration(
-      //   gradient: LinearGradient(
-      //       begin: Alignment.topCenter,
-      //       end: Alignment.bottomCenter,
-      //       colors: Provider.of<ThemeProvider>(context).isDarkMode
-      //           ? gradientDarkMode
-      //           : gradientLightMode),
-      // ),
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

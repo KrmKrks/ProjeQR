@@ -21,8 +21,6 @@ final TextEditingController passwordController = TextEditingController();
 AuthService _authService = AuthService();
 
 class _GirissayfasiState extends State<Girissayfasi> {
-  final Color logoGreen = Color(0xFF5f59f7);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,8 +111,8 @@ class _GirissayfasiState extends State<Girissayfasi> {
                       height: 50,
                       onPressed: () {
                         _authService
-                            .signIn(
-                                emailController.text, passwordController.text)
+                            .signIn(emailController.text.trim(),
+                                passwordController.text.trim())
                             .then((value) {
                           return Navigator.push(
                             context,
