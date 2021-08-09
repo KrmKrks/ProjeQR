@@ -1,15 +1,11 @@
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
-import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
-import 'package:provider/provider.dart';
-
-AuthService _authService = AuthService();
 
 class MalzemeEkleme extends StatefulWidget {
   MalzemeEkleme({Key? key}) : super(key: key);
@@ -22,6 +18,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   @override
   final CollectionReference _firestore =
       FirebaseFirestore.instance.collection('products');
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController mobilyaTuruController = TextEditingController();
   TextEditingController adetController = TextEditingController();
@@ -32,6 +29,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   Future<String> addProduct(String mobilyaTuru, String adet, String mudurluk,
       String not, String kategori) async {
     String documentID = _firestore.doc().id;
+
     await _firestore.doc(documentID).set({
       'Mobilya Türü': mobilyaTuru,
       'Adet': adet,
@@ -40,6 +38,8 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       'Document ID': documentID,
       'Kategori': selectedKategori,
       'CreatedAt': DateTime.now(),
+      'UpdatedDate': DateTime.now(),
+      'UserId': _auth.currentUser!.uid,
     });
 
     return _firestore.id;
@@ -66,7 +66,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
           vertical: MediaQuery.of(context).devicePixelRatio / 0.1,
           horizontal: MediaQuery.of(context).devicePixelRatio / 0.18,
         ),
-        decoration: themeDecoration(context),
+        decoration: themeDecoration(context, BorderRadius.circular(0)),
         child: SafeArea(
           child: ListView(
             children: [

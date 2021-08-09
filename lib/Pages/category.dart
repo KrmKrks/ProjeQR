@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/provider/theme_provider.dart';
@@ -15,6 +16,7 @@ class Categories extends StatefulWidget {
 }
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController adetController = TextEditingController();
@@ -29,7 +31,7 @@ class _CategoriesState extends State<Categories> {
         vertical: MediaQuery.of(context).devicePixelRatio / 0.1,
         horizontal: MediaQuery.of(context).devicePixelRatio / 0.18,
       ),
-      decoration: themeDecoration(context),
+      decoration: themeDecoration(context, BorderRadius.circular(0)),
       child: SafeArea(
         child: StreamBuilder(
           stream: ref
@@ -163,6 +165,9 @@ class _CategoriesState extends State<Categories> {
                                                   'Müdürlük':
                                                       mudurlukController.text,
                                                   'Not': notController.text,
+                                                  'UpdatedDate': DateTime.now(),
+                                                  'UserId':
+                                                      _auth.currentUser!.uid,
                                                 }).whenComplete(() =>
                                                         Navigator.pop(context));
                                               },

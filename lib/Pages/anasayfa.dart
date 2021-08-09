@@ -22,7 +22,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
       width: MediaQuery.of(context).size.width,
       //alignment: Alignment.topCenter,
       margin: EdgeInsets.all(5),
-      decoration: themeDecoration(context),
+      decoration: themeDecoration(context, BorderRadius.circular(0)),
       //
       // BoxDecoration(
       //   gradient: LinearGradient(

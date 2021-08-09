@@ -1,12 +1,9 @@
-//import 'dart:html';
-//import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:projeqr/pages/qr_result_page.dart';
 import 'package:projeqr/provider/theme_provider.dart';
-import 'package:projeqr/widget/change_theme_button_widget.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:provider/provider.dart';
 
 class ScanQR extends StatefulWidget {
@@ -29,14 +26,7 @@ class _ScanQRState extends State<ScanQR> {
           vertical: MediaQuery.of(context).devicePixelRatio / 20,
           horizontal: MediaQuery.of(context).devicePixelRatio / 0.3,
         ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? gradientDarkMode
-                  : gradientLightMode),
-        ),
+        decoration: themeDecoration(context, BorderRadius.circular(0)),
         child: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,

@@ -26,6 +26,7 @@ class AuthService {
         'soyisim': surname,
         'email': email,
         'sicil no': sicilno,
+        'UserId': user.user!.uid,
       });
       return user.user;
     } on FirebaseAuthException catch (e) {}

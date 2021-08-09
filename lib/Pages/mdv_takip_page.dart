@@ -66,7 +66,7 @@ class _MdvTakipState extends State<MdvTakip> {
           vertical: MediaQuery.of(context).devicePixelRatio / 0.1,
           horizontal: MediaQuery.of(context).devicePixelRatio / 0.18,
         ),
-        decoration: themeDecoration(context),
+        decoration: themeDecoration(context, BorderRadius.circular(0)),
         child: SafeArea(
           child: ListView(
             children: [
