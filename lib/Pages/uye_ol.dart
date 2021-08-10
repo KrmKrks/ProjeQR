@@ -208,7 +208,6 @@ class _UyeOlState extends State<UyeOl> {
 // TODO: Hem bilgileri register kısmından kaydedicek
 // TODO: Hem giriş sayfasına yönlendirecek
 // TODO: heme AddUser ile User bilgilerini Database işlenecek
-<<<<<<< HEAD
               MaterialButton(
                 elevation: 0,
                 minWidth: double.minPositive,
@@ -229,28 +228,6 @@ class _UyeOlState extends State<UyeOl> {
                         MaterialPageRoute(builder: (context) => Girissayfasi()));
                   });
                   _formKey2.currentState!.save();
-=======
-                    MaterialButton(
-                      elevation: 0,
-                      minWidth: double.minPositive,
-                      height: 50,
-                      onPressed: () {
-                        if (_formKey2.currentState!.validate()) {
-                          _authService
-                              .createPerson(
-                                  nameController.text,
-                                  surnameController.text,
-                                  mailController.text,
-                                  sicilController.text,
-                                  passwordController.text)
-                              .then((value) {
-                            return Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Girissayfasi()));
-                          });
-                          _formKey2.currentState!.save();
->>>>>>> 895acf29cf20340b0d64604c10f59f7cfc1d3065
                         } else {
                           setState(() {
                             _autovalidate = true; //enable realtime validation
