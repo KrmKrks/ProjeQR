@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/urun_listeleme.dart';
-import 'package:projeqr/widget/build_textformfield_widget.dart';
 
 class QrResult extends StatefulWidget {
   String scanResult;
@@ -27,136 +25,175 @@ class _QrResultState extends State<QrResult> {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   var docRef = snapshot.data!.docs[index];
-                  return Card(
-                    color: Theme.of(context).cardColor,
-                    shadowColor: Theme.of(context).shadowColor,
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.account_circle_rounded,
-                        color: Theme.of(context).iconTheme.color,
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 15,
                       ),
-                      title: Text(
-                        "Mobilya Türü:" " \t${docRef['Mobilya Türü']} ",
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary),
+                      Text(
+                        "Mobilya Türü:"
+                        " \t${docRef['Mobilya Türü']} ",
+                        style: Theme.of(context).textTheme.headline1,
                       ),
-                      subtitle: Column(
-                        children: <Widget>[
-                          Text(
-                            docRef['Adet'] as String,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                          ),
-                          Text(
-                            docRef['Müdürlük'] as String,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                          ),
-                          Text(
-                            docRef['Not'] as String,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                          ),
-                        ],
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      SizedBox(
+                        height: 20,
                       ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.edit),
-                        color: Theme.of(context).iconTheme.color,
-                        onPressed: () {
-                          mobilyaTuruController.text =
-                              docRef['Mobilya Türü'] as String;
-                          adetController.text = docRef['Adet'] as String;
-                          mudurlukController.text =
-                              docRef['Müdürlük'] as String;
-                          notController.text = docRef['Not'] as String;
-
-                          showDialog(
-                              context: context,
-                              builder: (context) => Dialog(
-                                    child: Container(
-                                      color: Theme.of(context).primaryColor,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: ListView(
-                                          shrinkWrap: true,
-                                          children: <Widget>[
-                                            buildTextFormField(
-                                                mobilyaTuruController,
-                                                "Mobilya Türü",
-                                                context) as Widget,
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            buildTextFormField(
-                                                adetController,
-                                                "Adet Giriniz",
-                                                context) as Widget,
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            buildTextFormField(
-                                                mudurlukController,
-                                                "Gelen veya Giden Müdürlüğü Belirtiniz",
-                                                context) as Widget,
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            buildTextFormField(
-                                                notController,
-                                                "Eklemek istediğiniz notunuz var ise ekleyiniz",
-                                                context) as Widget,
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            FlatButton(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child:
-                                                    Text("Dökümanı Güncelle"),
-                                              ),
-                                              color: logoGreen,
-                                              onPressed: () {
-                                                snapshot
-                                                    .data!.docs[index].reference
-                                                    .update({
-                                                  'Mobilya Türü':
-                                                      mobilyaTuruController
-                                                          .text,
-                                                  'Adet': adetController.text,
-                                                  'Müdürlük':
-                                                      mudurlukController.text,
-                                                  'Not': notController.text,
-                                                }).whenComplete(() =>
-                                                        Navigator.pop(context));
-                                              },
-                                            ),
-                                            FlatButton(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: const Text("Ürünü Sil"),
-                                              ),
-                                              color: logoGreen,
-                                              onPressed: () {
-                                                snapshot
-                                                    .data!.docs[index].reference
-                                                    .delete()
-                                                    .whenComplete(() =>
-                                                        Navigator.pop(context));
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ));
-                        },
+                      Text(
+                        "Adet:"
+                        " \t${docRef['Adet']}",
+                        style: Theme.of(context).textTheme.headline1,
                       ),
-                    ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                          " Müdürlük:"
+                          " \t${docRef['Müdürlük']}",
+                          style: Theme.of(context).textTheme.headline1),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                          "Not:"
+                          " \t${docRef['Not']}",
+                          style: Theme.of(context).textTheme.headline1),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      //TODO: 2 adet materialbutton ile hem QR görmek istediğinde QR göstericek, Fotoğrafını görmek istediğinde ulaşacağı buttonlar tasarlanmalı
+                    ],
                   );
+                  //
+                  // Card(
+                  //   color: Theme.of(context).cardColor,
+                  //   shadowColor: Theme.of(context).shadowColor,
+                  //   child: ListTile(
+                  //     leading: Icon(
+                  //       Icons.account_circle_rounded,
+                  //       color: Theme.of(context).iconTheme.color,
+                  //     ),
+                  //     title: Text(
+                  //       "Mobilya Türü:" " \t${docRef['Mobilya Türü']} ",
+                  //       style: TextStyle(
+                  //           color: Theme.of(context).colorScheme.primary),
+                  //     ),
+                  //     subtitle: Column(
+                  //       children: <Widget>[
+                  //         Text(
+                  //           docRef['Adet'] as String,
+                  //           style: TextStyle(
+                  //               color: Theme.of(context).colorScheme.primary),
+                  //         ),
+                  //         Text(
+                  //           docRef['Müdürlük'] as String,
+                  //           style: TextStyle(
+                  //               color: Theme.of(context).colorScheme.primary),
+                  //         ),
+                  //         Text(
+                  //           docRef['Not'] as String,
+                  //           style: TextStyle(
+                  //               color: Theme.of(context).colorScheme.primary),
+                  //         ),
+                  //       ],
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //     ),
+                  //     trailing: IconButton(
+                  //       icon: Icon(Icons.edit),
+                  //       color: Theme.of(context).iconTheme.color,
+                  //       onPressed: () {
+                  //         mobilyaTuruController.text =
+                  //             docRef['Mobilya Türü'] as String;
+                  //         adetController.text = docRef['Adet'] as String;
+                  //         mudurlukController.text =
+                  //             docRef['Müdürlük'] as String;
+                  //         notController.text = docRef['Not'] as String;
+
+                  //         showDialog(
+                  //             context: context,
+                  //             builder: (context) => Dialog(
+                  //                   child: Container(
+                  //                     color: Theme.of(context).primaryColor,
+                  //                     child: Padding(
+                  //                       padding: const EdgeInsets.all(8.0),
+                  //                       child: ListView(
+                  //                         shrinkWrap: true,
+                  //                         children: <Widget>[
+                  //                           buildTextFormField(
+                  //                               mobilyaTuruController,
+                  //                               "Mobilya Türü",
+                  //                               context) as Widget,
+                  //                           SizedBox(
+                  //                             height: 20,
+                  //                           ),
+                  //                           buildTextFormField(
+                  //                               adetController,
+                  //                               "Adet Giriniz",
+                  //                               context) as Widget,
+                  //                           SizedBox(
+                  //                             height: 20,
+                  //                           ),
+                  //                           buildTextFormField(
+                  //                               mudurlukController,
+                  //                               "Gelen veya Giden Müdürlüğü Belirtiniz",
+                  //                               context) as Widget,
+                  //                           SizedBox(
+                  //                             height: 20,
+                  //                           ),
+                  //                           buildTextFormField(
+                  //                               notController,
+                  //                               "Eklemek istediğiniz notunuz var ise ekleyiniz",
+                  //                               context) as Widget,
+                  //                           SizedBox(
+                  //                             height: 20,
+                  //                           ),
+                  //                           FlatButton(
+                  //                             child: Padding(
+                  //                               padding:
+                  //                                   const EdgeInsets.all(8.0),
+                  //                               child:
+                  //                                   Text("Dökümanı Güncelle"),
+                  //                             ),
+                  //                             color: logoGreen,
+                  //                             onPressed: () {
+                  //                               snapshot
+                  //                                   .data!.docs[index].reference
+                  //                                   .update({
+                  //                                 'Mobilya Türü':
+                  //                                     mobilyaTuruController
+                  //                                         .text,
+                  //                                 'Adet': adetController.text,
+                  //                                 'Müdürlük':
+                  //                                     mudurlukController.text,
+                  //                                 'Not': notController.text,
+                  //                               }).whenComplete(() =>
+                  //                                       Navigator.pop(context));
+                  //                             },
+                  //                           ),
+                  //                           FlatButton(
+                  //                             child: Padding(
+                  //                               padding:
+                  //                                   const EdgeInsets.all(8.0),
+                  //                               child: const Text("Ürünü Sil"),
+                  //                             ),
+                  //                             color: logoGreen,
+                  //                             onPressed: () {
+                  //                               snapshot
+                  //                                   .data!.docs[index].reference
+                  //                                   .delete()
+                  //                                   .whenComplete(() =>
+                  //                                       Navigator.pop(context));
+                  //                             },
+                  //                           ),
+                  //                         ],
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ));
+                  //       },
+                  //     ),
+                  //   ),
+                  // );
                 },
               );
             } else

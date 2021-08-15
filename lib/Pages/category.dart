@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -14,13 +16,12 @@ class Categories extends StatefulWidget {
 }
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController adetController = TextEditingController();
 TextEditingController notController = TextEditingController();
 TextEditingController mudurlukController = TextEditingController();
-
-final Color logoGreen = Color(0xFF5f59f7);
 
 class _CategoriesState extends State<Categories> {
   @override
@@ -30,14 +31,7 @@ class _CategoriesState extends State<Categories> {
         vertical: MediaQuery.of(context).devicePixelRatio / 0.1,
         horizontal: MediaQuery.of(context).devicePixelRatio / 0.18,
       ),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: Provider.of<ThemeProvider>(context).isDarkMode
-                ? gradientDarkMode
-                : gradientLightMode),
-      ),
+      decoration: themeDecoration(context, BorderRadius.circular(0)),
       child: SafeArea(
         child: StreamBuilder(
           stream: ref
@@ -60,25 +54,21 @@ class _CategoriesState extends State<Categories> {
                       ),
                       title: Text(
                         "Mobilya Türü:" " \t${docRef['Mobilya Türü']} ",
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary),
+                        style: Theme.of(context).textTheme.headline1,
                       ),
                       subtitle: Column(
                         children: <Widget>[
                           Text(
                             docRef['Adet'] as String,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
+                            style: Theme.of(context).textTheme.headline2,
                           ),
                           Text(
                             docRef['Müdürlük'] as String,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
+                            style: Theme.of(context).textTheme.headline2,
                           ),
                           Text(
                             docRef['Not'] as String,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
+                            style: Theme.of(context).textTheme.headline2,
                           ),
                         ],
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -98,8 +88,21 @@ class _CategoriesState extends State<Categories> {
                           showDialog(
                               context: context,
                               builder: (context) => Dialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20.0))),
                                     child: Container(
-                                      color: Theme.of(context).primaryColor,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: Provider.of<ThemeProvider>(
+                                                        context)
+                                                    .isDarkMode
+                                                ? gradientDarkMode
+                                                : gradientLightMode),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: ListView(
@@ -133,36 +136,63 @@ class _CategoriesState extends State<Categories> {
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            FlatButton(
+                                            MaterialButton(
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
-                                                child:
-                                                    Text("Dökümanı Güncelle"),
+                                                child: Text(
+                                                  "Dökümanı Güncelle",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .button,
+                                                ),
                                               ),
-                                              color: logoGreen,
+                                              color:
+                                                  Theme.of(context).buttonColor,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              10.0))),
                                               onPressed: () {
                                                 snapshot
                                                     .data!.docs[index].reference
                                                     .update({
                                                   'Mobilya Türü':
-                                                      mobilyaTuruController
-                                                          .text,
-                                                  'Adet': adetController.text,
-                                                  'Müdürlük':
-                                                      mudurlukController.text,
-                                                  'Not': notController.text,
+                                                      mobilyaTuruController.text
+                                                          .trim(),
+                                                  'Adet': adetController.text
+                                                      .trim(),
+                                                  'Müdürlük': mudurlukController
+                                                      .text
+                                                      .trim(),
+                                                  'Not':
+                                                      notController.text.trim(),
+                                                  'UpdatedDate': DateTime.now(),
+                                                  'UserId':
+                                                      _auth.currentUser!.uid,
                                                 }).whenComplete(() =>
                                                         Navigator.pop(context));
                                               },
                                             ),
-                                            FlatButton(
+                                            MaterialButton(
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
-                                                child: const Text("Ürünü Sil"),
+                                                child: Text(
+                                                  "Ürünü Sil",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .button,
+                                                ),
                                               ),
-                                              color: logoGreen,
+                                              color:
+                                                  Theme.of(context).buttonColor,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              10.0))),
                                               onPressed: () {
                                                 snapshot
                                                     .data!.docs[index].reference
@@ -194,8 +224,9 @@ class _CategoriesState extends State<Categories> {
                   );
                 },
               );
-            } else
+            } else {
               return Text('Herhangi bir ürün bulunamadı!');
+            }
           },
         ),
       ),

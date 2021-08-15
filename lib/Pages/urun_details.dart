@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeqr/provider/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class UrunDetails extends StatefulWidget {
@@ -23,14 +22,7 @@ class _UrunDetailsState extends State<UrunDetails> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: Provider.of<ThemeProvider>(context).isDarkMode
-                ? gradientDarkMode
-                : gradientLightMode),
-      ),
+      decoration: themeDecoration(context, BorderRadius.circular(0)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(

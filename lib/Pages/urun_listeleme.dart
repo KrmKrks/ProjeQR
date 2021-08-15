@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/category.dart';
 import 'package:projeqr/pages/urun_details.dart';
-import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
-import 'package:provider/provider.dart';
 import 'models.dart';
 
 class UrunListeleme extends StatefulWidget {
@@ -16,27 +16,19 @@ class UrunListeleme extends StatefulWidget {
 }
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController adetController = TextEditingController();
 TextEditingController notController = TextEditingController();
 TextEditingController mudurlukController = TextEditingController();
 
-final Color logoGreen = Color(0xFF5f59f7);
-
 class UrunListelemeState extends State<UrunListeleme> {
   @override
   build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? gradientDarkMode
-                  : gradientLightMode),
-        ),
+        decoration: themeDecoration(context, BorderRadius.circular(0)),
         child: SafeArea(
           child: Column(
             children: [
@@ -130,61 +122,42 @@ class UrunListelemeState extends State<UrunListeleme> {
                                 Icons.account_circle_rounded,
                                 color: Theme.of(context).iconTheme.color,
                               ),
-                              title: Text(
-                                "Mobilya Türü:"
-                                " \t${docRef['Mobilya Türü']} ",
-                                style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontSize: Theme.of(context)
-                                        .textTheme
-                                        .headline1!
-                                        .fontSize),
-                              ),
                               subtitle: Column(
                                 children: <Widget>[
-                                  SizedBox(height: 5),
+                                  SizedBox(height: 10),
+                                  Text("Mobilya Türü:",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1),
+                                  Text(" \t${docRef['Mobilya Türü']} ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2),
+                                  SizedBox(height: 10),
                                   Text(
-                                    "Adet:"
-                                    " \t${docRef['Adet']}",
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
+                                    "Adet:" " \t${docRef['Adet']}",
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
                                   ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    "Müdürlük:",
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontWeight: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .fontWeight,
-                                        fontSize: 14),
-                                  ),
+                                  SizedBox(height: 10),
+                                  Text("Müdürlük:",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1),
                                   Text(
                                     " \t${docRef['Müdürlük']}",
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                      fontWeight: Theme.of(context)
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text("Not:",
+                                      style: Theme.of(context)
                                           .textTheme
-                                          .headline1!
-                                          .fontWeight,
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    "Not:"
-                                    " \t${docRef['Not']}",
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
-                                  ),
+                                          .headline1),
+                                  Text(" \t${docRef['Not']}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2),
                                 ],
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -205,21 +178,14 @@ class UrunListelemeState extends State<UrunListeleme> {
                                       context: context,
                                       builder: (context) => Dialog(
                                             shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(20.0))),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(20.0),
+                                              ),
+                                            ),
                                             child: Container(
-                                              decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                    begin: Alignment.topCenter,
-                                                    end: Alignment.bottomCenter,
-                                                    colors: Provider.of<
-                                                                    ThemeProvider>(
-                                                                context)
-                                                            .isDarkMode
-                                                        ? gradientDarkMode
-                                                        : gradientLightMode),
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
+                                              decoration: themeDecoration(
+                                                context,
+                                                BorderRadius.circular(20),
                                               ),
                                               child: Padding(
                                                 padding:
@@ -291,6 +257,10 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                   .text,
                                                           'Not': notController
                                                               .text,
+                                                          'UpdatedDate':
+                                                              DateTime.now(),
+                                                          'UserId': _auth
+                                                              .currentUser!.uid,
                                                         }).whenComplete(() =>
                                                                 Navigator.pop(
                                                                     context));
@@ -353,8 +323,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                           );
                         },
                       );
-                    } else
-                      return Text('Herhangi bir veri bulunamadı');
+                    }
+                    return Text('Herhangi bir veri bulunamadı');
                   },
                 ),
               ),

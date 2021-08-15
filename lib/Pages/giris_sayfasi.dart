@@ -4,6 +4,7 @@ import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:projeqr/pages/uye_ol.dart';
 import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/change_theme_button_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +21,6 @@ final TextEditingController passwordController = TextEditingController();
 AuthService _authService = AuthService();
 
 class _GirissayfasiState extends State<Girissayfasi> {
-  final Color logoGreen = Color(0xFF5f59f7);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,15 +30,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
           vertical: MediaQuery.of(context).devicePixelRatio / 20,
           horizontal: MediaQuery.of(context).devicePixelRatio / 0.3,
         ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? gradientDarkMode
-                  : gradientLightMode),
-        ),
-        
+        decoration: themeDecoration(context, BorderRadius.circular(0)),
         child: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -75,7 +66,9 @@ class _GirissayfasiState extends State<Girissayfasi> {
                             Theme.of(context).textTheme.headline1?.fontSize,
                       ),
                     ),
-
+                    SizedBox(
+                      height: 10,
+                    ),
                     TextFormField(
                       controller: emailController,
                       style: TextStyle(
@@ -118,8 +111,8 @@ class _GirissayfasiState extends State<Girissayfasi> {
                       height: 50,
                       onPressed: () {
                         _authService
-                            .signIn(
-                                emailController.text, passwordController.text)
+                            .signIn(emailController.text.trim(),
+                                passwordController.text.trim())
                             .then((value) {
                           return Navigator.push(
                             context,

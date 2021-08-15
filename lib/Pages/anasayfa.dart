@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/mdv_takip_page.dart';
 import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:provider/provider.dart';
 
 class AnaSayfa extends StatefulWidget {
@@ -18,17 +20,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      //alignment: Alignment.topCenter,
       margin: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: Provider.of<ThemeProvider>(context).isDarkMode
-                ? gradientDarkMode
-                : gradientLightMode),
-      ),
-
+      decoration: themeDecoration(context, BorderRadius.circular(0)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,16 +105,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 MaterialButton(
                   elevation: 0,
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => QrGenerator (),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MdvTakip(),
+                      ),
+                    );
                   },
                   color: Theme.of(context).buttonColor,
                   child: Text(
-                    'Deneme Kısmı',
+                    'Mdv Takip',
                     style: Theme.of(context).textTheme.button,
                   ),
                   shape: RoundedRectangleBorder(

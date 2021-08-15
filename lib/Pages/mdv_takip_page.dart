@@ -1,24 +1,27 @@
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
+import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
+import 'package:provider/provider.dart';
 
-class MalzemeEkleme extends StatefulWidget {
-  MalzemeEkleme({Key? key}) : super(key: key);
+AuthService _authService = AuthService();
+
+class MdvTakip extends StatefulWidget {
+  MdvTakip({Key? key}) : super(key: key);
 
   @override
-  _MalzemeEklemeState createState() => _MalzemeEklemeState();
+  _MdvTakipState createState() => _MdvTakipState();
 }
 
-class _MalzemeEklemeState extends State<MalzemeEkleme> {
+class _MdvTakipState extends State<MdvTakip> {
   @override
   final CollectionReference _firestore =
       FirebaseFirestore.instance.collection('products');
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController mobilyaTuruController = TextEditingController();
   TextEditingController adetController = TextEditingController();
@@ -29,7 +32,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   Future<String> addProduct(String mobilyaTuru, String adet, String mudurluk,
       String not, String kategori) async {
     String documentID = _firestore.doc().id;
-
     await _firestore.doc(documentID).set({
       'Mobilya Türü': mobilyaTuru,
       'Adet': adet,
@@ -38,8 +40,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       'Document ID': documentID,
       'Kategori': selectedKategori,
       'CreatedAt': DateTime.now(),
-      'UpdatedDate': DateTime.now(),
-      'UserId': _auth.currentUser!.uid,
     });
 
     return _firestore.id;
@@ -56,6 +56,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
   final Color logoGreen = Color(0xFF5f59f7);
   final _formKey = GlobalKey<FormState>();
+  bool _autovalidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
             children: [
               Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.always,
+                autovalidate: _autovalidate,
                 child: Column(
                   children: <Widget>[
                     SizedBox(
@@ -169,7 +170,11 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                             },
                           );
                           _formKey.currentState!.save();
-                        } else {}
+                        } else {
+                          setState(() {
+                            _autovalidate = true; //enable realtime validation
+                          });
+                        }
                       },
                     ),
                     SizedBox(
