@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -16,7 +18,9 @@ class UrunListeleme extends StatefulWidget {
 }
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
+CollectionReference ref2 = FirebaseFirestore.instance.collection('Users');
 final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController adetController = TextEditingController();
@@ -103,13 +107,18 @@ class UrunListelemeState extends State<UrunListeleme> {
               ),
               SizedBox(height: 10),
 
+
 //-------------------------------------------------------------------------
               Flexible(
                 child: StreamBuilder(
                   stream:
                       ref.orderBy('CreatedAt', descending: true).snapshots(),
-                  builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.hasData) {
+                      
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    final userDoc = snapshot.data;
+                  final user = userDoc;
+                    if (snapshot.hasData && user! == 'admin') { 
+                      
                       return ListView.builder(
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
@@ -324,6 +333,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                         },
                       );
                     }
+                    
                     return Text('Herhangi bir veri bulunamadı');
                   },
                 ),

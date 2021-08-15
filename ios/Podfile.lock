@@ -222,6 +222,8 @@ PODS:
     - Firebase/Firestore (= 8.0.0)
     - firebase_core
     - Flutter
+  - device_info (0.0.1):
+    - Flutter
   - Firebase/Auth (8.0.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.0.0)
@@ -327,6 +329,8 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - package_info (0.0.1):
+    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (1.2.12)
@@ -336,11 +340,13 @@ PODS:
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
+  - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_barcode_scanner (from `.symlinks/plugins/flutter_barcode_scanner/ios`)
+  - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
 
@@ -367,6 +373,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -377,6 +385,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_barcode_scanner:
     :path: ".symlinks/plugins/flutter_barcode_scanner/ios"
+  package_info:
+    :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   qr_code_scanner:
@@ -386,6 +396,7 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: 83d6cd19d24798c523265494ab81db32009fcb7b
+  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   firebase_auth: 6532658f5a4f76be32cd5e7518753ebedd4544d2
   firebase_core: cda81ae37eda6df2bc2d16027fda527987c4bd33
@@ -405,6 +416,7 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
