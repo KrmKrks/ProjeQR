@@ -44,6 +44,16 @@ class AppThemes {
           fontWeight: FontWeight.normal,
           fontStyle: FontStyle.normal),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Color(0xFF134E5E),
+      unselectedItemColor: Color(0xFF71B280).withOpacity(0.8),
+      unselectedIconTheme: IconThemeData(
+        color: Color(0xFF71B280),
+      ),
+      selectedIconTheme: IconThemeData(
+        color: Color(0xFF212d40),
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData(
@@ -77,6 +87,19 @@ class AppThemes {
           fontWeight: FontWeight.normal,
           fontStyle: FontStyle.normal),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Color(0xFF141E30),
+        unselectedItemColor: Color(0xFF243B55),
+        unselectedIconTheme: IconThemeData(
+          color: Color(0xFFB9182A),
+        ),
+        selectedIconTheme: IconThemeData(
+          color: Color(0xFFB9182A),
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontFamily: 'Roboto',
+          fontSize: 14,
+        )),
   );
 }
 

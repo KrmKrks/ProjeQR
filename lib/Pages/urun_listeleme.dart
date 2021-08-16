@@ -40,12 +40,16 @@ class UrunListelemeState extends State<UrunListeleme> {
         .doc(_auth.currentUser!.uid)
         .get()
         .then((value) {
-      setState(() {
-        userRole = value.data()!['Role'].toString();
-      });
+      if (mounted) {
+        setState(() {
+          userRole = value.data()!['Role'].toString();
+        });
+      }
     });
   }
 
+  String queryIndex = '';
+  bool queryType = true;
   @override
   build(BuildContext context) {
     return Scaffold(
@@ -99,14 +103,19 @@ class UrunListelemeState extends State<UrunListeleme> {
                             width: 90,
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Categories(
-                                        categoriesGet: categories[index]['name']
-                                            as String),
-                                  ),
-                                );
+                                setState(() {
+                                  queryIndex =
+                                      categories[index]['name'] as String;
+                                  queryType = false;
+                                });
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => Categories(
+                                //         categoriesGet: categories[index]['name']
+                                //             as String),
+                                //   ),
+                                // );
                               },
                               child: Image.asset(
                                   categories[index]['iconPath'] as String),
@@ -128,8 +137,12 @@ class UrunListelemeState extends State<UrunListeleme> {
 //-------------------------------------------------------------------------
               Flexible(
                 child: StreamBuilder(
-                    stream:
-                        ref.orderBy('CreatedAt', descending: true).snapshots(),
+                    stream: queryType
+                        ? ref.orderBy('CreatedAt', descending: true).snapshots()
+                        : ref
+                            .where('Kategori', isEqualTo: queryIndex)
+                            .orderBy('CreatedAt', descending: true)
+                            .snapshots(),
                     builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return CircularProgressIndicator();
