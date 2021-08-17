@@ -1,131 +1,89 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/mdv_takip_page.dart';
-import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
-import 'package:projeqr/shared/theme_decoration.dart';
-import 'package:provider/provider.dart';
 
 class AnaSayfa extends StatefulWidget {
   @override
   _AnaSayfaState createState() => _AnaSayfaState();
 }
 
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
 class _AnaSayfaState extends State<AnaSayfa> {
+  int pageIndex = 0;
+  List<Widget> pageList = <Widget>[
+    MalzemeEkleme(),
+    UrunListeleme(),
+    ScanQR(),
+    MdvTakip(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.all(5),
-      decoration: themeDecoration(context, BorderRadius.circular(0)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            height: 70,
-          ),
-          Container(
-            child: Image.asset(Provider.of<ThemeProvider>(context).isDarkMode
-                ? 'assets/THY-LOGO-DARK.png'
-                : 'assets/THY-LOGO-WHITE.png'),
-            height: 210,
-          ),
-          Expanded(
-            child: GridView.count(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).devicePixelRatio / 0.2,
-                vertical: MediaQuery.of(context).devicePixelRatio / 0.1,
+    return Scaffold(
+        body: pageList[pageIndex],
+        bottomNavigationBar: ConvexAppBar(
+          backgroundColor:
+              Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+          activeColor:
+              Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+          style: TabStyle.reactCircle,
+          height: 60,
+          items: [
+            TabItem(
+              title: "Malzeme Ekle",
+              icon: Icon(
+                Icons.add,
+                color: Theme.of(context)
+                    .bottomNavigationBarTheme
+                    .unselectedIconTheme!
+                    .color,
+                size: 30,
               ),
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              children: [
-                MaterialButton(
-                  elevation: 0,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MalzemeEkleme(),
-                      ),
-                    );
-                  },
-                  color: Theme.of(context).buttonColor,
-                  child: Text(
-                    'Yeni Ürün Ekle',
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                  ),
-                ),
-                MaterialButton(
-                  elevation: 0,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => UrunListeleme(),
-                      ),
-                    );
-                  },
-                  color: Theme.of(context).buttonColor,
-                  child: Text(
-                    'Listeye Git',
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                ),
-                MaterialButton(
-                  elevation: 0,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ScanQR(),
-                      ),
-                    );
-                  },
-                  color: Theme.of(context).buttonColor,
-                  child: Text(
-                    'Qr Tara',
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                ),
-                MaterialButton(
-                  elevation: 0,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MdvTakip(),
-                      ),
-                    );
-                  },
-                  color: Theme.of(context).buttonColor,
-                  child: Text(
-                    'Mdv Takip',
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                ),
-              ],
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-          )
-        ],
-      ),
-    );
+            TabItem(
+              title: "Liste",
+              icon: Icon(
+                Icons.list,
+                color: Theme.of(context)
+                    .bottomNavigationBarTheme
+                    .unselectedIconTheme!
+                    .color,
+                size: 30,
+              ),
+            ),
+            TabItem(
+              icon: Icon(
+                Icons.qr_code,
+                color: Theme.of(context)
+                    .bottomNavigationBarTheme
+                    .unselectedIconTheme!
+                    .color,
+                size: 27,
+              ),
+              title: "Qr Tara",
+            ),
+            TabItem(
+              title: "MDV Takip",
+              icon: Icon(
+                Icons.folder,
+                color: Theme.of(context)
+                    .bottomNavigationBarTheme
+                    .unselectedIconTheme!
+                    .color,
+                size: 27,
+              ),
+            ),
+          ],
+          onTap: (value) {
+            setState(() {
+              pageIndex = value;
+            });
+          },
+        ));
   }
 }
