@@ -39,6 +39,9 @@ dependencies:
 
   provider: 5.0.0
 
+  #image Picker
+  image_picker: ^0.8.3+2
+
   convex_bottom_bar: ^3.0.0
 
   # The following adds the Cupertino Icons font to your application.
