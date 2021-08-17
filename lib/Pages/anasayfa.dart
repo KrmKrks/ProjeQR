@@ -14,8 +14,6 @@ class AnaSayfa extends StatefulWidget {
 
 class _AnaSayfaState extends State<AnaSayfa> {
   @override
-  final Color logoGreen = Color(0xFF5f59f7);
-
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,

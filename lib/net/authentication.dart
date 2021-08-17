@@ -7,12 +7,9 @@ class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<String?> signIn(String email, String password) async {
-    try {
-      var user = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
+    UserCredential user = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+    print(user);
   }
 
   signOut() async {

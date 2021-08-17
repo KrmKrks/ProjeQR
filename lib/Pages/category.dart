@@ -17,6 +17,8 @@ class Categories extends StatefulWidget {
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
 final FirebaseAuth _auth = FirebaseAuth.instance;
+CollectionReference user = FirebaseFirestore.instance.collection('Users');
+var _user = user.snapshots();
 
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController adetController = TextEditingController();
