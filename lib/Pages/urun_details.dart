@@ -47,7 +47,7 @@ class _UrunDetailsState extends State<UrunDetails> {
             ),
             Text(
               "Mobilya Türü:"
-              " \t${widget.mobilyaTuru} ",
+              " \n${widget.mobilyaTuru} ",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: 25,

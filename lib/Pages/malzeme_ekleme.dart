@@ -179,19 +179,14 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Ürün Listelemeye Dön",
+                          "Fotoğraf Ekle",
                           style: Theme.of(context).textTheme.button,
                         ),
                       ),
                       color: Theme.of(context).buttonColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UrunListeleme()));
-                      },
+                      onPressed: () {},
                     )
                   ],
                 ),

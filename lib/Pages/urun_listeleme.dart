@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -20,9 +18,7 @@ class UrunListeleme extends StatefulWidget {
 }
 
 CollectionReference ref = FirebaseFirestore.instance.collection('products');
-CollectionReference ref2 = FirebaseFirestore.instance.collection('Users');
 final FirebaseAuth _auth = FirebaseAuth.instance;
-
 
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController adetController = TextEditingController();
@@ -44,12 +40,16 @@ class UrunListelemeState extends State<UrunListeleme> {
         .doc(_auth.currentUser!.uid)
         .get()
         .then((value) {
-      setState(() {
-        userRole = value.data()!['Role'].toString();
-      });
+      if (mounted) {
+        setState(() {
+          userRole = value.data()!['Role'].toString();
+        });
+      }
     });
   }
 
+  String queryIndex = '';
+  bool queryType = true;
   @override
   build(BuildContext context) {
     return Scaffold(
@@ -103,14 +103,19 @@ class UrunListelemeState extends State<UrunListeleme> {
                             width: 90,
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Categories(
-                                        categoriesGet: categories[index]['name']
-                                            as String),
-                                  ),
-                                );
+                                setState(() {
+                                  queryIndex =
+                                      categories[index]['name'] as String;
+                                  queryType = false;
+                                });
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => Categories(
+                                //         categoriesGet: categories[index]['name']
+                                //             as String),
+                                //   ),
+                                // );
                               },
                               child: Image.asset(
                                   categories[index]['iconPath'] as String),
@@ -129,50 +134,15 @@ class UrunListelemeState extends State<UrunListeleme> {
               ),
               SizedBox(height: 10),
 
-
 //-------------------------------------------------------------------------
               Flexible(
                 child: StreamBuilder(
-<<<<<<< HEAD
-                  stream:
-                      ref.orderBy('CreatedAt', descending: true).snapshots(),
-                      
-                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    final userDoc = snapshot.data;
-                  final user = userDoc;
-                    if (snapshot.hasData && user! == 'admin') { 
-                      
-                      return ListView.builder(
-                        itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          var docRef = snapshot.data!.docs[index];
-                          return Card(
-                            color: Theme.of(context).cardColor,
-                            shadowColor: Theme.of(context).shadowColor,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.account_circle_rounded,
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                              subtitle: Column(
-                                children: <Widget>[
-                                  SizedBox(height: 10),
-                                  Text("Mobilya Türü:",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1),
-                                  Text(" \t${docRef['Mobilya Türü']} ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline2),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    "Adet:" " \t${docRef['Adet']}",
-                                    style:
-                                        Theme.of(context).textTheme.headline2,
-=======
-                    stream:
-                        ref.orderBy('CreatedAt', descending: true).snapshots(),
+                    stream: queryType
+                        ? ref.orderBy('CreatedAt', descending: true).snapshots()
+                        : ref
+                            .where('Kategori', isEqualTo: queryIndex)
+                            .orderBy('CreatedAt', descending: true)
+                            .snapshots(),
                     builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return CircularProgressIndicator();
@@ -190,7 +160,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                   leading: Icon(
                                     Icons.account_circle_rounded,
                                     color: Theme.of(context).iconTheme.color,
->>>>>>> c8df27426abeb9daba081880c01f147e4a6cc568
                                   ),
                                   subtitle: Column(
                                     children: <Widget>[
@@ -483,15 +452,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                         'Herhangi bir veri bulunamadı',
                         style: Theme.of(context).textTheme.headline1,
                       );
-<<<<<<< HEAD
-                    }
-                    
-                    return Text('Herhangi bir veri bulunamadı');
-                  },
-                ),
-=======
                     }),
->>>>>>> c8df27426abeb9daba081880c01f147e4a6cc568
               ),
             ],
           ),

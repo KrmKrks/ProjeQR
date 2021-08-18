@@ -13,8 +13,6 @@ class UyeOl extends StatefulWidget {
   _UyeOlState createState() => _UyeOlState();
 }
 
-// TODO: şifre ve şifre tekrarının kontrol edilmesi gerekiyor.
-
 final TextEditingController nameController = TextEditingController();
 final TextEditingController surnameController = TextEditingController();
 final TextEditingController mailController = TextEditingController();
@@ -47,7 +45,6 @@ class _UyeOlState extends State<UyeOl> {
                 padding: const EdgeInsets.all(30.0),
                 child: Form(
                   key: _formKey2,
-                  autovalidateMode: AutovalidateMode.always,
                   child: Column(
                     children: <Widget>[
                       Container(
