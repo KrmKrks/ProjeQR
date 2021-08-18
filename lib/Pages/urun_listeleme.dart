@@ -447,22 +447,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                             );
                           },
                         );
-<<<<<<< HEAD
-                      } else {
-                        return Text('kullanıcı admin değil');
-                      }
-                    }
-                    return Text('Herhangi bir veri bulunamadı');
-                  },
-                ),
-=======
                       }
                       return Text(
                         'Herhangi bir veri bulunamadı',
                         style: Theme.of(context).textTheme.headline1,
                       );
                     }),
->>>>>>> 7a145b1913cfbe36c4030f6966d01394ace37b6b
               ),
             ],
           ),

@@ -14,7 +14,7 @@ class AnaSayfa extends StatefulWidget {
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class _AnaSayfaState extends State<AnaSayfa> {
-  int pageIndex = 0;
+  int pageIndex = 1;
   List<Widget> pageList = <Widget>[
     MalzemeEkleme(),
     UrunListeleme(),
@@ -33,6 +33,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
               Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
           style: TabStyle.reactCircle,
           height: 60,
+          initialActiveIndex: 1,
           items: [
             TabItem(
               title: "Malzeme Ekle",
