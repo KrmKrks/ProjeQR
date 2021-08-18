@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/pages/mdv_takip_page.dart';
 import 'package:projeqr/provider/theme_provider.dart';
@@ -12,10 +14,10 @@ class AnaSayfa extends StatefulWidget {
   _AnaSayfaState createState() => _AnaSayfaState();
 }
 
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
 class _AnaSayfaState extends State<AnaSayfa> {
   @override
-  final Color logoGreen = Color(0xFF5f59f7);
-
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
