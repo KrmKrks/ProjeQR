@@ -69,11 +69,12 @@ class _UrunDetailsState extends State<UrunDetails> {
               height: 20,
             ),
             Text(
-                "Gelen veya Giden Müdürlük:"
+                "Müdürlük:"
                 " \t${widget.mudurluk}",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 25,
+                  decorationColor: Colors.black,
                   decoration: TextDecoration.none,
                 )),
             SizedBox(

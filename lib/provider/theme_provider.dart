@@ -28,7 +28,7 @@ class AppThemes {
         fontSize: 20,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,
-        color: Color(0xFFDFE7D0),
+        color: Color(0xFF1F2218),
       ),
       headline2: TextStyle(
         decoration: TextDecoration.none,
@@ -36,7 +36,7 @@ class AppThemes {
         fontSize: 16,
         fontWeight: FontWeight.normal,
         fontStyle: FontStyle.normal,
-        color: Color(0xFFDFE7D0),
+        color: Color(0xFF2F3129),
       ),
       button: TextStyle(
           color: Color(0xFFDFE7D0),
@@ -72,14 +72,14 @@ class AppThemes {
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
-          color: Color(0xFFd9dad7)),
+          color: Color(0xFFDAD8D7)),
       headline2: TextStyle(
         decoration: TextDecoration.none,
         fontFamily: 'Roboto',
         fontSize: 16,
         fontWeight: FontWeight.normal,
         fontStyle: FontStyle.normal,
-        color: Color(0xFFd9dad7),
+        color: Color(0xEC050504),
       ),
       button: TextStyle(
           color: Color(0xFFd9dad7),

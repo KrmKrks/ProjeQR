@@ -173,12 +173,20 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               .textTheme
                                               .headline2),
                                       SizedBox(height: 10),
-                                      Text(
-                                        "Adet:" " \t${docRef['Adet']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2,
-                                      ),
+                                      //Text(
+                                        //"Adet:" " \t${docRef['Adet']}",
+                                        //style: Theme.of(context)
+                                            //.textTheme
+                                            //.headline1,
+                                      //),
+                                      Text("Adet:",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1),
+                                      Text(" \t${docRef['Adet']} ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2),
                                       SizedBox(height: 10),
                                       Text("Müdürlük:",
                                           style: Theme.of(context)
@@ -400,11 +408,19 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             .textTheme
                                             .headline2),
                                     SizedBox(height: 10),
-                                    Text(
-                                      "Adet:" " \t${docRef['Adet']}",
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                    ),
+                                    //Text(
+                                      //"Adet:" " \t${docRef['Adet']}",
+                                      //style:
+                                          //Theme.of(context).textTheme.headline1,
+                                    //),
+                                    Text("Adet:",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1),
+                                    Text(" \t${docRef['Adet']} ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2),
                                     SizedBox(height: 10),
                                     Text("Müdürlük:",
                                         style: Theme.of(context)
