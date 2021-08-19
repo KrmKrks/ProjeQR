@@ -1,19 +1,23 @@
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:path/path.dart';
 
-class StatusService {
-  final FirebaseStorage _firestoreStorage = FirebaseStorage.instance;
 
-  uploadMedia(File file) async {
-    var uploadTask = _firestoreStorage
-        .ref()
-        .child(
-            "${DateTime.now().millisecondsSinceEpoch}.${file.path.split('.').last}")
-        .putFile(file);
 
-    uploadTask.snapshotEvents.listen((event) {});
 
-    var storageRef = await uploadTask;
-    return await storageRef.ref.getDownloadURL();
-  }
-}
+//DENEME KISMI
+
+// class Database {
+
+
+
+//   static Future<String?> uploadingImage(File imageFile) async {
+//     String fileName = basename(imageFile.toString());
+
+//     firebase_storage.Reference ref =
+//         firebase_storage.FirebaseStorage.instance.ref().child(fileName);
+//     firebase_storage.UploadTask task = ref.putFile(imageFile);
+//     firebase_storage.TaskSnapshot snapshot = await task.whenComplete(() {} );
+//   }
+// }

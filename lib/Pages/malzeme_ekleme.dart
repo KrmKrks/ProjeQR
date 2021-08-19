@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/net/authentication.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
@@ -40,6 +42,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       'CreatedAt': DateTime.now(),
       'UpdatedDate': DateTime.now(),
       'UserId': _auth.currentUser!.uid,
+      'İmage Url': url,
     });
 
     return _firestore.id;
@@ -56,6 +59,27 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
   final Color logoGreen = Color(0xFF5f59f7);
   final _formKey = GlobalKey<FormState>();
+  ImagePicker image = ImagePicker();
+  File? file;
+  String url = "";
+  //Fotoğrafı Bu kısımda alıcaz buraya cameraya erişim işlemleride yazılacak sonrasında son haline gelicek.
+  getImage() async {
+    var img = await image.pickImage(source: ImageSource.gallery);
+    setState(() {
+      file = File(img!.path);
+    });
+  }
+
+// Fotoğrafı bizim Products kısmına bu method ile erişim sağlayacağız.
+  uploadFile() async {
+    var imageFile = FirebaseStorage.instance.ref().child("İmages");
+    UploadTask task = imageFile.putFile(file!);
+    TaskSnapshot snapshot = await task;
+
+    // url i addproduct klasörünen içine yazdığırıyorum her kaydet dediğinde
+
+    url = await snapshot.ref.getDownloadURL();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,12 +177,12 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           addProduct(
-                                  mobilyaTuruController.text,
-                                  adetController.text,
-                                  mudurlukController.text,
-                                  notController.text,
-                                  selectedKategori.toString())
-                              .then(
+                            mobilyaTuruController.text,
+                            adetController.text,
+                            mudurlukController.text,
+                            notController.text,
+                            selectedKategori.toString(),
+                          ).then(
                             (value) {
                               return Navigator.push(
                                 context,
@@ -179,14 +203,16 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Fotoğraf Ekle",
+                          "Fotoğraf Seç veya Çek",
                           style: Theme.of(context).textTheme.button,
                         ),
                       ),
                       color: Theme.of(context).buttonColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                      onPressed: () {},
+                      onPressed: () {
+                        getImage();
+                      },
                     )
                   ],
                 ),
