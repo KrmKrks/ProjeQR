@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:projeqr/net/database_service.dart';
+import 'package:projeqr/pages/models.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
@@ -18,51 +20,20 @@ class MalzemeEkleme extends StatefulWidget {
 
 class _MalzemeEklemeState extends State<MalzemeEkleme> {
   @override
-  final CollectionReference _firestore =
-      FirebaseFirestore.instance.collection('products');
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   TextEditingController mobilyaTuruController = TextEditingController();
   TextEditingController adetController = TextEditingController();
   TextEditingController notController = TextEditingController();
   TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
 
-  Future<String> addProduct(String mobilyaTuru, String adet, String mudurluk,
-      String not, String kategori) async {
-    String documentID = _firestore.doc().id;
-
-    await _firestore.doc(documentID).set({
-      'Mobilya Türü': mobilyaTuru,
-      'Adet': adet,
-      'Müdürlük': mudurluk,
-      'Not': not,
-      'Document ID': documentID,
-      'Kategori': selectedKategori,
-      'CreatedAt': DateTime.now(),
-      'UpdatedDate': DateTime.now(),
-      'UserId': _auth.currentUser!.uid,
-      'İmage Url': url,
-    });
-
-    return _firestore.id;
-  }
-
   var selectedKategori;
-  final List<String> _kategori = <String>[
-    'Masa',
-    'Sandalye',
-    'Dolap',
-    'Keson',
-    'Diğer',
-  ];
-
-  final Color logoGreen = Color(0xFF5f59f7);
   final _formKey = GlobalKey<FormState>();
   ImagePicker image = ImagePicker();
   File? file;
   String url = "";
+
   //Fotoğrafı Bu kısımda alıcaz buraya cameraya erişim işlemleride yazılacak sonrasında son haline gelicek.
+
   getImage() async {
     var img = await image.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -95,7 +66,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
             children: [
               Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: <Widget>[
                     SizedBox(
@@ -135,7 +105,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                         color: Theme.of(context).primaryColor,
                       ),
                       child: DropdownButtonFormField(
-                        items: _kategori
+                        items: kategori
                             .map(
                               (value) => DropdownMenuItem(
                                 child: Text(value,
@@ -182,6 +152,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                             mudurlukController.text,
                             notController.text,
                             selectedKategori.toString(),
+                            url,
                           ).then(
                             (value) {
                               return Navigator.push(

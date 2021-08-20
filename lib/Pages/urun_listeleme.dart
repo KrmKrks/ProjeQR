@@ -73,8 +73,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                     Text(
                       'Search',
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 20),
+                        color: Theme.of(context).cardColor,
+                        fontSize: 20,
+                      ),
                     ),
                     Icon(Icons.settings),
                   ],
@@ -97,7 +98,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                             padding: EdgeInsets.all(20),
                             margin: EdgeInsets.only(left: 20),
                             decoration: BoxDecoration(
-                                color: Theme.of(context).backgroundColor,
+                                color: Theme.of(context)
+                                    .cardColor
+                                    .withOpacity(0.9),
                                 borderRadius: BorderRadius.circular(10)),
                             height: 90,
                             width: 90,
@@ -108,14 +111,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                       categories[index]['name'] as String;
                                   queryType = false;
                                 });
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => Categories(
-                                //         categoriesGet: categories[index]['name']
-                                //             as String),
-                                //   ),
-                                // );
                               },
                               child: Image.asset(
                                   categories[index]['iconPath'] as String),
@@ -154,7 +149,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                             itemBuilder: (context, index) {
                               var docRef = snapshot.data!.docs[index];
                               return Card(
-                                color: Theme.of(context).cardColor,
+                                color: Theme.of(context)
+                                    .cardColor
+                                    .withOpacity(0.5),
                                 shadowColor: Theme.of(context).shadowColor,
                                 child: ListTile(
                                   leading: Icon(
@@ -173,12 +170,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               .textTheme
                                               .headline2),
                                       SizedBox(height: 10),
-                                      //Text(
-                                        //"Adet:" " \t${docRef['Adet']}",
-                                        //style: Theme.of(context)
-                                            //.textTheme
-                                            //.headline1,
-                                      //),
                                       Text("Adet:",
                                           style: Theme.of(context)
                                               .textTheme
@@ -409,9 +400,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             .headline2),
                                     SizedBox(height: 10),
                                     //Text(
-                                      //"Adet:" " \t${docRef['Adet']}",
-                                      //style:
-                                          //Theme.of(context).textTheme.headline1,
+                                    //"Adet:" " \t${docRef['Adet']}",
+                                    //style:
+                                    //Theme.of(context).textTheme.headline1,
                                     //),
                                     Text("Adet:",
                                         style: Theme.of(context)

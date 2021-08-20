@@ -59,7 +59,7 @@ class AppThemes {
   static final darkTheme = ThemeData(
     primaryColor: Color(0xFF2C5364),
     backgroundColor: Color(0xFF8AA8DD),
-    cardColor: Color(0xFF536B94),
+    cardColor: Color(0xff457b9d), //Color(0xFF536B94),
     scaffoldBackgroundColor: Color(0xFF3F4D64),
     colorScheme: ColorScheme.light(primary: Color(0xFFd9dad7)),
     iconTheme: IconThemeData(color: Colors.amber[800], opacity: 0.8),
@@ -72,14 +72,14 @@ class AppThemes {
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
-          color: Color(0xFFDAD8D7)),
+          color: Color(0xFF83D2D4)), //Color(0xFFC8C6C5)),
       headline2: TextStyle(
         decoration: TextDecoration.none,
         fontFamily: 'Roboto',
         fontSize: 16,
         fontWeight: FontWeight.normal,
         fontStyle: FontStyle.normal,
-        color: Color(0xEC050504),
+        color: Color(0xFFd9dad7),
       ),
       button: TextStyle(
           color: Color(0xFFd9dad7),
