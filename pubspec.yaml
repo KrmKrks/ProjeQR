@@ -53,6 +53,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.1
+
+flutter_icons:
+  image_path: "assets/qr-code.png"
+  android: true
+  ios: true
 
   lints: ^1.0.1
 
