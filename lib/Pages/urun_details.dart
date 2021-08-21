@@ -45,14 +45,17 @@ class _UrunDetailsState extends State<UrunDetails> {
             SizedBox(
               height: 15,
             ),
+            
             Text(
               "Mobilya Türü:"
               " \n${widget.mobilyaTuru} ",
               style: TextStyle(
+                
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: 25,
                 decoration: TextDecoration.none,
               ),
+              
             ),
             SizedBox(
               height: 20,
@@ -74,7 +77,6 @@ class _UrunDetailsState extends State<UrunDetails> {
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 25,
-                  decorationColor: Colors.black,
                   decoration: TextDecoration.none,
                 )),
             SizedBox(
@@ -91,8 +93,26 @@ class _UrunDetailsState extends State<UrunDetails> {
             SizedBox(
               height: 20,
             ),
+            SizedBox(
+                      height: 8,
+                    ),
+                    MaterialButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Fotografi goster",
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                      ),
+                      color: Theme.of(context).buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      onPressed: () {
+                      }
+                    ),
           ],
         ),
+        
       ),
     );
   }

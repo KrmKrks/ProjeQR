@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projeqr/net/database_service.dart';
 import 'package:projeqr/pages/models.dart';
@@ -29,7 +30,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   var selectedKategori;
   final _formKey = GlobalKey<FormState>();
   ImagePicker image = ImagePicker();
-  File? file;
+  File? file; 
   String url = "";
 
   //Fotoğrafı Bu kısımda alıcaz buraya cameraya erişim işlemleride yazılacak sonrasında son haline gelicek.
@@ -57,7 +58,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
 
     // url i addproduct klasörünen içine yazdığırıyorum her kaydet dediğinde
     
-    url = await  snapshot.ref.getDownloadURL();  
+    //url = await  snapshot.ref.getDownloadURL();  
     
   }
 
@@ -184,7 +185,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Galeriden Fotograf sec",
+                          "Fotograf yukle",
                           style: Theme.of(context).textTheme.button,
                         ),
                       ),
@@ -192,27 +193,27 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       onPressed: () {
-                       getImage(); 
+                       _secim(context); 
                       },
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    MaterialButton(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Kameradan Fotograf Cek",
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                      ),
-                      color: Theme.of(context).buttonColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                      onPressed: () {
-                       getImage2(); 
-                      },
-                    ),
+                    //SizedBox(
+                      //height: 8,
+                    //),
+                    //MaterialButton(
+                      //child: Padding(
+                        //padding: const EdgeInsets.all(8.0),
+                        //child: Text(
+                          //"Kameradan Fotograf Cek",
+                          //style: Theme.of(context).textTheme.button,
+                        //),
+                      //),
+                      //color: Theme.of(context).buttonColor,
+                      //shape: RoundedRectangleBorder(
+                          //borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      //onPressed: () {
+                       //getImage2(); 
+                      //},
+                    //),
                   ],
                 ),
               ),
@@ -222,28 +223,28 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       ),
     );
   }
-  //void _secim(BuildContext context) {
-    //showDialog(context: context, builder: (context)=> AlertDialog(
-      //content: Column(
-        //mainAxisSize: MainAxisSize.min,
-        //children: <Widget>[
-          //ListTile(
-            //title: Text('Galeriden Fotograf Sec'),
-            //onTap: () {
-            //_secim(ImageSource.gallery.index);
-            //},
-          //),
-          //ListTile(
-            //title: Text('Kameradan Fotograf Cek'),
-            //onTap: () {
-              //_secim(ImageSource.camera);
-            //},
-          //),
-        //],
-      //),
-    //),
-    //);
-  //}
+  void _secim(BuildContext context) {
+    showDialog(context: context, builder: (context)=> AlertDialog(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            title: Text('Galeriden Fotograf Sec'),
+            onTap: () {
+            getImage();
+            },
+          ),
+          ListTile(
+            title: Text('Kameradan Fotograf Cek'),
+            onTap: () {
+              getImage2();
+            },
+          ),
+        ],
+      ),
+    ),
+    );
+  }
   //void getImage(ImageSource source) async{
     //final picker  = ImagePicker();
     //final choosen = await picker.pickImage(source: source);
