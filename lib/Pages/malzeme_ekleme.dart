@@ -40,6 +40,14 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       file = File(img!.path);
     });
   }
+  getImage2() async {
+    var img = await image.pickImage(source: ImageSource.camera);
+    setState(() {
+      file = File(img!.path);
+    });
+  }
+
+  
 
 // Fotoğrafı bizim Products kısmına bu method ile erişim sağlayacağız.
   uploadFile() async {
@@ -48,8 +56,9 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
     TaskSnapshot snapshot = await task;
 
     // url i addproduct klasörünen içine yazdığırıyorum her kaydet dediğinde
-
-    url = await snapshot.ref.getDownloadURL();
+    
+    url = await  snapshot.ref.getDownloadURL();  
+    
   }
 
   @override
@@ -146,6 +155,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                           borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          uploadFile();
                           addProduct(
                             mobilyaTuruController.text,
                             adetController.text,
@@ -174,7 +184,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Fotoğraf Seç veya Çek",
+                          "Galeriden Fotograf sec",
                           style: Theme.of(context).textTheme.button,
                         ),
                       ),
@@ -182,9 +192,27 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       onPressed: () {
-                        getImage();
+                       getImage(); 
                       },
-                    )
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    MaterialButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Kameradan Fotograf Cek",
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                      ),
+                      color: Theme.of(context).buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      onPressed: () {
+                       getImage2(); 
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -194,4 +222,36 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       ),
     );
   }
+  //void _secim(BuildContext context) {
+    //showDialog(context: context, builder: (context)=> AlertDialog(
+      //content: Column(
+        //mainAxisSize: MainAxisSize.min,
+        //children: <Widget>[
+          //ListTile(
+            //title: Text('Galeriden Fotograf Sec'),
+            //onTap: () {
+            //_secim(ImageSource.gallery.index);
+            //},
+          //),
+          //ListTile(
+            //title: Text('Kameradan Fotograf Cek'),
+            //onTap: () {
+              //_secim(ImageSource.camera);
+            //},
+          //),
+        //],
+      //),
+    //),
+    //);
+  //}
+  //void getImage(ImageSource source) async{
+    //final picker  = ImagePicker();
+    //final choosen = await picker.pickImage(source: source);
+    //setState(() {
+      //if (choosen != null){
+        //file = File(choosen.path);
+      //}
+    //}
+    //);
+  //}
 }

@@ -28,6 +28,8 @@
 	<string>Main</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera permission is required for QR scanning.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+<string>Photo Library Access Warning</string>
 
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
