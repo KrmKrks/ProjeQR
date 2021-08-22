@@ -21,9 +21,11 @@ CollectionReference ref = FirebaseFirestore.instance.collection('products');
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mobilyaTuruController = TextEditingController();
+TextEditingController mdvNoController = TextEditingController();
 TextEditingController adetController = TextEditingController();
+TextEditingController geldigiMudurlukController = TextEditingController();
+TextEditingController gonderildigiMudurlukController = TextEditingController();
 TextEditingController notController = TextEditingController();
-TextEditingController mudurlukController = TextEditingController();
 
 class UrunListelemeState extends State<UrunListeleme> {
   @override
@@ -170,6 +172,17 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               .textTheme
                                               .headline2),
                                       SizedBox(height: 10),
+                                      Text("MDV No:",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1),
+                                      Text(" \t${docRef['MDV No']} ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
                                       Text("Adet:",
                                           style: Theme.of(context)
                                               .textTheme
@@ -179,12 +192,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               .textTheme
                                               .headline2),
                                       SizedBox(height: 10),
-                                      Text("Müdürlük:",
+                                      Text("Geldiği Müdürlük:",
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline1),
                                       Text(
-                                        " \t${docRef['Müdürlük']}",
+                                        " \t${docRef['Geldiği Müdürlük']}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline2,
@@ -211,8 +224,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                           docRef['Mobilya Türü'] as String;
                                       adetController.text =
                                           docRef['Adet'] as String;
-                                      mudurlukController.text =
-                                          docRef['Müdürlük'] as String;
+
                                       notController.text =
                                           docRef['Not'] as String;
 
@@ -252,8 +264,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                           height: 20,
                                                         ),
                                                         buildTextFormField(
-                                                            mudurlukController,
-                                                            "Müdürlük",
+                                                            gonderildigiMudurlukController,
+                                                            "Gönderildiği Müdürlük",
                                                             context) as Widget,
                                                         SizedBox(
                                                           height: 20,
@@ -298,8 +310,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                               'Adet':
                                                                   adetController
                                                                       .text,
-                                                              'Müdürlük':
-                                                                  mudurlukController
+                                                              'Gönderildiği Müdürlük':
+                                                                  gonderildigiMudurlukController
                                                                       .text,
                                                               'Not':
                                                                   notController
@@ -309,7 +321,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                       .now(),
                                                               'UserId': _auth
                                                                   .currentUser!
-                                                                  .uid,
+                                                                  .email,
                                                             }).whenComplete(() =>
                                                                     Navigator.pop(
                                                                         context));
@@ -364,9 +376,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               mobilyaTuru:
                                                   docRef['Mobilya Türü']
                                                       as String,
+                                              mdvNo: docRef['MDV No'] as String,
                                               adet: docRef['Adet'] as String,
-                                              mudurluk:
-                                                  docRef['Müdürlük'] as String,
+                                              geldigiMudurluk:
+                                                  docRef['Geldiği Müdürlük']
+                                                      as String,
                                               not: docRef['Not'] as String)),
                                     );
                                   },
@@ -399,11 +413,17 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             .textTheme
                                             .headline2),
                                     SizedBox(height: 10),
-                                    //Text(
-                                    //"Adet:" " \t${docRef['Adet']}",
-                                    //style:
-                                    //Theme.of(context).textTheme.headline1,
-                                    //),
+                                    Text("MDV No:",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1),
+                                    Text(" \t${docRef['MDV No']} ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     Text("Adet:",
                                         style: Theme.of(context)
                                             .textTheme
@@ -413,12 +433,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             .textTheme
                                             .headline2),
                                     SizedBox(height: 10),
-                                    Text("Müdürlük:",
+                                    Text("Geldigi Müdürlük:",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline1),
                                     Text(
-                                      " \t${docRef['Müdürlük']}",
+                                      " \t${docRef['Geldiği Müdürlük']}",
                                       style:
                                           Theme.of(context).textTheme.headline2,
                                     ),
@@ -444,9 +464,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                 docRef['Document ID'] as String,
                                             mobilyaTuru: docRef['Mobilya Türü']
                                                 as String,
+                                            mdvNo: docRef['MDV No'] as String,
                                             adet: docRef['Adet'] as String,
-                                            mudurluk:
-                                                docRef['Müdürlük'] as String,
+                                            geldigiMudurluk:
+                                                docRef['Geldiği Müdürlük']
+                                                    as String,
                                             not: docRef['Not'] as String)),
                                   );
                                 },

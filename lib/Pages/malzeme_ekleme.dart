@@ -9,8 +9,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:projeqr/net/database_service.dart';
 import 'package:projeqr/pages/models.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
+import 'package:projeqr/provider/theme_provider.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
+import 'package:provider/provider.dart';
 
 class MalzemeEkleme extends StatefulWidget {
   MalzemeEkleme({Key? key}) : super(key: key);
@@ -22,15 +24,16 @@ class MalzemeEkleme extends StatefulWidget {
 class _MalzemeEklemeState extends State<MalzemeEkleme> {
   @override
   TextEditingController mobilyaTuruController = TextEditingController();
+  TextEditingController mdvNoController = TextEditingController();
   TextEditingController adetController = TextEditingController();
+  TextEditingController geldigiMudurlukController = TextEditingController();
   TextEditingController notController = TextEditingController();
-  TextEditingController mudurlukController = TextEditingController();
   TextEditingController imageUrlController = TextEditingController();
 
   var selectedKategori;
   final _formKey = GlobalKey<FormState>();
   ImagePicker image = ImagePicker();
-  File? file; 
+  File? file;
   String url = "";
 
   //Fotoğrafı Bu kısımda alıcaz buraya cameraya erişim işlemleride yazılacak sonrasında son haline gelicek.
@@ -41,14 +44,13 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       file = File(img!.path);
     });
   }
+
   getImage2() async {
     var img = await image.pickImage(source: ImageSource.camera);
     setState(() {
       file = File(img!.path);
     });
   }
-
-  
 
 // Fotoğrafı bizim Products kısmına bu method ile erişim sağlayacağız.
   uploadFile() async {
@@ -57,9 +59,8 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
     TaskSnapshot snapshot = await task;
 
     // url i addproduct klasörünen içine yazdığırıyorum her kaydet dediğinde
-    
-    //url = await  snapshot.ref.getDownloadURL();  
-    
+
+    //url = await  snapshot.ref.getDownloadURL();
   }
 
   @override
@@ -82,39 +83,98 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       height: 30,
                     ),
                     Text(
-                      "Eklemek istediğiniz malzemenin detaylarını giriniz.",
+                      "Eklemek istediğiniz malzemenin bilgilerini giriniz.",
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline1,
                     ),
                     SizedBox(
                       height: 40,
                     ),
-                    buildTextFormField(
-                            mobilyaTuruController, "Mobilya Türü", context)
-                        as Widget,
-                    SizedBox(
-                      height: 20,
-                    ),
-                    buildTextFormField(adetController, "Adet", context)
-                        as Widget,
-                    SizedBox(
-                      height: 20,
-                    ),
-                    buildTextFormField(mudurlukController, "Müdürlük", context)
-                        as Widget,
-                    SizedBox(
-                      height: 20,
-                    ),
-                    buildTextFormField(notController, "Not", context) as Widget,
+                    groupTextFormField(
+                        mobilyaTuruController,
+                        mdvNoController,
+                        'Malzeme Bilgileri',
+                        'Mobilya Türü',
+                        'MDV No',
+                        context) as Widget,
                     SizedBox(
                       height: 20,
                     ),
                     Container(
                       decoration: BoxDecoration(
+                        color: Theme.of(context as BuildContext)
+                            .colorScheme
+                            .background,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Provider.of<ThemeProvider>(context).isDarkMode
+                              ? Colors.blue
+                              : Color(0xFF84EE9D),
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                child: Text(
+                                  'Malzeme Detayları',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      ?.copyWith(
+                                          color: Color(0xFF83D2D4)
+                                              .withOpacity(0.8)),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                            child: customTextFormField(
+                                adetController, 'Adet', context) as Widget,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                            child: customTextFormField(
+                                geldigiMudurlukController,
+                                'Geldiği Müdürlük',
+                                context) as Widget,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                            child: customTextFormField(
+                                notController, 'Not', context) as Widget,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                    Container(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Theme.of(context).primaryColor,
                       ),
+                      padding: EdgeInsets.all(2),
                       child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                          ),
+                        ),
                         items: kategori
                             .map(
                               (value) => DropdownMenuItem(
@@ -158,10 +218,11 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                         if (_formKey.currentState!.validate()) {
                           uploadFile();
                           addProduct(
-                            mobilyaTuruController.text,
-                            adetController.text,
-                            mudurlukController.text,
-                            notController.text,
+                            mobilyaTuruController.text.trim(),
+                            mdvNoController.text.trim(),
+                            adetController.text.trim(),
+                            geldigiMudurlukController.text.trim(),
+                            notController.text.trim(),
                             selectedKategori.toString(),
                             url,
                           ).then(
@@ -193,26 +254,26 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       onPressed: () {
-                       _secim(context); 
+                        _secim(context);
                       },
                     ),
                     //SizedBox(
-                      //height: 8,
+                    //height: 8,
                     //),
                     //MaterialButton(
-                      //child: Padding(
-                        //padding: const EdgeInsets.all(8.0),
-                        //child: Text(
-                          //"Kameradan Fotograf Cek",
-                          //style: Theme.of(context).textTheme.button,
-                        //),
-                      //),
-                      //color: Theme.of(context).buttonColor,
-                      //shape: RoundedRectangleBorder(
-                          //borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                      //onPressed: () {
-                       //getImage2(); 
-                      //},
+                    //child: Padding(
+                    //padding: const EdgeInsets.all(8.0),
+                    //child: Text(
+                    //"Kameradan Fotograf Cek",
+                    //style: Theme.of(context).textTheme.button,
+                    //),
+                    //),
+                    //color: Theme.of(context).buttonColor,
+                    //shape: RoundedRectangleBorder(
+                    //borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                    //onPressed: () {
+                    //getImage2();
+                    //},
                     //),
                   ],
                 ),
@@ -223,36 +284,39 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       ),
     );
   }
+
   void _secim(BuildContext context) {
-    showDialog(context: context, builder: (context)=> AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            title: Text('Galeriden Fotograf Sec'),
-            onTap: () {
-            getImage();
-            },
-          ),
-          ListTile(
-            title: Text('Kameradan Fotograf Cek'),
-            onTap: () {
-              getImage2();
-            },
-          ),
-        ],
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              title: Text('Galeriden Fotograf Sec'),
+              onTap: () {
+                getImage();
+              },
+            ),
+            ListTile(
+              title: Text('Kameradan Fotograf Cek'),
+              onTap: () {
+                getImage2();
+              },
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
   //void getImage(ImageSource source) async{
-    //final picker  = ImagePicker();
-    //final choosen = await picker.pickImage(source: source);
-    //setState(() {
-      //if (choosen != null){
-        //file = File(choosen.path);
-      //}
-    //}
-    //);
+  //final picker  = ImagePicker();
+  //final choosen = await picker.pickImage(source: source);
+  //setState(() {
+  //if (choosen != null){
+  //file = File(choosen.path);
+  //}
+  //}
+  //);
   //}
 }

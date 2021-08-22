@@ -126,3 +126,31 @@ groupTextFormField(
     ),
   );
 }
+
+customTextFormField(
+    TextEditingController controller, String labelText, context) {
+  return TextFormField(
+    validator: (value) => value!.isEmpty ? 'Bu alanı boş geçemezsiniz.' : null,
+    controller: controller,
+    decoration: InputDecoration(
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Provider.of<ThemeProvider>(context as BuildContext).isDarkMode
+              ? Colors.blue
+              : Color(0xFF84EE9D),
+        ),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Provider.of<ThemeProvider>(context).isDarkMode
+              ? Colors.blue
+              : Color(0xFF84EE9D),
+        ),
+      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+      labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+      labelText: labelText,
+    ),
+    style: Theme.of(context).textTheme.headline2,
+  );
+}

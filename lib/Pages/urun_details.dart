@@ -3,14 +3,15 @@ import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class UrunDetails extends StatefulWidget {
-  String documentID, mobilyaTuru, adet, mudurluk, not;
+  String documentID, mobilyaTuru, mdvNo, adet, geldigiMudurluk, not;
 
   UrunDetails(
       {Key? key,
       required this.documentID,
       required this.mobilyaTuru,
+      required this.mdvNo,
       required this.adet,
-      required this.mudurluk,
+      required this.geldigiMudurluk,
       required this.not})
       : super(key: key);
 
@@ -45,17 +46,26 @@ class _UrunDetailsState extends State<UrunDetails> {
             SizedBox(
               height: 15,
             ),
-            
             Text(
               "Mobilya Türü:"
               " \n${widget.mobilyaTuru} ",
               style: TextStyle(
-                
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: 25,
                 decoration: TextDecoration.none,
               ),
-              
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "MDV No:"
+              " \n${widget.mdvNo} ",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+                fontSize: 25,
+                decoration: TextDecoration.none,
+              ),
             ),
             SizedBox(
               height: 20,
@@ -72,8 +82,8 @@ class _UrunDetailsState extends State<UrunDetails> {
               height: 20,
             ),
             Text(
-                "Müdürlük:"
-                " \t${widget.mudurluk}",
+                "Geldiği Müdürlük:"
+                " \t${widget.geldigiMudurluk}",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 25,
@@ -94,25 +104,22 @@ class _UrunDetailsState extends State<UrunDetails> {
               height: 20,
             ),
             SizedBox(
-                      height: 8,
-                    ),
-                    MaterialButton(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Fotografi goster",
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                      ),
-                      color: Theme.of(context).buttonColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                      onPressed: () {
-                      }
-                    ),
+              height: 8,
+            ),
+            MaterialButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Fotografi goster",
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                ),
+                color: Theme.of(context).buttonColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                onPressed: () {}),
           ],
         ),
-        
       ),
     );
   }
