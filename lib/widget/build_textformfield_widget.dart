@@ -27,3 +27,102 @@ buildTextFormField(
     ),
   );
 }
+
+groupTextFormField(
+    TextEditingController controller1,
+    TextEditingController controller2,
+    String introduction,
+    String labelText1,
+    String labelText2,
+    context) {
+  return Container(
+    decoration: BoxDecoration(
+      color: Theme.of(context as BuildContext).colorScheme.background,
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(
+        color: Provider.of<ThemeProvider>(context).isDarkMode
+            ? Colors.blue
+            : Color(0xFF84EE9D),
+        width: 1,
+      ),
+    ),
+    child: Column(
+      children: [
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+              child: Text(
+                introduction,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline1
+                    ?.copyWith(color: Color(0xFF83D2D4).withOpacity(0.8)),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+          child: TextFormField(
+            controller: controller1,
+            decoration: InputDecoration(
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
+                      ? Colors.blue
+                      : Color(0xFF84EE9D),
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
+                      ? Colors.blue
+                      : Color(0xFF84EE9D),
+                ),
+              ),
+              contentPadding: EdgeInsets.symmetric(horizontal: 10),
+              labelStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.primary),
+              labelText: labelText1,
+            ),
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+          child: TextFormField(
+            controller: controller2,
+            decoration: InputDecoration(
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
+                      ? Colors.blue
+                      : Color(0xFF84EE9D),
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
+                      ? Colors.blue
+                      : Color(0xFF84EE9D),
+                ),
+              ),
+              contentPadding: EdgeInsets.symmetric(horizontal: 10),
+              labelStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.primary),
+              labelText: labelText2,
+            ),
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+      ],
+    ),
+  );
+}

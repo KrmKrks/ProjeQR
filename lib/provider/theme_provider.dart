@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {
@@ -58,10 +60,13 @@ class AppThemes {
 
   static final darkTheme = ThemeData(
     primaryColor: Color(0xFF2C5364),
-    backgroundColor: Color(0xFF8AA8DD),
+    backgroundColor: Color(0xFF243B55).withOpacity(0.95),
     cardColor: Color(0xff457b9d), //Color(0xFF536B94),
     scaffoldBackgroundColor: Color(0xFF3F4D64),
-    colorScheme: ColorScheme.light(primary: Color(0xFFd9dad7)),
+    colorScheme: ColorScheme.dark(
+      primary: Color(0xFFd9dad7),
+      background: Color(0xFF243B55).withOpacity(0.95),
+    ),
     iconTheme: IconThemeData(color: Colors.amber[800], opacity: 0.8),
     shadowColor: null,
     buttonColor: Color(0xFFB9182A),
@@ -88,18 +93,19 @@ class AppThemes {
           fontStyle: FontStyle.normal),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Color(0xFF141E30),
-        unselectedItemColor: Color(0xFF243B55),
-        unselectedIconTheme: IconThemeData(
-          color: Color(0xFFB9182A),
-        ),
-        selectedIconTheme: IconThemeData(
-          color: Color(0xFFB9182A),
-        ),
-        unselectedLabelStyle: TextStyle(
-          fontFamily: 'Roboto',
-          fontSize: 14,
-        )),
+      backgroundColor: Color(0xFF141E30),
+      unselectedItemColor: Color(0xFF243B55),
+      unselectedIconTheme: IconThemeData(
+        color: Color(0xFFB9182A),
+      ),
+      selectedIconTheme: IconThemeData(
+        color: Color(0xFFB9182A),
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: 14,
+      ),
+    ),
   );
 }
 
