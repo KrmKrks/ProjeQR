@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projeqr/net/database_service.dart';
+import 'package:projeqr/pages/anasayfa.dart';
 import 'package:projeqr/pages/models.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/provider/theme_provider.dart';
@@ -101,18 +102,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       height: 20,
                     ),
                     Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context as BuildContext)
-                            .colorScheme
-                            .background,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Provider.of<ThemeProvider>(context).isDarkMode
-                              ? Colors.blue
-                              : Color(0xFF84EE9D),
-                          width: 1,
-                        ),
-                      ),
+                      decoration: themeDecorationForm(context),
                       child: Column(
                         children: [
                           Row(
@@ -230,7 +220,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                               return Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => UrunListeleme(),
+                                  builder: (context) => AnaSayfa(),
                                 ),
                               );
                             },

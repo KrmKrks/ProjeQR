@@ -135,9 +135,13 @@ class UrunListelemeState extends State<UrunListeleme> {
               Flexible(
                 child: StreamBuilder(
                     stream: queryType
-                        ? ref.orderBy('CreatedAt', descending: true).snapshots()
+                        ? ref
+                            .where('Gönderildiği Müdürlük', isEqualTo: '')
+                            .orderBy('CreatedAt', descending: true)
+                            .snapshots()
                         : ref
                             .where('Kategori', isEqualTo: queryIndex)
+                            .where('Gönderildiği Müdürlük', isEqualTo: '')
                             .orderBy('CreatedAt', descending: true)
                             .snapshots(),
                     builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -151,6 +155,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                             itemBuilder: (context, index) {
                               var docRef = snapshot.data!.docs[index];
                               return Card(
+                                margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
                                 color: Theme.of(context)
                                     .cardColor
                                     .withOpacity(0.5),
@@ -192,25 +197,26 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               .textTheme
                                               .headline2),
                                       SizedBox(height: 10),
-                                      Text("Geldiği Müdürlük:",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1),
-                                      Text(
-                                        " \t${docRef['Geldiği Müdürlük']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2,
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text("Not:",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1),
-                                      Text(" \t${docRef['Not']}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline2),
+//--------------------------- Şuanda Gerekli bilgiler dışında card kısmında olabildiğince az şey gözüksün
+                                      // Text("Geldiği Müdürlük:",
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .headline1),
+                                      // Text(
+                                      //   " \t${docRef['Geldiği Müdürlük']}",
+                                      //   style: Theme.of(context)
+                                      //       .textTheme
+                                      //       .headline2,
+                                      // ),
+                                      // SizedBox(height: 10),
+                                      // Text("Not:",
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .headline1),
+                                      // Text(" \t${docRef['Not']}",
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .headline2),
                                     ],
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
@@ -394,7 +400,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                           itemBuilder: (context, index) {
                             var docRef = snapshot.data!.docs[index];
                             return Card(
-                              color: Theme.of(context).cardColor,
+                              margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                              color:
+                                  Theme.of(context).cardColor.withOpacity(0.5),
                               shadowColor: Theme.of(context).shadowColor,
                               child: ListTile(
                                 leading: Icon(
@@ -433,24 +441,25 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             .textTheme
                                             .headline2),
                                     SizedBox(height: 10),
-                                    Text("Geldigi Müdürlük:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(
-                                      " \t${docRef['Geldiği Müdürlük']}",
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text("Not:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['Not']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
+//----------------------- Şuanda Gerekli bilgiler dışında card kısmında olabildiğince az şey gözüksün
+                                    // Text("Geldigi Müdürlük:",
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .headline1),
+                                    // Text(
+                                    //   " \t${docRef['Geldiği Müdürlük']}",
+                                    //   style:
+                                    //       Theme.of(context).textTheme.headline2,
+                                    // ),
+                                    // SizedBox(height: 10),
+                                    // Text("Not:",
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .headline1),
+                                    // Text(" \t${docRef['Not']}",
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .headline2),
                                   ],
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,

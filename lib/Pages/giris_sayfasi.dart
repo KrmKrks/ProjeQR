@@ -155,27 +155,6 @@ class _GirissayfasiState extends State<Girissayfasi> {
                           style: Theme.of(context).textTheme.button),
                     ),
 
-                    SizedBox(height: 20),
-                    MaterialButton(
-                      elevation: 0,
-                      minWidth: double.minPositive,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AnaSayfa(),
-                            ));
-                      },
-                      color: Theme.of(context).buttonColor,
-                      child: Text(
-                        'Smoking Break..!',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 12),
-                      ),
-                      textColor: Theme.of(context).colorScheme.primary,
-                    ),
-
                     Align(
                       alignment: Alignment.bottomCenter,
                     )

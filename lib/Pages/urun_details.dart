@@ -47,64 +47,65 @@ class _UrunDetailsState extends State<UrunDetails> {
               height: 15,
             ),
             Text(
-              "Mobilya Türü:"
-              " \n${widget.mobilyaTuru} ",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 25,
-                decoration: TextDecoration.none,
-              ),
+              "Mobilya Türü:",
+              style: Theme.of(context).textTheme.headline1,
             ),
             SizedBox(
-              height: 20,
+              height: 7,
             ),
             Text(
-              "MDV No:"
-              " \n${widget.mdvNo} ",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 25,
-                decoration: TextDecoration.none,
-              ),
+              " \t${widget.mobilyaTuru} ",
+              style:
+                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
             ),
-            SizedBox(
-              height: 20,
+            SizedBox(height: 15),
+            Text(
+              "MDV No:",
+              style: Theme.of(context).textTheme.headline1,
             ),
             Text(
-                "Adet:"
-                " \t${widget.adet}",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontSize: 25,
-                  decoration: TextDecoration.none,
-                )),
+              " \t${widget.mdvNo} ",
+              style:
+                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
+            ),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             Text(
-                "Geldiği Müdürlük:"
-                " \t${widget.geldigiMudurluk}",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontSize: 25,
-                  decoration: TextDecoration.none,
-                )),
-            SizedBox(
-              height: 20,
+              "Adet",
+              style: Theme.of(context).textTheme.headline1,
             ),
             Text(
-                "Not:"
-                " \t${widget.not}",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontSize: 25,
-                  decoration: TextDecoration.none,
-                )),
-            SizedBox(
-              height: 20,
+              " \t${widget.adet} ",
+              style:
+                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
             ),
             SizedBox(
-              height: 8,
+              height: 15,
+            ),
+            Text(
+              "Geldiği Müdürlük",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            Text(
+              " \t${widget.geldigiMudurluk} ",
+              style:
+                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              "Not",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            Text(
+              " \t${widget.not} ",
+              style:
+                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
+            ),
+            SizedBox(
+              height: 15,
             ),
             MaterialButton(
                 child: Padding(

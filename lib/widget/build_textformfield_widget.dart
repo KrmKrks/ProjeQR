@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeqr/provider/theme_provider.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:provider/provider.dart';
 
 buildTextFormField(
@@ -68,27 +69,10 @@ groupTextFormField(
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
           child: TextFormField(
+            validator: (value) =>
+                value!.isEmpty ? 'Bu alanı boş geçemezsiniz.' : null,
             controller: controller1,
-            decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Provider.of<ThemeProvider>(context).isDarkMode
-                      ? Colors.blue
-                      : Color(0xFF84EE9D),
-                ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Provider.of<ThemeProvider>(context).isDarkMode
-                      ? Colors.blue
-                      : Color(0xFF84EE9D),
-                ),
-              ),
-              contentPadding: EdgeInsets.symmetric(horizontal: 10),
-              labelStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.primary),
-              labelText: labelText1,
-            ),
+            decoration: themeInputDecoration(context, labelText1),
             style: Theme.of(context).textTheme.headline2,
           ),
         ),
@@ -99,26 +83,7 @@ groupTextFormField(
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
           child: TextFormField(
             controller: controller2,
-            decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Provider.of<ThemeProvider>(context).isDarkMode
-                      ? Colors.blue
-                      : Color(0xFF84EE9D),
-                ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Provider.of<ThemeProvider>(context).isDarkMode
-                      ? Colors.blue
-                      : Color(0xFF84EE9D),
-                ),
-              ),
-              contentPadding: EdgeInsets.symmetric(horizontal: 10),
-              labelStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.primary),
-              labelText: labelText2,
-            ),
+            decoration: themeInputDecoration(context, labelText2),
             style: Theme.of(context).textTheme.headline2,
           ),
         ),
@@ -132,25 +97,7 @@ customTextFormField(
   return TextFormField(
     validator: (value) => value!.isEmpty ? 'Bu alanı boş geçemezsiniz.' : null,
     controller: controller,
-    decoration: InputDecoration(
-      enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: Provider.of<ThemeProvider>(context as BuildContext).isDarkMode
-              ? Colors.blue
-              : Color(0xFF84EE9D),
-        ),
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: Provider.of<ThemeProvider>(context).isDarkMode
-              ? Colors.blue
-              : Color(0xFF84EE9D),
-        ),
-      ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 10),
-      labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-      labelText: labelText,
-    ),
-    style: Theme.of(context).textTheme.headline2,
+    decoration: themeInputDecoration(context, labelText),
+    style: Theme.of(context as BuildContext).textTheme.headline2,
   );
 }
