@@ -1,7 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/mdv_takip_page.dart';
+import 'package:projeqr/pages/gonderilen_urunler.dart';
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
@@ -11,15 +10,13 @@ class AnaSayfa extends StatefulWidget {
   _AnaSayfaState createState() => _AnaSayfaState();
 }
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
-
 class _AnaSayfaState extends State<AnaSayfa> {
   int pageIndex = 0;
   List<Widget> pageList = <Widget>[
     MalzemeEkleme(),
     UrunListeleme(),
     ScanQR(),
-    MdvTakip(),
+    GonderilenUrunler(),
   ];
 
   @override
@@ -68,7 +65,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
               title: "Qr Tara",
             ),
             TabItem(
-              title: "MDV Takip",
+              title: "Stoktan Giden",
               icon: Icon(
                 Icons.folder,
                 color: Theme.of(context)

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/category.dart';
+import 'package:projeqr/pages/urun_details_send.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
@@ -52,6 +52,7 @@ class UrunListelemeState extends State<UrunListeleme> {
 
   String queryIndex = '';
   bool queryType = true;
+  String now = DateTime.now().toString().substring(0, 18);
   @override
   build(BuildContext context) {
     return Scaffold(
@@ -136,12 +137,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                 child: StreamBuilder(
                     stream: queryType
                         ? ref
-                            .where('Gönderildiği Müdürlük', isEqualTo: '')
+                            .where("Ürün Mevcut", isEqualTo: true)
                             .orderBy('CreatedAt', descending: true)
                             .snapshots()
                         : ref
                             .where('Kategori', isEqualTo: queryIndex)
-                            .where('Gönderildiği Müdürlük', isEqualTo: '')
+                            .where("Ürün Mevcut", isEqualTo: true)
                             .orderBy('CreatedAt', descending: true)
                             .snapshots(),
                     builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -323,11 +324,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                   notController
                                                                       .text,
                                                               'UpdatedDate':
-                                                                  DateTime
-                                                                      .now(),
+                                                                  now,
                                                               'UserId': _auth
                                                                   .currentUser!
                                                                   .email,
+                                                              'Ürün Mevcut':
+                                                                  false
                                                             }).whenComplete(() =>
                                                                     Navigator.pop(
                                                                         context));

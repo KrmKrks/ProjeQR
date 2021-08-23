@@ -18,8 +18,17 @@ final CollectionReference _firestore =
     FirebaseFirestore.instance.collection('products');
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-Future<String> addProduct(String mobilyaTuru, String mdvno, String adet,
-    String geldigiMudurluk, String not, String kategori, String url) async {
+Future<String> addProduct(
+    String mobilyaTuru,
+    String mdvno,
+    String adet,
+    String geldigiMudurluk,
+    String not,
+    String kategori,
+    String createdAt,
+    String updatedDate,
+    String url,
+    bool mevcut) async {
   String documentID = _firestore.doc().id;
 
   await _firestore.doc(documentID).set({
@@ -31,10 +40,11 @@ Future<String> addProduct(String mobilyaTuru, String mdvno, String adet,
     'Not': not,
     'Document ID': documentID,
     'Kategori': kategori,
-    'CreatedAt': DateTime.now(),
-    'UpdatedDate': DateTime.now(),
+    'CreatedAt': createdAt,
+    'UpdatedDate': updatedDate,
     'UserId': _auth.currentUser!.email,
     'İmage Url': url,
+    'Ürün Mevcut': mevcut
   });
 
   return _firestore.id;

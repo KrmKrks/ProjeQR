@@ -64,6 +64,8 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
     //url = await  snapshot.ref.getDownloadURL();
   }
 
+  String now = DateTime.now().toString().substring(0, 18);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,14 +210,17 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                         if (_formKey.currentState!.validate()) {
                           uploadFile();
                           addProduct(
-                            mobilyaTuruController.text.trim(),
-                            mdvNoController.text.trim(),
-                            adetController.text.trim(),
-                            geldigiMudurlukController.text.trim(),
-                            notController.text.trim(),
-                            selectedKategori.toString(),
-                            url,
-                          ).then(
+                                  mobilyaTuruController.text.trim(),
+                                  mdvNoController.text.trim(),
+                                  adetController.text.trim(),
+                                  geldigiMudurlukController.text.trim(),
+                                  notController.text.trim(),
+                                  selectedKategori.toString(),
+                                  now,
+                                  now,
+                                  url,
+                                  true)
+                              .then(
                             (value) {
                               return Navigator.push(
                                 context,
