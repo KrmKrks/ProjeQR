@@ -2,24 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class UrunDetails extends StatefulWidget {
-  String documentID, mobilyaTuru, mdvNo, adet, geldigiMudurluk, not;
+class UrunDetailsSend extends StatefulWidget {
+  String documentID,
+      mobilyaTuru,
+      mdvNo,
+      adet,
+      geldigiMudurluk,
+      gonderildigiMudurluk,
+      gelisTarihi,
+      gonderilmeTarihi,
+      not;
 
-  UrunDetails(
+  UrunDetailsSend(
       {Key? key,
       required this.documentID,
       required this.mobilyaTuru,
       required this.mdvNo,
       required this.adet,
       required this.geldigiMudurluk,
+      required this.gonderildigiMudurluk,
+      required this.gelisTarihi,
+      required this.gonderilmeTarihi,
       required this.not})
       : super(key: key);
 
   @override
-  _UrunDetailsState createState() => _UrunDetailsState();
+  _UrunDetailsSendState createState() => _UrunDetailsSendState();
 }
 
-class _UrunDetailsState extends State<UrunDetails> {
+class _UrunDetailsSendState extends State<UrunDetailsSend> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,11 +83,11 @@ class _UrunDetailsState extends State<UrunDetails> {
               height: 15,
             ),
             Text(
-              "Adet",
+              "Geldiği Müdürlük",
               style: Theme.of(context).textTheme.headline1,
             ),
             Text(
-              " \t${widget.adet} ",
+              " \t${widget.geldigiMudurluk} ",
               style:
                   Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
             ),
@@ -84,11 +95,35 @@ class _UrunDetailsState extends State<UrunDetails> {
               height: 15,
             ),
             Text(
-              "Geldiği Müdürlük",
+              "Gönderildiği Müdürlük",
               style: Theme.of(context).textTheme.headline1,
             ),
             Text(
-              " \t${widget.geldigiMudurluk} ",
+              " \t${widget.gonderildigiMudurluk} ",
+              style:
+                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              "Geliş Tarihi",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            Text(
+              " \t${widget..gelisTarihi} ",
+              style:
+                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              "Gönderilme Tarihi",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            Text(
+              " \t${widget.gonderilmeTarihi} ",
               style:
                   Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
             ),

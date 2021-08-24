@@ -6,6 +6,14 @@ List<Map> categories = [
   {'name': 'Diğer', 'iconPath': 'assets/images/magnifying-glass.png'},
 ];
 
+final List<String> kategori = <String>[
+  'Masa',
+  'Sandalye',
+  'Dolap',
+  'Keson',
+  'Diğer',
+];
+
 
 // var userRole ;
 

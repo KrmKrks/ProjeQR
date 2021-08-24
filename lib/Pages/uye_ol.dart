@@ -56,94 +56,170 @@ class _UyeOlState extends State<UyeOl> {
                         height: 210,
                       ),
                       SizedBox(height: 20),
-                      buildTextFormField(nameController, 'İsim', context)
-                          as Widget,
-                      SizedBox(height: 20),
-                      buildTextFormField(surnameController, 'Soyisim', context)
-                          as Widget,
-                      SizedBox(height: 20),
-                      buildTextFormField(mailController, 'Mail Adresi', context)
-                          as Widget,
-                      SizedBox(height: 20),
-                      buildTextFormField(
-                          sicilController, 'THY sicil no', context) as Widget,
-                      SizedBox(height: 20),
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Provider.of<ThemeProvider>(context)
-                                        .isDarkMode
-                                    ? Colors.blue
-                                    : Color(0xFF84EE9D),
-                                width: 2),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: TextFormField(
-                          obscureText: true,
-                          controller: passwordController,
-                          style: Theme.of(context).textTheme.headline2,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10),
-                            labelText: "Şifre Oluştur",
-                            labelStyle: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                            icon: Icon(
-                              Icons.lock,
-                              color: Theme.of(context).colorScheme.primary,
+                        decoration: themeDecorationForm(context),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                  child: Text(
+                                    'Kişisel Bilgiler',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.copyWith(
+                                            color: Color(0xFF83D2D4)
+                                                .withOpacity(0.8)),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Bu Alan Boş Birakilamaz';
-                            } else {
-                              return null;
-                            }
-                          },
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                              child: customTextFormField(
+                                  nameController, 'İsim', context) as Widget,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                              child: customTextFormField(
+                                      surnameController, 'Soyİsim', context)
+                                  as Widget,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        decoration: themeDecorationForm(context),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                  child: Text(
+                                    'Kullanıcı Bilgileri',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.copyWith(
+                                            color: Color(0xFF83D2D4)
+                                                .withOpacity(0.8)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                              child: customTextFormField(
+                                      mailController, 'Mail Adresi', context)
+                                  as Widget,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                              child: customTextFormField(
+                                      sicilController, 'THY Sicil No', context)
+                                  as Widget,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        decoration: themeDecorationForm(context),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                  child: Text(
+                                    'Şifre Alanı',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.copyWith(
+                                            color: Color(0xFF83D2D4)
+                                                .withOpacity(0.8)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                              child: TextFormField(
+                                obscureText: true,
+                                controller: passwordController,
+                                style: Theme.of(context).textTheme.headline2,
+                                decoration: themeInputDecoration(
+                                        context, 'Şifre Giriniz')
+                                    .copyWith(
+                                  icon: Icon(
+                                    Icons.lock,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Bu Alan Boş Birakilamaz';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                              child: TextFormField(
+                                obscureText: true,
+                                controller: confirmpasswordController,
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                                decoration: themeInputDecoration(
+                                        context, 'Şifreyi Tekrar Giriniz.')
+                                    .copyWith(
+                                  icon: Icon(
+                                    Icons.lock,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Bu Alan Bos Birakilamaz';
+                                  } else if (confirmpasswordController.value !=
+                                      passwordController.value) {
+                                    return 'Şifreleriniz uyuşmamaktadır.';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(height: 20),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Provider.of<ThemeProvider>(context)
-                                        .isDarkMode
-                                    ? Colors.blue
-                                    : Color(0xFF84EE9D),
-                                width: 2),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: TextFormField(
-                          obscureText: true,
-                          controller: confirmpasswordController,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10),
-                            labelText: "Şifre Tekrarı",
-                            labelStyle: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                            icon: Icon(
-                              Icons.lock,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Bu Alan Bos Birakilamaz';
-                            } else if (confirmpasswordController.value !=
-                                passwordController.value) {
-                              return 'Şifreleriniz uyuşmamaktadır.';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
-                      ),
-                      SizedBox(height: 30),
                       MaterialButton(
                         elevation: 0,
                         minWidth: double.maxFinite,

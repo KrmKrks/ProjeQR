@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/pages/category.dart';
+import 'package:projeqr/pages/urun_details_send.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
@@ -21,9 +21,11 @@ CollectionReference ref = FirebaseFirestore.instance.collection('products');
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mobilyaTuruController = TextEditingController();
+TextEditingController mdvNoController = TextEditingController();
 TextEditingController adetController = TextEditingController();
+TextEditingController geldigiMudurlukController = TextEditingController();
+TextEditingController gonderildigiMudurlukController = TextEditingController();
 TextEditingController notController = TextEditingController();
-TextEditingController mudurlukController = TextEditingController();
 
 class UrunListelemeState extends State<UrunListeleme> {
   @override
@@ -50,6 +52,7 @@ class UrunListelemeState extends State<UrunListeleme> {
 
   String queryIndex = '';
   bool queryType = true;
+  String now = DateTime.now().toString().substring(0, 18);
   @override
   build(BuildContext context) {
     return Scaffold(
@@ -73,8 +76,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                     Text(
                       'Search',
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 20),
+                        color: Theme.of(context).cardColor,
+                        fontSize: 20,
+                      ),
                     ),
                     Icon(Icons.settings),
                   ],
@@ -97,7 +101,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                             padding: EdgeInsets.all(20),
                             margin: EdgeInsets.only(left: 20),
                             decoration: BoxDecoration(
-                                color: Theme.of(context).backgroundColor,
+                                color: Theme.of(context)
+                                    .cardColor
+                                    .withOpacity(0.9),
                                 borderRadius: BorderRadius.circular(10)),
                             height: 90,
                             width: 90,
@@ -108,14 +114,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                       categories[index]['name'] as String;
                                   queryType = false;
                                 });
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => Categories(
-                                //         categoriesGet: categories[index]['name']
-                                //             as String),
-                                //   ),
-                                // );
                               },
                               child: Image.asset(
                                   categories[index]['iconPath'] as String),
@@ -138,9 +136,13 @@ class UrunListelemeState extends State<UrunListeleme> {
               Flexible(
                 child: StreamBuilder(
                     stream: queryType
-                        ? ref.orderBy('CreatedAt', descending: true).snapshots()
+                        ? ref
+                            .where("Ürün Mevcut", isEqualTo: true)
+                            .orderBy('CreatedAt', descending: true)
+                            .snapshots()
                         : ref
                             .where('Kategori', isEqualTo: queryIndex)
+                            .where("Ürün Mevcut", isEqualTo: true)
                             .orderBy('CreatedAt', descending: true)
                             .snapshots(),
                     builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -154,7 +156,10 @@ class UrunListelemeState extends State<UrunListeleme> {
                             itemBuilder: (context, index) {
                               var docRef = snapshot.data!.docs[index];
                               return Card(
-                                color: Theme.of(context).cardColor,
+                                margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                color: Theme.of(context)
+                                    .cardColor
+                                    .withOpacity(0.5),
                                 shadowColor: Theme.of(context).shadowColor,
                                 child: ListTile(
                                   leading: Icon(
@@ -173,32 +178,46 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               .textTheme
                                               .headline2),
                                       SizedBox(height: 10),
-                                      Text(
-                                        "Adet:" " \t${docRef['Adet']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2,
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text("Müdürlük:",
+                                      Text("MDV No:",
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline1),
-                                      Text(
-                                        " \t${docRef['Müdürlük']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2,
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text("Not:",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1),
-                                      Text(" \t${docRef['Not']}",
+                                      Text(" \t${docRef['MDV No']} ",
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline2),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text("Adet:",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1),
+                                      Text(" \t${docRef['Adet']} ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2),
+                                      SizedBox(height: 10),
+//--------------------------- Şuanda Gerekli bilgiler dışında card kısmında olabildiğince az şey gözüksün
+                                      // Text("Geldiği Müdürlük:",
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .headline1),
+                                      // Text(
+                                      //   " \t${docRef['Geldiği Müdürlük']}",
+                                      //   style: Theme.of(context)
+                                      //       .textTheme
+                                      //       .headline2,
+                                      // ),
+                                      // SizedBox(height: 10),
+                                      // Text("Not:",
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .headline1),
+                                      // Text(" \t${docRef['Not']}",
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .headline2),
                                     ],
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
@@ -212,8 +231,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                           docRef['Mobilya Türü'] as String;
                                       adetController.text =
                                           docRef['Adet'] as String;
-                                      mudurlukController.text =
-                                          docRef['Müdürlük'] as String;
+
                                       notController.text =
                                           docRef['Not'] as String;
 
@@ -253,8 +271,8 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                           height: 20,
                                                         ),
                                                         buildTextFormField(
-                                                            mudurlukController,
-                                                            "Müdürlük",
+                                                            gonderildigiMudurlukController,
+                                                            "Gönderildiği Müdürlük",
                                                             context) as Widget,
                                                         SizedBox(
                                                           height: 20,
@@ -299,18 +317,19 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                               'Adet':
                                                                   adetController
                                                                       .text,
-                                                              'Müdürlük':
-                                                                  mudurlukController
+                                                              'Gönderildiği Müdürlük':
+                                                                  gonderildigiMudurlukController
                                                                       .text,
                                                               'Not':
                                                                   notController
                                                                       .text,
                                                               'UpdatedDate':
-                                                                  DateTime
-                                                                      .now(),
+                                                                  now,
                                                               'UserId': _auth
                                                                   .currentUser!
-                                                                  .uid,
+                                                                  .email,
+                                                              'Ürün Mevcut':
+                                                                  false
                                                             }).whenComplete(() =>
                                                                     Navigator.pop(
                                                                         context));
@@ -365,9 +384,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               mobilyaTuru:
                                                   docRef['Mobilya Türü']
                                                       as String,
+                                              mdvNo: docRef['MDV No'] as String,
                                               adet: docRef['Adet'] as String,
-                                              mudurluk:
-                                                  docRef['Müdürlük'] as String,
+                                              geldigiMudurluk:
+                                                  docRef['Geldiği Müdürlük']
+                                                      as String,
                                               not: docRef['Not'] as String)),
                                     );
                                   },
@@ -381,7 +402,9 @@ class UrunListelemeState extends State<UrunListeleme> {
                           itemBuilder: (context, index) {
                             var docRef = snapshot.data!.docs[index];
                             return Card(
-                              color: Theme.of(context).cardColor,
+                              margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                              color:
+                                  Theme.of(context).cardColor.withOpacity(0.5),
                               shadowColor: Theme.of(context).shadowColor,
                               child: ListTile(
                                 leading: Icon(
@@ -400,30 +423,45 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             .textTheme
                                             .headline2),
                                     SizedBox(height: 10),
-                                    Text(
-                                      "Adet:" " \t${docRef['Adet']}",
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text("Müdürlük:",
+                                    Text("MDV No:",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline1),
-                                    Text(
-                                      " \t${docRef['Müdürlük']}",
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text("Not:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['Not']}",
+                                    Text(" \t${docRef['MDV No']} ",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline2),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text("Adet:",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1),
+                                    Text(" \t${docRef['Adet']} ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2),
+                                    SizedBox(height: 10),
+//----------------------- Şuanda Gerekli bilgiler dışında card kısmında olabildiğince az şey gözüksün
+                                    // Text("Geldigi Müdürlük:",
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .headline1),
+                                    // Text(
+                                    //   " \t${docRef['Geldiği Müdürlük']}",
+                                    //   style:
+                                    //       Theme.of(context).textTheme.headline2,
+                                    // ),
+                                    // SizedBox(height: 10),
+                                    // Text("Not:",
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .headline1),
+                                    // Text(" \t${docRef['Not']}",
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .headline2),
                                   ],
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -437,9 +475,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                 docRef['Document ID'] as String,
                                             mobilyaTuru: docRef['Mobilya Türü']
                                                 as String,
+                                            mdvNo: docRef['MDV No'] as String,
                                             adet: docRef['Adet'] as String,
-                                            mudurluk:
-                                                docRef['Müdürlük'] as String,
+                                            geldigiMudurluk:
+                                                docRef['Geldiği Müdürlük']
+                                                    as String,
                                             not: docRef['Not'] as String)),
                                   );
                                 },
