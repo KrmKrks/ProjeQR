@@ -38,9 +38,12 @@ dependencies:
   google_fonts:
 
   provider: 5.0.0
+  path_provider: ^2.0.2
 
   #image Picker
   image_picker: ^0.8.3+2
+  image_cropper: ^1.4.1
+  flutter_image_compress: ^1.1.0
 
   convex_bottom_bar: ^3.0.0
 

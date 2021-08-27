@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projeqr/net/database_service.dart';
+import 'package:projeqr/net/product_image.dart';
 import 'package:projeqr/pages/anasayfa.dart';
 import 'package:projeqr/pages/models.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
@@ -65,6 +66,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   }
 
   String now = DateTime.now().toString().substring(0, 18);
+  String imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -211,6 +213,9 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                           uploadFile();
                           addProduct(
                                   mobilyaTuruController.text.trim(),
+                                  mobilyaTuruController.text
+                                      .substring(0, 1)
+                                      .toUpperCase(),
                                   mdvNoController.text.trim(),
                                   adetController.text.trim(),
                                   geldigiMudurlukController.text.trim(),
@@ -249,7 +254,13 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       onPressed: () {
-                        _secim(context);
+                        ProductImage(
+                          onFileChanged: (imageUrl) {
+                            setState(() {
+                              this.imageUrl = imageUrl;
+                            });
+                          },
+                        );
                       },
                     ),
                     //SizedBox(
@@ -295,9 +306,7 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
             ),
             ListTile(
               title: Text('Kameradan Fotograf Cek'),
-              onTap: () {
-                getImage2();
-              },
+              onTap: () {},
             ),
           ],
         ),

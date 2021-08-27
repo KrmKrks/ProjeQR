@@ -111,7 +111,7 @@ class _UrunDetailsSendState extends State<UrunDetailsSend> {
               style: Theme.of(context).textTheme.headline1,
             ),
             Text(
-              " \t${widget..gelisTarihi} ",
+              " \t${widget.gelisTarihi} ",
               style:
                   Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
             ),

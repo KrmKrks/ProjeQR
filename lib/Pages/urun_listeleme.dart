@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/net/product_image.dart';
+import 'package:projeqr/net/search_service.dart';
 import 'package:projeqr/pages/urun_details_send.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
@@ -53,6 +55,40 @@ class UrunListelemeState extends State<UrunListeleme> {
   String queryIndex = '';
   bool queryType = true;
   String now = DateTime.now().toString().substring(0, 18);
+
+  String imageUrl = '';
+  var queryResultSet = [];
+  var tempSearchStore = [];
+
+  initiateSearch(value) {
+    if (value.length == 0) {
+      setState(() {
+        queryResultSet = [];
+        tempSearchStore = [];
+      });
+    }
+
+    var capitalizedValue =
+        value.substring(0, 1).toUpperCase() + value.substring();
+
+    if (queryResultSet.length == 0 && value.length == 1) {
+      SearchService().seacrhByName(value as String).then((QuerySnapshot docs) {
+        for (int i = 0; i < docs.docs.length; ++i) {
+          queryResultSet.add(docs.docs[i].data);
+        }
+      });
+    } else {
+      tempSearchStore = [];
+      queryResultSet.forEach((element) {
+        if (element['Mobilya Türü'].startsWith(capitalizedValue) != null) {
+          setState(() {
+            tempSearchStore.add(element);
+          });
+        }
+      });
+    }
+  }
+
   @override
   build(BuildContext context) {
     return Scaffold(
@@ -69,23 +105,19 @@ class UrunListelemeState extends State<UrunListeleme> {
                   borderRadius: BorderRadius.circular(20),
                 ),
 //----------------------------------------------------------------------------------------------
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.search),
-                    Text(
-                      'Search',
-                      style: TextStyle(
-                        color: Theme.of(context).cardColor,
-                        fontSize: 20,
-                      ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.all(0),
+                    hintText: 'Search',
+                    hintStyle: TextStyle(
+                      fontSize: 18,
                     ),
-                    Icon(Icons.settings),
-                  ],
+                  ),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 1,
               ),
 //-------------------------------------------------------------------------------------------------
               Container(
@@ -162,10 +194,21 @@ class UrunListelemeState extends State<UrunListeleme> {
                                     .withOpacity(0.5),
                                 shadowColor: Theme.of(context).shadowColor,
                                 child: ListTile(
-                                  leading: Icon(
-                                    Icons.account_circle_rounded,
-                                    color: Theme.of(context).iconTheme.color,
+                                  leading: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    child: ProductImage(
+                                      onFileChanged: (imageUrl) {
+                                        setState(() {
+                                          this.imageUrl = imageUrl;
+                                        });
+                                      },
+                                    ),
                                   ),
+                                  // leading: Icon(
+                                  //   Icons.account_circle_rounded,
+                                  //   color: Theme.of(context).iconTheme.color,
+                                  // ),
                                   subtitle: Column(
                                     children: <Widget>[
                                       SizedBox(height: 10),
@@ -198,26 +241,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               .textTheme
                                               .headline2),
                                       SizedBox(height: 10),
-//--------------------------- Şuanda Gerekli bilgiler dışında card kısmında olabildiğince az şey gözüksün
-                                      // Text("Geldiği Müdürlük:",
-                                      //     style: Theme.of(context)
-                                      //         .textTheme
-                                      //         .headline1),
-                                      // Text(
-                                      //   " \t${docRef['Geldiği Müdürlük']}",
-                                      //   style: Theme.of(context)
-                                      //       .textTheme
-                                      //       .headline2,
-                                      // ),
-                                      // SizedBox(height: 10),
-                                      // Text("Not:",
-                                      //     style: Theme.of(context)
-                                      //         .textTheme
-                                      //         .headline1),
-                                      // Text(" \t${docRef['Not']}",
-                                      //     style: Theme.of(context)
-                                      //         .textTheme
-                                      //         .headline2),
                                     ],
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
