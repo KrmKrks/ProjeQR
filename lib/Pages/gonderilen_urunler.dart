@@ -183,7 +183,17 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 3, 0, 0),
                                     child: Image.network(
-                                        docRef['İmage Url'] as String),
+                                      docRef['İmage Url'] as String,
+                                      loadingBuilder:
+                                          (context, child, progress) {
+                                        return progress == null
+                                            ? child
+                                            : CircularProgressIndicator(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              );
+                                      },
+                                    ),
                                   ),
                                   onTap: () {
                                     showDialog(
