@@ -178,9 +178,29 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                   Theme.of(context).cardColor.withOpacity(0.5),
                               shadowColor: Theme.of(context).shadowColor,
                               child: ListTile(
-                                leading: Icon(
-                                  Icons.account_circle_rounded,
-                                  color: Theme.of(context).iconTheme.color,
+                                leading: GestureDetector(
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 3, 0, 0),
+                                    child: Image.network(
+                                        docRef['İmage Url'] as String),
+                                  ),
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(2.0),
+                                          ),
+                                        ),
+                                        child: Container(
+                                          child: Image.network(
+                                              docRef['İmage Url'] as String),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                                 subtitle: Column(
                                   children: <Widget>[

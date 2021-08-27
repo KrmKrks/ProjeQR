@@ -4,6 +4,7 @@ import 'package:projeqr/pages/gonderilen_urunler.dart';
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
+import 'package:projeqr/shared/loading.dart';
 
 class AnaSayfa extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     ScanQR(),
     GonderilenUrunler(),
   ];
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {

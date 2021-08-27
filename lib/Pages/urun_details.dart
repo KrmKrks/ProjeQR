@@ -3,17 +3,18 @@ import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class UrunDetails extends StatefulWidget {
-  String documentID, mobilyaTuru, mdvNo, adet, geldigiMudurluk, not;
+  String documentID, mobilyaTuru, mdvNo, adet, geldigiMudurluk, not, imageUrl;
 
-  UrunDetails(
-      {Key? key,
-      required this.documentID,
-      required this.mobilyaTuru,
-      required this.mdvNo,
-      required this.adet,
-      required this.geldigiMudurluk,
-      required this.not})
-      : super(key: key);
+  UrunDetails({
+    Key? key,
+    required this.documentID,
+    required this.mobilyaTuru,
+    required this.mdvNo,
+    required this.adet,
+    required this.geldigiMudurluk,
+    required this.not,
+    required this.imageUrl,
+  }) : super(key: key);
 
   @override
   _UrunDetailsState createState() => _UrunDetailsState();

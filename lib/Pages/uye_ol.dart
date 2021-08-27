@@ -27,7 +27,7 @@ late Map<String, dynamic> usersToAdd;
 class _UyeOlState extends State<UyeOl> {
   final Color logoGreen = Color(0xFF5f59f7);
   final _formKey2 = GlobalKey<FormState>();
-
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -228,6 +228,7 @@ class _UyeOlState extends State<UyeOl> {
                             borderRadius: BorderRadius.circular(10)),
                         onPressed: () {
                           if (_formKey2.currentState!.validate()) {
+                            setState(() => loading = true);
                             _authService
                                 .signUp(
                                     nameController.text.trim(),
