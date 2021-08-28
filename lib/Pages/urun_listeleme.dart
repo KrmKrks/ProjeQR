@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projeqr/net/search_service.dart';
 import 'package:projeqr/pages/urun_details.dart';
-import 'package:projeqr/shared/loading.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
 import 'models.dart';
@@ -586,11 +585,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                             );
                           },
                         );
+                      } else {
+                        return Text(
+                          'Herhangi bir veri bulunamadı',
+                          style: Theme.of(context).textTheme.headline1,
+                        );
                       }
-                      return Text(
-                        'Herhangi bir veri bulunamadı',
-                        style: Theme.of(context).textTheme.headline1,
-                      );
                     }),
               ),
             ],
