@@ -173,105 +173,138 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                           itemBuilder: (context, index) {
                             var docRef = snapshot.data!.docs[index];
                             return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
                               color:
                                   Theme.of(context).cardColor.withOpacity(0.5),
                               shadowColor: Theme.of(context).shadowColor,
-                              child: ListTile(
-                                leading: GestureDetector(
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 3, 0, 0),
-                                    child: Image.network(
-                                      docRef['İmage Url'] as String,
-                                      loadingBuilder:
-                                          (context, child, progress) {
-                                        return progress == null
-                                            ? child
-                                            : CircularProgressIndicator(
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                              );
+                              child: Row(
+                                children: [
+                                  Flexible(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: GestureDetector(
+                                          child: ClipOval(
+                                            child: Image.network(
+                                              docRef['İmage Url'] as String,
+                                              width: 100,
+                                              height: 100,
+                                              loadingBuilder: (context, child,
+                                                      progress) =>
+                                                  progress == null
+                                                      ? child
+                                                      : CircularProgressIndicator(),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) => Dialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(2.0),
+                                                  ),
+                                                ),
+                                                child: Container(
+                                                  child: Image.network(
+                                                    docRef['İmage Url']
+                                                        as String,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    flex: 2,
+                                    fit: FlexFit.loose,
+                                    child: GestureDetector(
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 10, 0, 5),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(height: 10),
+                                            Text("Mobilya Türü:",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1),
+                                            Text(
+                                                " \t${docRef['Mobilya Türü']} ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2),
+                                            SizedBox(height: 10),
+                                            Text("MDV No:",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1),
+                                            Text(" \t${docRef['MDV No']} ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text("Adet:",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1),
+                                            Text(" \t${docRef['Adet']} ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2),
+                                            SizedBox(height: 10),
+                                          ],
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => UrunDetailsSend(
+                                                  documentID:
+                                                      docRef['Document ID']
+                                                          as String,
+                                                  mobilyaTuru:
+                                                      docRef['Mobilya Türü']
+                                                          as String,
+                                                  mdvNo: docRef['MDV No']
+                                                      as String,
+                                                  adet:
+                                                      docRef['Adet'] as String,
+                                                  geldigiMudurluk:
+                                                      docRef['Geldiği Müdürlük']
+                                                          as String,
+                                                  gonderildigiMudurluk:
+                                                      docRef['Gönderildiği Müdürlük']
+                                                          as String,
+                                                  gelisTarihi:
+                                                      docRef['CreatedAt']
+                                                          as String,
+                                                  gonderilmeTarihi:
+                                                      docRef['UpdatedDate']
+                                                          as String,
+                                                  not:
+                                                      docRef['Not'] as String)),
+                                        );
                                       },
                                     ),
                                   ),
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => Dialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(2.0),
-                                          ),
-                                        ),
-                                        child: Container(
-                                          child: Image.network(
-                                              docRef['İmage Url'] as String),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                subtitle: Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 10),
-                                    Text("Mobilya Türü:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['Mobilya Türü']} ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
-                                    SizedBox(height: 10),
-                                    Text("MDV No:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['MDV No']} ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text("Adet:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['Adet']} ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
-                                    SizedBox(height: 10),
-                                  ],
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => UrunDetailsSend(
-                                            documentID:
-                                                docRef['Document ID'] as String,
-                                            mobilyaTuru: docRef['Mobilya Türü']
-                                                as String,
-                                            mdvNo: docRef['MDV No'] as String,
-                                            adet: docRef['Adet'] as String,
-                                            geldigiMudurluk:
-                                                docRef['Geldiği Müdürlük']
-                                                    as String,
-                                            gonderildigiMudurluk:
-                                                docRef['Gönderildiği Müdürlük']
-                                                    as String,
-                                            gelisTarihi:
-                                                docRef['CreatedAt'] as String,
-                                            gonderilmeTarihi:
-                                                docRef['UpdatedDate'] as String,
-                                            not: docRef['Not'] as String)),
-                                  );
-                                },
+                                ],
                               ),
                             );
                           },

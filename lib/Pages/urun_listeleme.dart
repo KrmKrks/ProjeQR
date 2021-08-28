@@ -194,50 +194,51 @@ class UrunListelemeState extends State<UrunListeleme> {
                               color:
                                   Theme.of(context).cardColor.withOpacity(0.5),
                               shadowColor: Theme.of(context).shadowColor,
-                              child: Row(children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: GestureDetector(
-                                      child: Image.network(
-                                        docRef['İmage Url'] as String,
-                                        width: 90,
-                                        height: 90,
-                                        loadingBuilder:
-                                            (context, child, progress) {
-                                          return progress == null
-                                              ? child
-                                              : CircularProgressIndicator();
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: GestureDetector(
+                                        child: ClipOval(
+                                          child: Image.network(
+                                            docRef['İmage Url'] as String,
+                                            width: 100,
+                                            height: 100,
+                                            loadingBuilder: (context, child,
+                                                    progress) =>
+                                                progress == null
+                                                    ? child
+                                                    : CircularProgressIndicator(),
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) => Dialog(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(2.0),
+                                                ),
+                                              ),
+                                              child: Container(
+                                                child: Image.network(
+                                                  docRef['İmage Url'] as String,
+                                                ),
+                                              ),
+                                            ),
+                                          );
                                         },
                                       ),
-                                      onTap: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) => Dialog(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(2.0),
-                                              ),
-                                            ),
-                                            child: Container(
-                                              child: Image.network(
-                                                docRef['İmage Url'] as String,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
                                     ),
                                   ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  fit: FlexFit.tight,
-                                  child: GestureDetector(
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          8, 10, 70, 5),
+                                  Flexible(
+                                    flex: 2,
+                                    fit: FlexFit.tight,
+                                    child: GestureDetector(
                                       child: Column(
                                         children: [
                                           SizedBox(height: 10),
@@ -276,420 +277,185 @@ class UrunListelemeState extends State<UrunListeleme> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                       ),
-                                    ),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
                                             builder: (context) => UrunDetails(
-                                                  documentID:
-                                                      docRef['Document ID']
-                                                          as String,
-                                                  mobilyaTuru:
-                                                      docRef['Mobilya Türü']
-                                                          as String,
-                                                  mdvNo: docRef['MDV No']
+                                              documentID: docRef['Document ID']
+                                                  as String,
+                                              mobilyaTuru:
+                                                  docRef['Mobilya Türü']
                                                       as String,
-                                                  adet:
-                                                      docRef['Adet'] as String,
-                                                  geldigiMudurluk:
-                                                      docRef['Geldiği Müdürlük']
-                                                          as String,
-                                                  not: docRef['Not'] as String,
-                                                  imageUrl: docRef['İmage Url']
+                                              mdvNo: docRef['MDV No'] as String,
+                                              adet: docRef['Adet'] as String,
+                                              geldigiMudurluk:
+                                                  docRef['Geldiği Müdürlük']
                                                       as String,
-                                                )),
-                                      );
-                                    },
+                                              not: docRef['Not'] as String,
+                                              imageUrl:
+                                                  docRef['İmage Url'] as String,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                ),
-                                IconButton(
-                                  alignment: Alignment.centerRight,
-                                  icon: Icon(Icons.edit),
-                                  color: Theme.of(context).iconTheme.color,
-                                  onPressed: () {
-                                    mobilyaTuruController.text =
-                                        docRef['Mobilya Türü'] as String;
-                                    adetController.text =
-                                        docRef['Adet'] as String;
+                                  IconButton(
+                                    alignment: Alignment.centerRight,
+                                    icon: Icon(Icons.edit),
+                                    color: Theme.of(context).iconTheme.color,
+                                    onPressed: () {
+                                      mobilyaTuruController.text =
+                                          docRef['Mobilya Türü'] as String;
+                                      adetController.text =
+                                          docRef['Adet'] as String;
 
-                                    notController.text =
-                                        docRef['Not'] as String;
+                                      notController.text =
+                                          docRef['Not'] as String;
 
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => Dialog(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(20.0),
-                                                ),
-                                              ),
-                                              child: Container(
-                                                decoration: themeDecoration(
-                                                  context,
-                                                  BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: ListView(
-                                                    shrinkWrap: true,
-                                                    children: <Widget>[
-                                                      buildTextFormField(
-                                                          mobilyaTuruController,
-                                                          "Mobilya Türü",
-                                                          context) as Widget,
-                                                      SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      buildTextFormField(
-                                                          adetController,
-                                                          "Adet",
-                                                          context) as Widget,
-                                                      SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      buildTextFormField(
-                                                          gonderildigiMudurlukController,
-                                                          "Gönderildiği Müdürlük",
-                                                          context) as Widget,
-                                                      SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      buildTextFormField(
-                                                          notController,
-                                                          "Not",
-                                                          context) as Widget,
-                                                      SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      MaterialButton(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Text(
-                                                            "Dökümanı Güncelle",
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .button,
-                                                          ),
-                                                        ),
-                                                        color: Theme.of(context)
-                                                            .buttonColor,
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        10.0))),
-                                                        onPressed: () {
-                                                          snapshot
-                                                              .data!
-                                                              .docs[index]
-                                                              .reference
-                                                              .update({
-                                                            'Mobilya Türü':
-                                                                mobilyaTuruController
-                                                                    .text,
-                                                            'Adet':
-                                                                adetController
-                                                                    .text,
-                                                            'Gönderildiği Müdürlük':
-                                                                gonderildigiMudurlukController
-                                                                    .text,
-                                                            'Not': notController
-                                                                .text,
-                                                            'UpdatedDate': now,
-                                                            'UserId': _auth
-                                                                .currentUser!
-                                                                .email,
-                                                            'Ürün Mevcut': false
-                                                          }).whenComplete(() =>
-                                                                  Navigator.pop(
-                                                                      context));
-                                                        },
-                                                      ),
-                                                      MaterialButton(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Text(
-                                                            "Ürünü Sil",
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .button,
-                                                          ),
-                                                        ),
-                                                        color: Theme.of(context)
-                                                            .buttonColor,
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        10.0))),
-                                                        onPressed: () {
-                                                          snapshot
-                                                              .data!
-                                                              .docs[index]
-                                                              .reference
-                                                              .delete()
-                                                              .whenComplete(() =>
-                                                                  Navigator.pop(
-                                                                      context));
-                                                        },
-                                                      ),
-                                                    ],
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) => Dialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(20.0),
                                                   ),
                                                 ),
-                                              ),
-                                            ));
-                                  },
-                                ),
-                              ]),
+                                                child: Container(
+                                                  decoration: themeDecoration(
+                                                    context,
+                                                    BorderRadius.circular(20),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: ListView(
+                                                      shrinkWrap: true,
+                                                      children: <Widget>[
+                                                        buildTextFormField(
+                                                            mobilyaTuruController,
+                                                            "Mobilya Türü",
+                                                            context) as Widget,
+                                                        SizedBox(
+                                                          height: 20,
+                                                        ),
+                                                        buildTextFormField(
+                                                            adetController,
+                                                            "Adet",
+                                                            context) as Widget,
+                                                        SizedBox(
+                                                          height: 20,
+                                                        ),
+                                                        buildTextFormField(
+                                                            gonderildigiMudurlukController,
+                                                            "Gönderildiği Müdürlük",
+                                                            context) as Widget,
+                                                        SizedBox(
+                                                          height: 20,
+                                                        ),
+                                                        buildTextFormField(
+                                                            notController,
+                                                            "Not",
+                                                            context) as Widget,
+                                                        SizedBox(
+                                                          height: 20,
+                                                        ),
+                                                        MaterialButton(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              "Dökümanı Güncelle",
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .button,
+                                                            ),
+                                                          ),
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .buttonColor,
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          10.0))),
+                                                          onPressed: () {
+                                                            snapshot
+                                                                .data!
+                                                                .docs[index]
+                                                                .reference
+                                                                .update({
+                                                              'Mobilya Türü':
+                                                                  mobilyaTuruController
+                                                                      .text,
+                                                              'Adet':
+                                                                  adetController
+                                                                      .text,
+                                                              'Gönderildiği Müdürlük':
+                                                                  gonderildigiMudurlukController
+                                                                      .text,
+                                                              'Not':
+                                                                  notController
+                                                                      .text,
+                                                              'UpdatedDate':
+                                                                  now,
+                                                              'UserId': _auth
+                                                                  .currentUser!
+                                                                  .email,
+                                                              'Ürün Mevcut':
+                                                                  false
+                                                            }).whenComplete(() =>
+                                                                    Navigator.pop(
+                                                                        context));
+                                                          },
+                                                        ),
+                                                        MaterialButton(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              "Ürünü Sil",
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .button,
+                                                            ),
+                                                          ),
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .buttonColor,
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          10.0))),
+                                                          onPressed: () {
+                                                            snapshot
+                                                                .data!
+                                                                .docs[index]
+                                                                .reference
+                                                                .delete()
+                                                                .whenComplete(() =>
+                                                                    Navigator.pop(
+                                                                        context));
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ));
+                                    },
+                                  ),
+                                ],
+                              ),
                             );
-                            // Card(
-                            // margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                            //   color:
-                            //       Theme.of(context).cardColor.withOpacity(0.5),
-                            //   shadowColor: Theme.of(context).shadowColor,
-                            //   child: ListTile(
-                            //     horizontalTitleGap: 5,
-                            //     dense: true,
-                            //     leading: GestureDetector(
-                            //       child: Image.network(
-                            //         docRef['İmage Url'] as String,
-                            //         width: 70,
-                            //         height: 70,
-                            //         loadingBuilder: (context, child, progress) {
-                            //           return progress == null
-                            //               ? child
-                            //               : CircularProgressIndicator();
-                            //         },
-                            //       ),
-                            //       onTap: () {
-                            //         showDialog(
-                            //           context: context,
-                            //           builder: (context) => Dialog(
-                            //             shape: RoundedRectangleBorder(
-                            //               borderRadius: BorderRadius.all(
-                            //                 Radius.circular(2.0),
-                            //               ),
-                            //             ),
-                            //             child: Container(
-                            //               child: Image.network(
-                            //                 docRef['İmage Url'] as String,
-                            //               ),
-                            //             ),
-                            //           ),
-                            //         );
-                            //       },
-                            //     ),
-                            //     subtitle: Column(
-                            //       children: <Widget>[
-                            //         SizedBox(height: 10),
-                            //         Text("Mobilya Türü:",
-                            //             style: Theme.of(context)
-                            //                 .textTheme
-                            //                 .headline1),
-                            //         Text(" \t${docRef['Mobilya Türü']} ",
-                            //             style: Theme.of(context)
-                            //                 .textTheme
-                            //                 .headline2),
-                            //         SizedBox(height: 10),
-                            //         Text("MDV No:",
-                            //             style: Theme.of(context)
-                            //                 .textTheme
-                            //                 .headline1),
-                            //         Text(" \t${docRef['MDV No']} ",
-                            //             style: Theme.of(context)
-                            //                 .textTheme
-                            //                 .headline2),
-                            //         SizedBox(
-                            //           height: 10,
-                            //         ),
-                            //         Text("Adet:",
-                            //             style: Theme.of(context)
-                            //                 .textTheme
-                            //                 .headline1),
-                            //         Text(" \t${docRef['Adet']} ",
-                            //             style: Theme.of(context)
-                            //                 .textTheme
-                            //                 .headline2),
-                            //         SizedBox(height: 10),
-                            //       ],
-                            //       mainAxisAlignment: MainAxisAlignment.start,
-                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                            //     ),
-                            //     trailing: IconButton(
-                            //       icon: Icon(Icons.edit),
-                            //       color: Theme.of(context).iconTheme.color,
-                            //       onPressed: () {
-                            //         mobilyaTuruController.text =
-                            //             docRef['Mobilya Türü'] as String;
-                            //         adetController.text =
-                            //             docRef['Adet'] as String;
-
-                            //         notController.text =
-                            //             docRef['Not'] as String;
-
-                            //         showDialog(
-                            //             context: context,
-                            //             builder: (context) => Dialog(
-                            //                   shape: RoundedRectangleBorder(
-                            //                     borderRadius: BorderRadius.all(
-                            //                       Radius.circular(20.0),
-                            //                     ),
-                            //                   ),
-                            //                   child: Container(
-                            //                     decoration: themeDecoration(
-                            //                       context,
-                            //                       BorderRadius.circular(20),
-                            //                     ),
-                            //                     child: Padding(
-                            //                       padding:
-                            //                           const EdgeInsets.all(8.0),
-                            //                       child: ListView(
-                            //                         shrinkWrap: true,
-                            //                         children: <Widget>[
-                            //                           buildTextFormField(
-                            //                               mobilyaTuruController,
-                            //                               "Mobilya Türü",
-                            //                               context) as Widget,
-                            //                           SizedBox(
-                            //                             height: 20,
-                            //                           ),
-                            //                           buildTextFormField(
-                            //                               adetController,
-                            //                               "Adet",
-                            //                               context) as Widget,
-                            //                           SizedBox(
-                            //                             height: 20,
-                            //                           ),
-                            //                           buildTextFormField(
-                            //                               gonderildigiMudurlukController,
-                            //                               "Gönderildiği Müdürlük",
-                            //                               context) as Widget,
-                            //                           SizedBox(
-                            //                             height: 20,
-                            //                           ),
-                            //                           buildTextFormField(
-                            //                               notController,
-                            //                               "Not",
-                            //                               context) as Widget,
-                            //                           SizedBox(
-                            //                             height: 20,
-                            //                           ),
-                            //                           MaterialButton(
-                            //                             child: Padding(
-                            //                               padding:
-                            //                                   const EdgeInsets
-                            //                                       .all(8.0),
-                            //                               child: Text(
-                            //                                 "Dökümanı Güncelle",
-                            //                                 style: Theme.of(
-                            //                                         context)
-                            //                                     .textTheme
-                            //                                     .button,
-                            //                               ),
-                            //                             ),
-                            //                             color: Theme.of(context)
-                            //                                 .buttonColor,
-                            //                             shape: RoundedRectangleBorder(
-                            //                                 borderRadius:
-                            //                                     BorderRadius.all(
-                            //                                         Radius.circular(
-                            //                                             10.0))),
-                            //                             onPressed: () {
-                            //                               snapshot
-                            //                                   .data!
-                            //                                   .docs[index]
-                            //                                   .reference
-                            //                                   .update({
-                            //                                 'Mobilya Türü':
-                            //                                     mobilyaTuruController
-                            //                                         .text,
-                            //                                 'Adet':
-                            //                                     adetController
-                            //                                         .text,
-                            //                                 'Gönderildiği Müdürlük':
-                            //                                     gonderildigiMudurlukController
-                            //                                         .text,
-                            //                                 'Not': notController
-                            //                                     .text,
-                            //                                 'UpdatedDate': now,
-                            //                                 'UserId': _auth
-                            //                                     .currentUser!
-                            //                                     .email,
-                            //                                 'Ürün Mevcut': false
-                            //                               }).whenComplete(() =>
-                            //                                       Navigator.pop(
-                            //                                           context));
-                            //                             },
-                            //                           ),
-                            //                           MaterialButton(
-                            //                             child: Padding(
-                            //                               padding:
-                            //                                   const EdgeInsets
-                            //                                       .all(8.0),
-                            //                               child: Text(
-                            //                                 "Ürünü Sil",
-                            //                                 style: Theme.of(
-                            //                                         context)
-                            //                                     .textTheme
-                            //                                     .button,
-                            //                               ),
-                            //                             ),
-                            //                             color: Theme.of(context)
-                            //                                 .buttonColor,
-                            //                             shape: RoundedRectangleBorder(
-                            //                                 borderRadius:
-                            //                                     BorderRadius.all(
-                            //                                         Radius.circular(
-                            //                                             10.0))),
-                            //                             onPressed: () {
-                            //                               snapshot
-                            //                                   .data!
-                            //                                   .docs[index]
-                            //                                   .reference
-                            //                                   .delete()
-                            //                                   .whenComplete(() =>
-                            //                                       Navigator.pop(
-                            //                                           context));
-                            //                             },
-                            //                           ),
-                            //                         ],
-                            //                       ),
-                            //                     ),
-                            //                   ),
-                            //                 ));
-                            //       },
-                            //     ),
-                            //     onTap: () {
-                            //       Navigator.push(
-                            //         context,
-                            //         MaterialPageRoute(
-                            //             builder: (context) => UrunDetails(
-                            //                   documentID: docRef['Document ID']
-                            //                       as String,
-                            //                   mobilyaTuru:
-                            //                       docRef['Mobilya Türü']
-                            //                           as String,
-                            //                   mdvNo: docRef['MDV No'] as String,
-                            //                   adet: docRef['Adet'] as String,
-                            //                   geldigiMudurluk:
-                            //                       docRef['Geldiği Müdürlük']
-                            //                           as String,
-                            //                   not: docRef['Not'] as String,
-                            //                   imageUrl:
-                            //                       docRef['İmage Url'] as String,
-                            //                 )),
-                            //       );
-                            //     },
-                            //   ),
-                            // );
                           },
                         );
                       } else if (snapshot.hasData && userRole == 'Member') {
@@ -698,100 +464,124 @@ class UrunListelemeState extends State<UrunListeleme> {
                           itemBuilder: (context, index) {
                             var docRef = snapshot.data!.docs[index];
                             return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
                               color:
                                   Theme.of(context).cardColor.withOpacity(0.5),
                               shadowColor: Theme.of(context).shadowColor,
-                              child: ListTile(
-                                leading: GestureDetector(
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 3, 0, 0),
-                                    child: Image.network(
-                                      docRef['İmage Url'] as String,
-                                      loadingBuilder:
-                                          (context, child, progress) {
-                                        return progress == null
-                                            ? child
-                                            : CircularProgressIndicator(
-                                                color: Theme.of(context)
-                                                    .primaryColor);
+                              child: Row(
+                                children: [
+                                  Flexible(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: GestureDetector(
+                                          child: ClipOval(
+                                            child: Image.network(
+                                              docRef['İmage Url'] as String,
+                                              width: 100,
+                                              height: 100,
+                                              loadingBuilder: (context, child,
+                                                      progress) =>
+                                                  progress == null
+                                                      ? child
+                                                      : CircularProgressIndicator(),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) => Dialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(2.0),
+                                                  ),
+                                                ),
+                                                child: Container(
+                                                  child: Image.network(
+                                                    docRef['İmage Url']
+                                                        as String,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    flex: 2,
+                                    fit: FlexFit.loose,
+                                    child: GestureDetector(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(height: 10),
+                                          Text("Mobilya Türü:",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1),
+                                          Text(" \t${docRef['Mobilya Türü']} ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2),
+                                          SizedBox(height: 10),
+                                          Text("MDV No:",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1),
+                                          Text(" \t${docRef['MDV No']} ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text("Adet:",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1),
+                                          Text(" \t${docRef['Adet']} ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2),
+                                          SizedBox(height: 10),
+                                        ],
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                      ),
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => UrunDetails(
+                                              documentID: docRef['Document ID']
+                                                  as String,
+                                              mobilyaTuru:
+                                                  docRef['Mobilya Türü']
+                                                      as String,
+                                              mdvNo: docRef['MDV No'] as String,
+                                              adet: docRef['Adet'] as String,
+                                              geldigiMudurluk:
+                                                  docRef['Geldiği Müdürlük']
+                                                      as String,
+                                              not: docRef['Not'] as String,
+                                              imageUrl:
+                                                  docRef['İmage Url'] as String,
+                                            ),
+                                          ),
+                                        );
                                       },
                                     ),
                                   ),
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => Dialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(2.0),
-                                          ),
-                                        ),
-                                        child: Container(
-                                          child: Image.network(
-                                              docRef['İmage Url'] as String),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                subtitle: Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 10),
-                                    Text("Mobilya Türü:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['Mobilya Türü']} ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
-                                    SizedBox(height: 10),
-                                    Text("MDV No:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['MDV No']} ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text("Adet:",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                    Text(" \t${docRef['Adet']} ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2),
-                                    SizedBox(height: 10),
-                                  ],
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => UrunDetails(
-                                        documentID:
-                                            docRef['Document ID'] as String,
-                                        mobilyaTuru:
-                                            docRef['Mobilya Türü'] as String,
-                                        mdvNo: docRef['MDV No'] as String,
-                                        adet: docRef['Adet'] as String,
-                                        geldigiMudurluk:
-                                            docRef['Geldiği Müdürlük']
-                                                as String,
-                                        not: docRef['Not'] as String,
-                                        imageUrl: docRef['image Url'] as String,
-                                      ),
-                                    ),
-                                  );
-                                },
+                                ],
                               ),
                             );
                           },
