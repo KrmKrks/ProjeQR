@@ -55,38 +55,7 @@ class UrunListelemeState extends State<UrunListeleme> {
   bool queryType = true;
   String now = DateTime.now().toString().substring(0, 18);
 
-  var queryResultSet = [];
-  var tempSearchStore = [];
   bool loading = false;
-
-  initiateSearch(value) {
-    if (value.length == 0) {
-      setState(() {
-        queryResultSet = [];
-        tempSearchStore = [];
-      });
-    }
-
-    var capitalizedValue =
-        value.substring(0, 1).toUpperCase() + value.substring();
-
-    if (queryResultSet.length == 0 && value.length == 1) {
-      SearchService().seacrhByName(value as String).then((QuerySnapshot docs) {
-        for (int i = 0; i < docs.docs.length; ++i) {
-          queryResultSet.add(docs.docs[i].data);
-        }
-      });
-    } else {
-      tempSearchStore = [];
-      queryResultSet.forEach((element) {
-        if (element['Mobilya Türü'].startsWith(capitalizedValue) != null) {
-          setState(() {
-            tempSearchStore.add(element);
-          });
-        }
-      });
-    }
-  }
 
   @override
   build(BuildContext context) {
