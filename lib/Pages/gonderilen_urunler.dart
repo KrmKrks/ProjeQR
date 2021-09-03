@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/net/database_service.dart';
 import 'package:projeqr/net/search_service.dart';
 import 'package:projeqr/pages/qr_result_page.dart';
 import 'package:projeqr/pages/urun_details_send.dart';
@@ -33,6 +37,7 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
   String queryIndex = '';
   bool queryType = true;
   bool searchhing = false;
+  String query = "";
 
   final TextEditingController _search = TextEditingController();
 
@@ -43,7 +48,7 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
     FirebaseFirestore _firestore = FirebaseFirestore.instance;
     await _firestore
         .collection('products')
-        .where('Mobilya Türü', isEqualTo: _search.text)
+        .where('Mobilya Türü', isGreaterThanOrEqualTo: _search.text)
         .get()
         .then((value) {
       setState(() {
@@ -55,7 +60,21 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
 
   @override
   build(BuildContext context) {
+    var model = FilterService();
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Search'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: ProductSearch(),
+                );
+              })
+        ],
+      ),
       body: Container(
         decoration: themeDecoration(context, BorderRadius.circular(0)),
         child: SafeArea(
@@ -333,6 +352,71 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                 );
                               }),
                     ),
+                    // FutureBuilder(
+                    //   future: model.getProductMap(query),
+                    //   builder: (BuildContext context,
+                    //       AsyncSnapshot<List<Product>> snapshot) {
+                    //     if (snapshot.hasError)
+                    //       return Center(
+                    //         child: Text(snapshot.error.toString()),
+                    //       );
+
+                    //     if (!snapshot.hasData)
+                    //       return CircularProgressIndicator();
+
+                    //     if (snapshot.data!.length == 0)
+                    //       return Center(
+                    //         child: Text("Not result found"),
+                    //       );
+
+                    //     return Column(
+                    //       children: [
+                    //         ListTile(
+                    //           leading: CircleAvatar(
+                    //             child: Icon(Icons.people),
+                    //             backgroundColor: Theme.of(context).accentColor,
+                    //             foregroundColor: Colors.white,
+                    //           ),
+                    //           title: Text(
+                    //             "New group",
+                    //             style: TextStyle(fontWeight: FontWeight.w500),
+                    //           ),
+                    //         ),
+                    //         ListTile(
+                    //           leading: CircleAvatar(
+                    //             child: Icon(Icons.person_add),
+                    //             backgroundColor: Theme.of(context).accentColor,
+                    //             foregroundColor: Colors.white,
+                    //           ),
+                    //           title: Text(
+                    //             "New contact",
+                    //             style: TextStyle(fontWeight: FontWeight.w500),
+                    //           ),
+                    //         )
+                    //       ]..addAll(
+                    //           snapshot.data!
+                    //               .map(
+                    //                 (product) => ListTile(
+                    //                   leading: CircleAvatar(
+                    //                     backgroundImage:
+                    //                         NetworkImage(product.url),
+                    //                     backgroundColor:
+                    //                         Theme.of(context).accentColor,
+                    //                     foregroundColor: Colors.white,
+                    //                   ),
+                    //                   title: Text(
+                    //                     product.mobilyaTuru,
+                    //                     style: TextStyle(
+                    //                         fontWeight: FontWeight.w500),
+                    //                   ),
+                    //                   onTap: () {},
+                    //                 ),
+                    //               )
+                    //               .toList(),
+                    //         ),
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
         ),
@@ -355,4 +439,102 @@ Widget buildResultCard(data) {
           fontSize: 20.0,
         ),
       ))));
+}
+
+class ProductSearch extends SearchDelegate {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          close(context, null);
+        });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    var model = FilterService();
+    return FutureBuilder(
+      future: model.getProductMap(query),
+      builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+        if (snapshot.hasError)
+          return Center(
+            child: Text(snapshot.error.toString()),
+          );
+
+        if (!snapshot.hasData) return CircularProgressIndicator();
+
+        if (snapshot.data!.length == 0)
+          return Center(
+            child: Text("Not result found"),
+          );
+
+        return Column(
+          // children: [
+          //   ListTile(
+          //     leading: CircleAvatar(
+          //       child: Icon(Icons.people),
+          //       backgroundColor: Theme.of(context).accentColor,
+          //       foregroundColor: Colors.white,
+          //     ),
+          //     title: Text(
+          //       "New group",
+          //       style: TextStyle(fontWeight: FontWeight.w500),
+          //     ),
+          //   ),
+          //   ListTile(
+          //     leading: CircleAvatar(
+          //       child: Icon(Icons.person_add),
+          //       backgroundColor: Theme.of(context).accentColor,
+          //       foregroundColor: Colors.white,
+          //     ),
+          //     title: Text(
+          //       "New contact",
+          //       style: TextStyle(fontWeight: FontWeight.w500),
+          //     ),
+          //   )
+          // ]..addAll(
+          children: snapshot.data!
+              .map(
+                (product) => ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(product.url),
+                    backgroundColor: Theme.of(context).accentColor,
+                    foregroundColor: Colors.white,
+                  ),
+                  title: Text(
+                    product.mobilyaTuru,
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  subtitle: Column(
+                    children: [Text('${product.geldigiMudurluk}')],
+                  ),
+                  onTap: () {},
+                ),
+              )
+              .toList(),
+          //),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return Center(
+      child: Text('Baktım oluyır mu'),
+    );
+  }
 }
