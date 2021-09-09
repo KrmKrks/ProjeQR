@@ -8,14 +8,14 @@
             "name": "projeqr",
             "request": "launch",
             "type": "dart",
-            "program": "lib/pages/main.dart"
+            "program": "lib/main.dart"
         },
         {
             "name": "projeqr (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "program": "lib/pages/main.dart"
+            "program": "lib/main.dart"
         }
     ]
 }

@@ -17,7 +17,7 @@ class ThemeProvider extends ChangeNotifier {
 class AppThemes {
   static final lightTheme = ThemeData(
     primaryColor: Color(0xFF71B280),
-    backgroundColor: Colors.white,
+    backgroundColor: Color(0xFF71B280),
     cardColor: Color(0xFF80CF93),
     scaffoldBackgroundColor: Colors.white,
     colorScheme: ColorScheme.light(primary: Colors.white),

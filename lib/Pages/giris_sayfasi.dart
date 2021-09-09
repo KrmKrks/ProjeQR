@@ -1,4 +1,8 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
@@ -119,19 +123,24 @@ class _GirissayfasiState extends State<Girissayfasi> {
                             minWidth: double.maxFinite,
                             height: 50,
                             onPressed: () {
-                              setState(() => loading = true);
-                              _authService
-                                  .signIn(emailController.text.trim(),
-                                      passwordController.text.trim())
-                                  .then((value) {
-                                return Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => AnaSayfa(),
-                                  ),
-                                );
+                              setState(() {
+                                loading = true;
                               });
+                              _authService.signIn(emailController.text.trim(),
+                                  passwordController.text.trim(), context);
+
+                              // setState(() {
+                              //   loading = true;
                             },
+                            //     .then((value) {
+                            //   return Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (context) => AnaSayfa(),
+                            //     ),
+                            //   );
+                            // });
+                            // },
                             color: Theme.of(context).buttonColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius:
