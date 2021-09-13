@@ -16,7 +16,7 @@ class AuthService {
       return Fluttertoast.showToast(
           msg: message.message as String,
           gravity: ToastGravity.TOP,
-          timeInSecForIosWeb: 3);
+          timeInSecForIosWeb: 10);
     }
   }
 

@@ -155,10 +155,12 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                       setState(() {
                                         loading = false;
                                       });
+                                    } else if (result == null) {
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AnaSayfa()));
                                     }
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (context) => AnaSayfa()));
                                   });
                                 } else {
                                   setState(() {
