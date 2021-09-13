@@ -1,8 +1,4 @@
-import 'dart:math';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeqr/net/authentication.dart';
 import 'package:projeqr/pages/anasayfa.dart';
@@ -25,6 +21,7 @@ final TextEditingController passwordController = TextEditingController();
 
 AuthService _authService = AuthService();
 bool loading = false;
+final _formKey = GlobalKey<FormState>();
 
 class _GirissayfasiState extends State<Girissayfasi> {
   @override
@@ -47,138 +44,167 @@ class _GirissayfasiState extends State<Girissayfasi> {
                   margin: EdgeInsets.all(15),
                   child: ListView(
                     children: [
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Image.asset(
-                                    Provider.of<ThemeProvider>(context)
-                                            .isDarkMode
-                                        ? 'assets/THY-LOGO-DARK.png'
-                                        : 'assets/THY-LOGO-WHITE.png',
-                                    height: 220),
-                                Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 170),
-                                    child: ChangeThemeButtonWidget()),
-                              ],
-                            ),
-                          ),
-
-                          Text(
-                            'Kullanıcı adınızı ve e-mail adresinizi girerek Qrcode depo uygulamasına erişebilirsiniz.',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.openSans(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: Theme.of(context)
-                                  .textTheme
-                                  .headline1
-                                  ?.fontSize,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            controller: emailController,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                            decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 10),
-                              labelText: "Mail Adresi",
-                              labelStyle: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary),
-                              icon: Icon(
-                                Icons.account_circle,
-                                color: Theme.of(context).iconTheme.color,
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Image.asset(
+                                      Provider.of<ThemeProvider>(context)
+                                              .isDarkMode
+                                          ? 'assets/THY-LOGO-DARK.png'
+                                          : 'assets/THY-LOGO-WHITE.png',
+                                      height: 220),
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(0, 0, 0, 170),
+                                      child: ChangeThemeButtonWidget()),
+                                ],
                               ),
                             ),
-                          ),
 
-                          TextFormField(
-                            obscureText: true,
-                            controller: passwordController,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                            decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 10),
-                              labelText: "Parola",
-                              labelStyle: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary),
-                              icon: Icon(
-                                Icons.lock,
-                                color: Theme.of(context).iconTheme.color,
+                            Text(
+                              'Kullanıcı adınızı ve e-mail adresinizi girerek Qrcode depo uygulamasına erişebilirsiniz.',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.openSans(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .headline1
+                                    ?.fontSize,
                               ),
                             ),
-                          ),
-                          SizedBox(height: 30),
-
-                          // Kullanıcının bir hesabı var ise kullanacağı alan
-
-                          MaterialButton(
-                            elevation: 0,
-                            minWidth: double.maxFinite,
-                            height: 50,
-                            onPressed: () {
-                              setState(() {
-                                loading = true;
-                              });
-                              _authService.signIn(emailController.text.trim(),
-                                  passwordController.text.trim(), context);
-
-                              // setState(() {
-                              //   loading = true;
-                            },
-                            //     .then((value) {
-                            //   return Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => AnaSayfa(),
-                            //     ),
-                            //   );
-                            // });
-                            // },
-                            color: Theme.of(context).buttonColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0))),
-                            child: Text(
-                              'Giriş Yap',
-                              style: Theme.of(context).textTheme.button,
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
 
-                          SizedBox(height: 20),
-
-                          // Kullanıcının Sıfırdan üyelik açmak için kullanacağı alan
-                          MaterialButton(
-                            elevation: 0,
-                            minWidth: double.maxFinite,
-                            height: 50,
-                            onPressed: () {
-                              setState(() => loading = true);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => UyeOl(),
+                            TextFormField(
+                              controller: emailController,
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary),
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                labelText: "Mail Adresi",
+                                labelStyle: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                                icon: Icon(
+                                  Icons.account_circle,
+                                  color: Theme.of(context).iconTheme.color,
                                 ),
-                              );
-                            },
-                            color: Theme.of(context).buttonColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0))),
-                            child: Text('Üye ol',
-                                style: Theme.of(context).textTheme.button),
-                          ),
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Bu Alan Boş Birakilamaz';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
 
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                          )
-                        ],
+                            TextFormField(
+                              obscureText: true,
+                              controller: passwordController,
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary),
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                labelText: "Parola",
+                                labelStyle: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                                icon: Icon(
+                                  Icons.lock,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Bu Alan Boş Birakilamaz';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                            SizedBox(height: 30),
+
+                            // Kullanıcının bir hesabı var ise kullanacağı alan
+
+                            MaterialButton(
+                              elevation: 0,
+                              minWidth: double.maxFinite,
+                              height: 50,
+                              onPressed: () {
+                                setState(() {
+                                  loading = true;
+                                });
+                                if (_formKey.currentState!.validate()) {
+                                  _authService
+                                      .signIn(
+                                    emailController.text.trim(),
+                                    passwordController.text.trim(),
+                                    context,
+                                  )
+                                      .then((result) {
+                                    if (result != null) {
+                                      setState(() {
+                                        loading = false;
+                                      });
+                                    }
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) => AnaSayfa()));
+                                  });
+                                } else {
+                                  setState(() {
+                                    loading = false;
+                                  });
+                                }
+                              },
+                              color: Theme.of(context).buttonColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0))),
+                              child: Text(
+                                'Giriş Yap',
+                                style: Theme.of(context).textTheme.button,
+                              ),
+                            ),
+
+                            SizedBox(height: 20),
+
+                            // Kullanıcının Sıfırdan üyelik açmak için kullanacağı alan
+                            MaterialButton(
+                              elevation: 0,
+                              minWidth: double.maxFinite,
+                              height: 50,
+                              onPressed: () {
+                                setState(() => loading = true);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UyeOl(),
+                                  ),
+                                );
+                              },
+                              color: Theme.of(context).buttonColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0))),
+                              child: Text('Üye ol',
+                                  style: Theme.of(context).textTheme.button),
+                            ),
+
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),

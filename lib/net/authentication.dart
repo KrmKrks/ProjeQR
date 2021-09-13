@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:projeqr/pages/anasayfa.dart';
 
 //TODO :  Authentication kısmının yeniden tasarlanması gerekiyor daha iyi hale getirlebilinir.
 
@@ -11,13 +9,11 @@ class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future<bool?> signIn(String email, String password, context) async {
     try {
-      UserCredential user = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
 
-      Navigator.of(context as BuildContext)
-          .pushReplacement(MaterialPageRoute(builder: (context) => AnaSayfa()));
+      return null;
     } on FirebaseAuthException catch (message) {
-      Fluttertoast.showToast(
+      return Fluttertoast.showToast(
           msg: message.message as String,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 3);
