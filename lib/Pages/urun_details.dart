@@ -4,7 +4,13 @@ import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class UrunDetails extends StatefulWidget {
-  String documentID, mobilyaTuru, mdvNo, adet, geldigiMudurluk, not, imageUrl;
+  final String documentID,
+      mobilyaTuru,
+      mdvNo,
+      adet,
+      geldigiMudurluk,
+      not,
+      imageUrl;
 
   UrunDetails({
     Key? key,
@@ -33,12 +39,7 @@ class _UrunDetailsState extends State<UrunDetails> {
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AnaSayfa(),
-                  ),
-                );
+                Navigator.pop(context);
               },
               child: Container(
                   alignment: Alignment.centerLeft,
@@ -133,10 +134,10 @@ class _UrunDetailsState extends State<UrunDetails> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "Fotografi goster",
-                    style: Theme.of(context).textTheme.button,
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
-                color: Theme.of(context).buttonColor,
+                color: Theme.of(context).textTheme.button!.backgroundColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5.0))),
                 onPressed: () {}),

@@ -200,6 +200,26 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                                   progress == null
                                                       ? child
                                                       : CircularProgressIndicator(),
+                                              errorBuilder:
+                                                  (BuildContext context,
+                                                      Object exception,
+                                                      StackTrace? stackTrace) {
+                                                return Container(
+                                                  width: 100,
+                                                  height: 100,
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Fotoğraf \nbulunamadı',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline2!
+                                                          .copyWith(
+                                                              color:
+                                                                  Colors.red),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                           onTap: () {
@@ -216,6 +236,28 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                                   child: Image.network(
                                                     docRef['İmage Url']
                                                         as String,
+                                                    errorBuilder:
+                                                        (BuildContext context,
+                                                            Object exception,
+                                                            StackTrace?
+                                                                stackTrace) {
+                                                      return Container(
+                                                        width: 100,
+                                                        height: 100,
+                                                        child: Center(
+                                                          child: Text(
+                                                            'Fotoğraf \nbulunamadı',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline2!
+                                                                .copyWith(
+                                                                    color: Colors
+                                                                        .red),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
                                                   ),
                                                 ),
                                               ),
@@ -317,71 +359,6 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                       );
                     }),
               ),
-              // FutureBuilder(
-              //   future: model.getProductMap(query),
-              //   builder: (BuildContext context,
-              //       AsyncSnapshot<List<Product>> snapshot) {
-              //     if (snapshot.hasError)
-              //       return Center(
-              //         child: Text(snapshot.error.toString()),
-              //       );
-
-              //     if (!snapshot.hasData)
-              //       return CircularProgressIndicator();
-
-              //     if (snapshot.data!.length == 0)
-              //       return Center(
-              //         child: Text("Not result found"),
-              //       );
-
-              //     return Column(
-              //       children: [
-              //         ListTile(
-              //           leading: CircleAvatar(
-              //             child: Icon(Icons.people),
-              //             backgroundColor: Theme.of(context).accentColor,
-              //             foregroundColor: Colors.white,
-              //           ),
-              //           title: Text(
-              //             "New group",
-              //             style: TextStyle(fontWeight: FontWeight.w500),
-              //           ),
-              //         ),
-              //         ListTile(
-              //           leading: CircleAvatar(
-              //             child: Icon(Icons.person_add),
-              //             backgroundColor: Theme.of(context).accentColor,
-              //             foregroundColor: Colors.white,
-              //           ),
-              //           title: Text(
-              //             "New contact",
-              //             style: TextStyle(fontWeight: FontWeight.w500),
-              //           ),
-              //         )
-              //       ]..addAll(
-              //           snapshot.data!
-              //               .map(
-              //                 (product) => ListTile(
-              //                   leading: CircleAvatar(
-              //                     backgroundImage:
-              //                         NetworkImage(product.url),
-              //                     backgroundColor:
-              //                         Theme.of(context).accentColor,
-              //                     foregroundColor: Colors.white,
-              //                   ),
-              //                   title: Text(
-              //                     product.mobilyaTuru,
-              //                     style: TextStyle(
-              //                         fontWeight: FontWeight.w500),
-              //                   ),
-              //                   onTap: () {},
-              //                 ),
-              //               )
-              //               .toList(),
-              //         ),
-              //     );
-              //   },
-              // ),
             ],
           ),
         ),
@@ -480,6 +457,23 @@ class ProductSearch extends SearchDelegate<dynamic> {
                                       progress == null
                                           ? child
                                           : CircularProgressIndicator(),
+                                  errorBuilder: (BuildContext context,
+                                      Object exception,
+                                      StackTrace? stackTrace) {
+                                    return Container(
+                                      width: 100,
+                                      height: 100,
+                                      child: Center(
+                                        child: Text(
+                                          'Fotoğraf \nbulunamadı',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2!
+                                              .copyWith(color: Colors.red),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                               onTap: () {
@@ -494,6 +488,24 @@ class ProductSearch extends SearchDelegate<dynamic> {
                                     child: Container(
                                       child: Image.network(
                                         product.url,
+                                        errorBuilder: (BuildContext context,
+                                            Object exception,
+                                            StackTrace? stackTrace) {
+                                          return Container(
+                                            width: 100,
+                                            height: 100,
+                                            child: Center(
+                                              child: Text(
+                                                'Fotoğraf \nbulunamadı',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2!
+                                                    .copyWith(
+                                                        color: Colors.red),
+                                              ),
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ),
                                   ),

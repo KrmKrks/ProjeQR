@@ -168,13 +168,16 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                   });
                                 }
                               },
-                              color: Theme.of(context).buttonColor,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .button!
+                                  .backgroundColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0))),
                               child: Text(
                                 'Giriş Yap',
-                                style: Theme.of(context).textTheme.button,
+                                style: Theme.of(context).textTheme.headline2,
                               ),
                             ),
 
@@ -194,12 +197,15 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                   ),
                                 );
                               },
-                              color: Theme.of(context).buttonColor,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .button!
+                                  .backgroundColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0))),
                               child: Text('Üye ol',
-                                  style: Theme.of(context).textTheme.button),
+                                  style: Theme.of(context).textTheme.headline2),
                             ),
 
                             Align(

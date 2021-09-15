@@ -53,13 +53,8 @@ groupTextFormField(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-              child: Text(
-                introduction,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline1
-                    ?.copyWith(color: Color(0xFF83D2D4).withOpacity(0.8)),
-              ),
+              child: Text(introduction,
+                  style: Theme.of(context).textTheme.headline1),
             ),
           ],
         ),

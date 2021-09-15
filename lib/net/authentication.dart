@@ -24,7 +24,7 @@ class AuthService {
     return await _auth.signOut();
   }
 
-  Future<String?> signUp(String name, String surname, String email,
+  Future<bool?> signUp(String name, String surname, String email,
       String sicilno, String password) async {
     try {
       var user = await _auth.createUserWithEmailAndPassword(
@@ -39,7 +39,10 @@ class AuthService {
         'Role': 'Member',
       });
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return Fluttertoast.showToast(
+          msg: e.message as String,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 10);
     }
   }
 }

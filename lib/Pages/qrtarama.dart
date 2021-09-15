@@ -59,8 +59,9 @@ class _ScanQRState extends State<ScanQR> {
                     ),
                     MaterialButton(
                       child: Text('QR Kodu Tara',
-                          style: Theme.of(context).textTheme.button),
-                      color: Theme.of(context).buttonColor,
+                          style: Theme.of(context).textTheme.headline2),
+                      color:
+                          Theme.of(context).textTheme.button!.backgroundColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

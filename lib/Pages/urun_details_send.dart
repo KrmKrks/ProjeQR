@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'anasayfa.dart';
+
 class UrunDetailsSend extends StatefulWidget {
-  String documentID,
+  final String documentID,
       mobilyaTuru,
       mdvNo,
       adet,
@@ -40,6 +42,20 @@ class _UrunDetailsSendState extends State<UrunDetailsSend> {
         child: ListView(
           shrinkWrap: true,
           children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                  )),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Column(
               children: [
                 QrImage(

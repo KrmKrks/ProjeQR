@@ -65,15 +65,13 @@ class _UyeOlState extends State<UyeOl> {
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                                  child: Text(
-                                    'Kişisel Bilgiler',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                            color: Color(0xFF83D2D4)
-                                                .withOpacity(0.8)),
-                                  ),
+                                  child: Text('Kişisel Bilgiler',
+                                      style:
+                                          Theme.of(context).textTheme.headline1
+                                      // ?.copyWith(
+                                      //     color: Color(0xFF83D2D4)
+                                      //         .withOpacity(0.8)),
+                                      ),
                                 ),
                               ],
                             ),
@@ -108,12 +106,8 @@ class _UyeOlState extends State<UyeOl> {
                                       const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                   child: Text(
                                     'Kullanıcı Bilgileri',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                            color: Color(0xFF83D2D4)
-                                                .withOpacity(0.8)),
+                                    style:
+                                        Theme.of(context).textTheme.headline1,
                                   ),
                                 ),
                               ],
@@ -151,15 +145,10 @@ class _UyeOlState extends State<UyeOl> {
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                                  child: Text(
-                                    'Şifre Alanı',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                            color: Color(0xFF83D2D4)
-                                                .withOpacity(0.8)),
-                                  ),
+                                  child: Text('Şifre Alanı',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1),
                                 ),
                               ],
                             ),
@@ -192,9 +181,7 @@ class _UyeOlState extends State<UyeOl> {
                               child: TextFormField(
                                 obscureText: true,
                                 controller: confirmpasswordController,
-                                style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
+                                style: Theme.of(context).textTheme.headline2,
                                 decoration: themeInputDecoration(
                                         context, 'Şifreyi Tekrar Giriniz.')
                                     .copyWith(
@@ -246,10 +233,11 @@ class _UyeOlState extends State<UyeOl> {
                             _formKey2.currentState!.save();
                           } else {}
                         },
-                        color: Theme.of(context).buttonColor,
+                        color:
+                            Theme.of(context).textTheme.button!.backgroundColor,
                         child: Text(
                           'ÜYE OL',
-                          style: Theme.of(context).textTheme.button,
+                          style: Theme.of(context).textTheme.headline2,
                         ),
                       ),
                       SizedBox(height: 20),

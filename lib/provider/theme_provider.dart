@@ -20,17 +20,19 @@ class AppThemes {
     backgroundColor: Color(0xFF71B280),
     cardColor: Color(0xFF80CF93),
     scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.light(primary: Colors.white),
-    iconTheme: IconThemeData(color: Color(0xFF212d40), opacity: 0.8),
+    colorScheme: ColorScheme.light(
+      primary: Colors.white,
+      background: Color(0xFF80CF93).withOpacity(0.95),
+    ),
+    iconTheme: IconThemeData(color: Colors.amber[900], opacity: 0.8),
     shadowColor: Colors.white,
-    buttonColor: Color(0xDAFFA01C),
     textTheme: TextTheme(
       headline1: TextStyle(
         fontFamily: 'Roboto',
         fontSize: 20,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,
-        color: Color(0xFF1F2218),
+        color: Colors.white,
       ),
       headline2: TextStyle(
         decoration: TextDecoration.none,
@@ -38,10 +40,11 @@ class AppThemes {
         fontSize: 16,
         fontWeight: FontWeight.normal,
         fontStyle: FontStyle.normal,
-        color: Color(0xFF2F3129),
+        color: Colors.white,
       ),
       button: TextStyle(
           color: Color(0xFFDFE7D0),
+          backgroundColor: Color(0xDAFFA01C),
           fontSize: 18,
           fontWeight: FontWeight.normal,
           fontStyle: FontStyle.normal),
@@ -50,10 +53,10 @@ class AppThemes {
       backgroundColor: Color(0xFF134E5E),
       unselectedItemColor: Color(0xFF71B280).withOpacity(0.8),
       unselectedIconTheme: IconThemeData(
-        color: Color(0xFF71B280),
+        color: Colors.amber[900],
       ),
       selectedIconTheme: IconThemeData(
-        color: Color(0xFF212d40),
+        color: Colors.amber[900],
       ),
     ),
   );
@@ -69,7 +72,7 @@ class AppThemes {
     ),
     iconTheme: IconThemeData(color: Colors.amber[800], opacity: 0.8),
     shadowColor: null,
-    buttonColor: Color(0xFFB9182A),
+
     textTheme: TextTheme(
       headline1: TextStyle(
           decoration: TextDecoration.none,
@@ -88,6 +91,7 @@ class AppThemes {
       ),
       button: TextStyle(
           color: Color(0xFFd9dad7),
+          backgroundColor: Color(0xFFB9182A),
           fontSize: 18,
           fontWeight: FontWeight.normal,
           fontStyle: FontStyle.normal),

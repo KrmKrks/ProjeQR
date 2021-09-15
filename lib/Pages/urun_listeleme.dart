@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projeqr/net/search_service.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
@@ -84,9 +83,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 1,
-              ),
+
 //-------------------------------------------------------------------------------------------------
               Container(
                 height: 120,
@@ -121,8 +118,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                           ),
                           Text(
                             categories[index]['name'] as String,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
+                            style: Theme.of(context).textTheme.headline2,
                           )
                         ],
                       ),
@@ -148,6 +144,12 @@ class UrunListelemeState extends State<UrunListeleme> {
                     builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return CircularProgressIndicator();
+                      }
+                      if (snapshot.data == null) {
+                        return Text(
+                          'Herhangi bir ürün bulunamadı',
+                          style: Theme.of(context).textTheme.headline1,
+                        );
                       }
                       if (snapshot.hasData && userRole == 'Admin') {
                         return ListView.builder(
@@ -181,6 +183,24 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                 progress == null
                                                     ? child
                                                     : CircularProgressIndicator(),
+                                            errorBuilder: (BuildContext context,
+                                                Object exception,
+                                                StackTrace? stackTrace) {
+                                              return Container(
+                                                width: 100,
+                                                height: 100,
+                                                child: Center(
+                                                  child: Text(
+                                                    'Fotoğraf \nbulunamadı',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline2!
+                                                        .copyWith(
+                                                            color: Colors.red),
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
                                         onTap: () {
@@ -195,6 +215,20 @@ class UrunListelemeState extends State<UrunListeleme> {
                                               child: Container(
                                                 child: Image.network(
                                                   docRef['İmage Url'] as String,
+                                                  errorBuilder: (BuildContext
+                                                          context,
+                                                      Object exception,
+                                                      StackTrace? stackTrace) {
+                                                    return Text(
+                                                      'Fotoğraf \nbulunamadı',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline2!
+                                                          .copyWith(
+                                                              color:
+                                                                  Colors.red),
+                                                    );
+                                                  },
                                                 ),
                                               ),
                                             ),
@@ -344,9 +378,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                   .button,
                                                             ),
                                                           ),
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .buttonColor,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .button!
+                                                              .backgroundColor,
                                                           shape: RoundedRectangleBorder(
                                                               borderRadius: BorderRadius
                                                                   .all(Radius
@@ -395,9 +431,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                   .button,
                                                             ),
                                                           ),
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .buttonColor,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .button!
+                                                              .backgroundColor,
                                                           shape: RoundedRectangleBorder(
                                                               borderRadius: BorderRadius
                                                                   .all(Radius
@@ -555,10 +593,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                           },
                         );
                       } else {
-                        return Text(
-                          'Herhangi bir veri bulunamadı',
-                          style: Theme.of(context).textTheme.headline1,
-                        );
+                        return CircularProgressIndicator();
                       }
                     }),
               ),

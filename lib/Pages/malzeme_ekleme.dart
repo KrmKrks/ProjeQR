@@ -22,7 +22,6 @@ class MalzemeEkleme extends StatefulWidget {
 }
 
 class _MalzemeEklemeState extends State<MalzemeEkleme> {
-  @override
   TextEditingController mobilyaTuruController = TextEditingController();
   TextEditingController mdvNoController = TextEditingController();
   TextEditingController adetController = TextEditingController();
@@ -86,15 +85,10 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           15, 10, 0, 0),
-                                      child: Text(
-                                        'Malzeme Detayları',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1
-                                            ?.copyWith(
-                                                color: Color(0xFF83D2D4)
-                                                    .withOpacity(0.8)),
-                                      ),
+                                      child: Text('Malzeme Detayları',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1),
                                     ),
                                   ],
                                 ),
@@ -178,10 +172,13 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 "Fotograf yukle",
-                                style: Theme.of(context).textTheme.button,
+                                style: Theme.of(context).textTheme.headline2,
                               ),
                             ),
-                            color: Theme.of(context).buttonColor,
+                            color: Theme.of(context)
+                                .textTheme
+                                .button!
+                                .backgroundColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5.0))),
@@ -197,42 +194,171 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 "Kaydet",
-                                style: Theme.of(context).textTheme.button,
+                                style: Theme.of(context).textTheme.headline2,
                               ),
                             ),
-                            color: Theme.of(context).buttonColor,
+                            color: Theme.of(context)
+                                .textTheme
+                                .button!
+                                .backgroundColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5.0))),
                             onPressed: () async {
+                              setState(() => loading = true);
                               if (_formKey.currentState!.validate()) {
-                                setState(() => loading = true);
+                                if (file != null) {
+                                  await _uploadFile(file!.path);
+                                  addProduct(
+                                          mobilyaTuruController.text.trim(),
+                                          mobilyaTuruController.text
+                                              .substring(0, 1)
+                                              .toUpperCase(),
+                                          mdvNoController.text.trim(),
+                                          adetController.text.trim(),
+                                          geldigiMudurlukController.text.trim(),
+                                          notController.text.trim(),
+                                          selectedKategori.toString(),
+                                          now,
+                                          now,
+                                          imageUrl,
+                                          true)
+                                      .then(
+                                    (value) {
+                                      return Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => AnaSayfa(),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                            backgroundColor:
+                                                Theme.of(context).primaryColor,
+                                            content: Text(
+                                              'Fotoğraf eklemeden ürünü kaydetmek istediğinize emin misiniz ? ',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1,
+                                            ),
+                                            actions: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10),
+                                                    child: TextButton(
+                                                      onPressed: () {
+                                                        addProduct(
+                                                                mobilyaTuruController
+                                                                    .text
+                                                                    .trim(),
+                                                                mobilyaTuruController
+                                                                    .text
+                                                                    .substring(
+                                                                        0, 1)
+                                                                    .toUpperCase(),
+                                                                mdvNoController
+                                                                    .text
+                                                                    .trim(),
+                                                                adetController.text
+                                                                    .trim(),
+                                                                geldigiMudurlukController
+                                                                    .text
+                                                                    .trim(),
+                                                                notController
+                                                                    .text
+                                                                    .trim(),
+                                                                selectedKategori
+                                                                    .toString(),
+                                                                now,
+                                                                now,
+                                                                imageUrl,
+                                                                true)
+                                                            .then(
+                                                          (value) {
+                                                            return Navigator
+                                                                .push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        AnaSayfa(),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Text(
+                                                        'Evet Eminim',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .button
+                                                            ?.copyWith(
+                                                                fontSize: 20),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 10),
+                                                    child: TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        _secim(context);
+                                                        setState(() {
+                                                          loading = false;
+                                                        });
+                                                      },
+                                                      child: Text(
+                                                        'Fotoğraf seç',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .button
+                                                            ?.copyWith(
+                                                                fontSize: 20),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ));
+                                }
 
-                                await _uploadFile(file!.path);
-                                addProduct(
-                                        mobilyaTuruController.text.trim(),
-                                        mobilyaTuruController.text
-                                            .substring(0, 1)
-                                            .toUpperCase(),
-                                        mdvNoController.text.trim(),
-                                        adetController.text.trim(),
-                                        geldigiMudurlukController.text.trim(),
-                                        notController.text.trim(),
-                                        selectedKategori.toString(),
-                                        now,
-                                        now,
-                                        imageUrl,
-                                        true)
-                                    .then(
-                                  (value) {
-                                    return Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => AnaSayfa(),
-                                      ),
-                                    );
-                                  },
-                                );
+                                // addProduct(
+                                //         mobilyaTuruController.text.trim(),
+                                //         mobilyaTuruController.text
+                                //             .substring(0, 1)
+                                //             .toUpperCase(),
+                                //         mdvNoController.text.trim(),
+                                //         adetController.text.trim(),
+                                //         geldigiMudurlukController.text.trim(),
+                                //         notController.text.trim(),
+                                //         selectedKategori.toString(),
+                                //         now,
+                                //         now,
+                                //         imageUrl,
+                                //         true)
+                                //     .then(
+                                //   (value) {
+                                //     return Navigator.push(
+                                //       context,
+                                //       MaterialPageRoute(
+                                //         builder: (context) => AnaSayfa(),
+                                //       ),
+                                //     );
+                                //   },
+                                // );
                                 _formKey.currentState?.save();
                               } else {}
                             },
@@ -306,19 +432,19 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
       return;
     }
 
-    var file = await ImageCropper.cropImage(
-        sourcePath: pickedFile.path,
-        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1));
+    // var file = await ImageCropper.cropImage(
+    //     sourcePath: pickedFile.path,
+    //     aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1));
 
-    if (file == null) {
-      return;
-    }
+    //if (file == null) {
+    //return;
+    //}
 
-    file = await compressImage(file.path, 35);
+    file = await compressImage(pickedFile.path, 35);
     setState(() {
       this.file = file;
     });
-    // await _uploadFile(file.path);
+    //await _uploadFile(file.path);
   }
 
   Future<File> compressImage(String path, int quality) async {
@@ -331,15 +457,19 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
   }
 
   Future<dynamic> _uploadFile(String path) async {
-    final ref = storage.FirebaseStorage.instance
-        .ref()
-        .child('images')
-        .child('${DateTime.now().toIso8601String() + p.basename(path)}');
+    try {
+      final ref = storage.FirebaseStorage.instance
+          .ref()
+          .child('images')
+          .child('${DateTime.now().toIso8601String() + p.basename(path)}');
 
-    final result = await ref.putFile(File(path));
-    final fileUrl = await result.ref.getDownloadURL();
-    setState(() {
-      imageUrl = fileUrl;
-    });
+      final result = await ref.putFile(File(path));
+      final fileUrl = await result.ref.getDownloadURL();
+      setState(() {
+        imageUrl = fileUrl;
+      });
+    } on storage.FirebaseException catch (e) {
+      print('$e');
+    }
   }
 }
