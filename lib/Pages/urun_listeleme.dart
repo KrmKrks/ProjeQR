@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/pages/gonderilen_urunler.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
@@ -59,30 +60,44 @@ class UrunListelemeState extends State<UrunListeleme> {
   @override
   build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Search'),
+        backgroundColor: Theme.of(context).backgroundColor,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: ProductSearch());
+            },
+            icon: Icon(Icons.search),
+            iconSize: 30,
+            color: Theme.of(context).iconTheme.color,
+          )
+        ],
+      ),
       body: Container(
         decoration: themeDecoration(context, BorderRadius.circular(0)),
         child: SafeArea(
           child: Column(
             children: [
-              Container(
-                height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                margin: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-//----------------------------------------------------------------------------------------------
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(0),
-                    hintText: 'Search',
-                    hintStyle: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
+//               Container(
+//                 height: 50,
+//                 padding: EdgeInsets.symmetric(horizontal: 20),
+//                 margin: EdgeInsets.symmetric(vertical: 20),
+//                 decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(20),
+//                 ),
+// //----------------------------------------------------------------------------------------------
+//                 child: TextField(
+//                   decoration: InputDecoration(
+//                     border: InputBorder.none,
+//                     contentPadding: EdgeInsets.all(0),
+//                     hintText: 'Search',
+//                     hintStyle: TextStyle(
+//                       fontSize: 18,
+//                     ),
+//                   ),
+//                 ),
+//               ),
 
 //-------------------------------------------------------------------------------------------------
               Container(
@@ -191,7 +206,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                 height: 100,
                                                 child: Center(
                                                   child: Text(
-                                                    'Fotoğraf \nbulunamadı',
+                                                    'Fotoğraf \nmevcut değil',
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline2!

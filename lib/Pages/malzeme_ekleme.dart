@@ -8,7 +8,6 @@ import 'package:projeqr/shared/loading.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -235,132 +234,111 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                                   );
                                 } else {
                                   showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                            backgroundColor:
-                                                Theme.of(context).primaryColor,
-                                            content: Text(
-                                              'Fotoğraf eklemeden ürünü kaydetmek istediğinize emin misiniz ? ',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1,
-                                            ),
-                                            actions: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: TextButton(
-                                                      onPressed: () {
-                                                        addProduct(
-                                                                mobilyaTuruController
-                                                                    .text
-                                                                    .trim(),
-                                                                mobilyaTuruController
-                                                                    .text
-                                                                    .substring(
-                                                                        0, 1)
-                                                                    .toUpperCase(),
-                                                                mdvNoController
-                                                                    .text
-                                                                    .trim(),
-                                                                adetController.text
-                                                                    .trim(),
-                                                                geldigiMudurlukController
-                                                                    .text
-                                                                    .trim(),
-                                                                notController
-                                                                    .text
-                                                                    .trim(),
-                                                                selectedKategori
-                                                                    .toString(),
-                                                                now,
-                                                                now,
-                                                                imageUrl,
-                                                                true)
-                                                            .then(
-                                                          (value) {
-                                                            return Navigator
-                                                                .push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        AnaSayfa(),
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Text(
-                                                        'Evet Eminim',
-                                                        style: Theme.of(context)
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      backgroundColor:
+                                          Theme.of(context).primaryColor,
+                                      content: Text(
+                                        'Fotoğraf eklemeden ürünü kaydetmek istediğinize emin misiniz ? ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1,
+                                      ),
+                                      actions: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10),
+                                              child: TextButton(
+                                                child: Text(
+                                                  'Evet Eminim',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2,
+                                                ),
+                                                style: TextButton.styleFrom(
+                                                    backgroundColor:
+                                                        Theme.of(context)
                                                             .textTheme
-                                                            .button
-                                                            ?.copyWith(
-                                                                fontSize: 20),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 10),
-                                                    child: TextButton(
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                        _secim(context);
-                                                        setState(() {
-                                                          loading = false;
-                                                        });
-                                                      },
-                                                      child: Text(
-                                                        'Fotoğraf seç',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .button
-                                                            ?.copyWith(
-                                                                fontSize: 20),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                                            .button!
+                                                            .backgroundColor),
+                                                onPressed: () {
+                                                  addProduct(
+                                                          mobilyaTuruController.text
+                                                              .trim(),
+                                                          mobilyaTuruController
+                                                              .text
+                                                              .substring(0, 1)
+                                                              .toUpperCase(),
+                                                          mdvNoController.text
+                                                              .trim(),
+                                                          adetController.text
+                                                              .trim(),
+                                                          geldigiMudurlukController
+                                                              .text
+                                                              .trim(),
+                                                          notController.text
+                                                              .trim(),
+                                                          selectedKategori
+                                                              .toString(),
+                                                          now,
+                                                          now,
+                                                          imageUrl,
+                                                          true)
+                                                      .then(
+                                                    (value) {
+                                                      return Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              AnaSayfa(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
                                               ),
-                                            ],
-                                          ));
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: TextButton(
+                                                child: Text(
+                                                  'Fotoğraf seç',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline2,
+                                                ),
+                                                style: TextButton.styleFrom(
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .button!
+                                                            .backgroundColor),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  _secim(context);
+                                                  setState(() {
+                                                    loading = false;
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  );
                                 }
-
-                                // addProduct(
-                                //         mobilyaTuruController.text.trim(),
-                                //         mobilyaTuruController.text
-                                //             .substring(0, 1)
-                                //             .toUpperCase(),
-                                //         mdvNoController.text.trim(),
-                                //         adetController.text.trim(),
-                                //         geldigiMudurlukController.text.trim(),
-                                //         notController.text.trim(),
-                                //         selectedKategori.toString(),
-                                //         now,
-                                //         now,
-                                //         imageUrl,
-                                //         true)
-                                //     .then(
-                                //   (value) {
-                                //     return Navigator.push(
-                                //       context,
-                                //       MaterialPageRoute(
-                                //         builder: (context) => AnaSayfa(),
-                                //       ),
-                                //     );
-                                //   },
-                                // );
                                 _formKey.currentState?.save();
-                              } else {}
+                              } else {
+                                setState(() {
+                                  loading = false;
+                                });
+                              }
                             },
                           ),
                         ],
@@ -389,32 +367,32 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: TextButton(
+                  style: TextButton.styleFrom(
+                      backgroundColor:
+                          Theme.of(context).textTheme.button!.backgroundColor),
                   onPressed: () => Navigator.pop(
                     context,
                     pickImage(ImageSource.camera),
                   ),
                   child: Text(
                     'Kamera',
-                    style: Theme.of(context)
-                        .textTheme
-                        .button
-                        ?.copyWith(fontSize: 20),
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: TextButton(
+                  style: TextButton.styleFrom(
+                      backgroundColor:
+                          Theme.of(context).textTheme.button!.backgroundColor),
                   onPressed: () => Navigator.pop(
                     context,
                     pickImage(ImageSource.gallery),
                   ),
                   child: Text(
                     'Galeri',
-                    style: Theme.of(context)
-                        .textTheme
-                        .button
-                        ?.copyWith(fontSize: 20),
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
               ),
@@ -429,22 +407,13 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
     final pickedFile =
         await _picker.pickImage(source: source, imageQuality: 50);
     if (pickedFile == null) {
-      return;
+      return null;
     }
-
-    // var file = await ImageCropper.cropImage(
-    //     sourcePath: pickedFile.path,
-    //     aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1));
-
-    //if (file == null) {
-    //return;
-    //}
 
     file = await compressImage(pickedFile.path, 35);
     setState(() {
       this.file = file;
     });
-    //await _uploadFile(file.path);
   }
 
   Future<File> compressImage(String path, int quality) async {

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import 'anasayfa.dart';
-
 class UrunDetailsSend extends StatefulWidget {
   final String documentID,
       mobilyaTuru,
@@ -13,20 +11,22 @@ class UrunDetailsSend extends StatefulWidget {
       gonderildigiMudurluk,
       gelisTarihi,
       gonderilmeTarihi,
-      not;
+      not,
+      url;
 
-  UrunDetailsSend(
-      {Key? key,
-      required this.documentID,
-      required this.mobilyaTuru,
-      required this.mdvNo,
-      required this.adet,
-      required this.geldigiMudurluk,
-      required this.gonderildigiMudurluk,
-      required this.gelisTarihi,
-      required this.gonderilmeTarihi,
-      required this.not})
-      : super(key: key);
+  UrunDetailsSend({
+    Key? key,
+    required this.documentID,
+    required this.mobilyaTuru,
+    required this.mdvNo,
+    required this.adet,
+    required this.geldigiMudurluk,
+    required this.gonderildigiMudurluk,
+    required this.gelisTarihi,
+    required this.gonderilmeTarihi,
+    required this.not,
+    required this.url,
+  }) : super(key: key);
 
   @override
   _UrunDetailsSendState createState() => _UrunDetailsSendState();
@@ -56,19 +56,33 @@ class _UrunDetailsSendState extends State<UrunDetailsSend> {
             SizedBox(
               height: 10,
             ),
-            Column(
-              children: [
-                QrImage(
-                  backgroundColor: Colors.white,
-                  padding: const EdgeInsets.all(10),
-                  data: widget.documentID,
-                  size: 300,
-                  embeddedImage: AssetImage('assets/Mini_logo.png'),
-                  embeddedImageStyle: QrEmbeddedImageStyle(
-                    size: Size(40, 40),
-                  ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: MaterialButton(
+                child: Text(
+                  "Qr' ı görmek için dokunun!",
+                  style: Theme.of(context).textTheme.headline2,
                 ),
-              ],
+                color: Theme.of(context).textTheme.button!.backgroundColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                            child: QrImage(
+                              backgroundColor: Colors.white,
+                              padding: const EdgeInsets.all(10),
+                              data: widget.documentID,
+                              size: 300,
+                              embeddedImage: AssetImage('assets/Mini_logo.png'),
+                              embeddedImageStyle: QrEmbeddedImageStyle(
+                                size: Size(40, 40),
+                              ),
+                            ),
+                          ));
+                },
+              ),
             ),
             SizedBox(
               height: 15,
@@ -158,18 +172,50 @@ class _UrunDetailsSendState extends State<UrunDetailsSend> {
             SizedBox(
               height: 15,
             ),
-            MaterialButton(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: MaterialButton(
                   child: Text(
                     "Fotografi goster",
-                    style: Theme.of(context).textTheme.button,
+                    style: Theme.of(context).textTheme.headline2,
                   ),
-                ),
-                color: Theme.of(context).buttonColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                onPressed: () {}),
+                  color: Theme.of(context).textTheme.button!.backgroundColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(2.0),
+                          ),
+                        ),
+                        child: Container(
+                          child: Image.network(
+                            widget.url,
+                            errorBuilder: (BuildContext context,
+                                Object exception, StackTrace? stackTrace) {
+                              return Container(
+                                width: 100,
+                                height: 100,
+                                child: Center(
+                                  child: Text(
+                                    'Fotoğraf \nbulunamadı',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2!
+                                        .copyWith(color: Colors.red),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
           ],
         ),
       ),

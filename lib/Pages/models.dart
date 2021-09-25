@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-List<Map> categories = [
+List<Map<dynamic, dynamic>> categories = [
   {'name': 'Sandalye', 'iconPath': 'assets/images/chair.png'},
   {'name': 'Masa', 'iconPath': 'assets/images/table.png'},
   {'name': 'Dolap', 'iconPath': 'assets/images/file-cabinet.png'},

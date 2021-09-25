@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class QrResult extends StatefulWidget {
-  String scanResult;
+  final String scanResult;
   QrResult({Key? key, required this.scanResult}) : super(key: key);
 
   @override
