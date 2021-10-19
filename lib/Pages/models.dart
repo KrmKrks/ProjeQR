@@ -18,7 +18,6 @@ final List<String> kategori = <String>[
 
 class Product {
   final String mobilyaTuru;
-  final String m;
   final String mdvno;
   final String adet;
   final String geldigiMudurluk;
@@ -33,7 +32,6 @@ class Product {
 
   Product({
     required this.mobilyaTuru,
-    required this.m,
     required this.mdvno,
     required this.adet,
     required this.geldigiMudurluk,
@@ -50,7 +48,6 @@ class Product {
   factory Product.fromSnapshot(DocumentSnapshot snapshot) {
     return Product(
         mobilyaTuru: snapshot['Mobilya Türü'] as String,
-        m: snapshot['MobilyaTürüSearchKey'] as String,
         mdvno: snapshot['MDV No'] as String,
         adet: snapshot['Adet'] as String,
         geldigiMudurluk: snapshot['Geldiği Müdürlük'] as String,

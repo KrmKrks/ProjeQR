@@ -4,7 +4,6 @@ import 'package:projeqr/pages/gonderilen_urunler.dart';
 import 'package:projeqr/pages/malzeme_ekleme.dart';
 import 'package:projeqr/pages/urun_listeleme.dart';
 import 'package:projeqr/pages/qrtarama.dart';
-import 'package:projeqr/widget/change_theme_button_widget.dart';
 
 class AnaSayfa extends StatefulWidget {
   @override
@@ -24,9 +23,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [ChangeThemeButtonWidget()],
-        ),
+        // appBar: AppBar(
+        //   actions: [ChangeThemeButtonWidget()],
+        // ),
         body: pageList[pageIndex],
         bottomNavigationBar: ConvexAppBar(
           backgroundColor:

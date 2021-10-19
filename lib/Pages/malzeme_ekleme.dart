@@ -209,10 +209,9 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                                 if (file != null) {
                                   await _uploadFile(file!.path);
                                   addProduct(
-                                          mobilyaTuruController.text.trim(),
                                           mobilyaTuruController.text
-                                              .substring(0, 1)
-                                              .toUpperCase(),
+                                              .trim()
+                                              .toLowerCase(),
                                           mdvNoController.text.trim(),
                                           adetController.text.trim(),
                                           geldigiMudurlukController.text.trim(),
@@ -267,12 +266,10 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                                                             .backgroundColor),
                                                 onPressed: () {
                                                   addProduct(
-                                                          mobilyaTuruController.text
-                                                              .trim(),
                                                           mobilyaTuruController
                                                               .text
-                                                              .substring(0, 1)
-                                                              .toUpperCase(),
+                                                              .trim()
+                                                              .toLowerCase(),
                                                           mdvNoController.text
                                                               .trim(),
                                                           adetController.text

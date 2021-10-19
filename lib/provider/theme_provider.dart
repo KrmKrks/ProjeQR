@@ -19,7 +19,7 @@ class AppThemes {
     primaryColor: Color(0xFF71B280),
     backgroundColor: Color(0xFF71B280),
     cardColor: Color(0xFF80CF93),
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Color(0xFF71B280),
     colorScheme: ColorScheme.light(
       primary: Colors.white,
       background: Color(0xFF80CF93).withOpacity(0.95),
