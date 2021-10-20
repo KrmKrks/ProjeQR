@@ -91,13 +91,13 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                                     ),
                                   ],
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 0, 15, 7),
-                                  child: customTextFormField(
-                                          adetController, 'Adet', context)
-                                      as Widget,
-                                ),
+                                //  Padding(
+                                //  padding:
+                                //    const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                                // child: customTextFormField(
+                                //      adetController, 'Adet', context)
+                                //as Widget,
+                                //),
                                 SizedBox(
                                   height: 10,
                                 ),
@@ -213,7 +213,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                                               .trim()
                                               .toLowerCase(),
                                           mdvNoController.text.trim(),
-                                          adetController.text.trim(),
                                           geldigiMudurlukController.text.trim(),
                                           notController.text.trim(),
                                           selectedKategori.toString(),
@@ -271,8 +270,6 @@ class _MalzemeEklemeState extends State<MalzemeEkleme> {
                                                               .trim()
                                                               .toLowerCase(),
                                                           mdvNoController.text
-                                                              .trim(),
-                                                          adetController.text
                                                               .trim(),
                                                           geldigiMudurlukController
                                                               .text

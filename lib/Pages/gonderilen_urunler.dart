@@ -303,15 +303,6 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                                   SizedBox(
                                                     height: 10,
                                                   ),
-                                                  Text("Adet:",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline1),
-                                                  Text(" \t${docRef['Adet']} ",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline2),
-                                                  SizedBox(height: 10),
                                                 ],
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
@@ -324,14 +315,13 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) => UrunDetailsSend(
-                                                        documentID: docRef['Document ID']
-                                                            as String,
+                                                        documentID:
+                                                            docRef['Document ID']
+                                                                as String,
                                                         mobilyaTuru:
                                                             docRef['Mobilya Türü']
                                                                 as String,
                                                         mdvNo: docRef['MDV No']
-                                                            as String,
-                                                        adet: docRef['Adet']
                                                             as String,
                                                         geldigiMudurluk:
                                                             docRef['Geldiği Müdürlük']
@@ -347,7 +337,8 @@ class GonderilenUrunlerState extends State<GonderilenUrunler> {
                                                                 as String,
                                                         url: docRef['İmage Url']
                                                             as String,
-                                                        not: docRef['Not'] as String)),
+                                                        not:
+                                                            docRef['Not'] as String)),
                                               );
                                             },
                                           ),
@@ -547,11 +538,6 @@ class ProductSearchSend extends SearchDelegate<dynamic> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Text("Adet:",
-                                  style: Theme.of(context).textTheme.headline1),
-                              Text(" \t${product.adet} ",
-                                  style: Theme.of(context).textTheme.headline2),
-                              SizedBox(height: 10),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -564,7 +550,6 @@ class ProductSearchSend extends SearchDelegate<dynamic> {
                                   documentID: product.documnetId,
                                   mobilyaTuru: product.mobilyaTuru,
                                   mdvNo: product.mdvno,
-                                  adet: product.adet,
                                   geldigiMudurluk: product.geldigiMudurluk,
                                   not: product.not,
                                   imageUrl: product.url,
@@ -700,11 +685,6 @@ class ProductSearchSend extends SearchDelegate<dynamic> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text("Adet:",
-                                style: Theme.of(context).textTheme.headline1),
-                            Text(" \t${product.adet} ",
-                                style: Theme.of(context).textTheme.headline2),
-                            SizedBox(height: 10),
                           ],
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -717,7 +697,6 @@ class ProductSearchSend extends SearchDelegate<dynamic> {
                                 documentID: product.documnetId,
                                 mobilyaTuru: product.mobilyaTuru,
                                 mdvNo: product.mdvno,
-                                adet: product.adet,
                                 geldigiMudurluk: product.geldigiMudurluk,
                                 not: product.not,
                                 imageUrl: product.url,

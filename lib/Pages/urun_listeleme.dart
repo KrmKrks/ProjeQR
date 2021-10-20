@@ -301,15 +301,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text("Adet:",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1),
-                                                Text(" \t${docRef['Adet']} ",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline2),
-                                                SizedBox(height: 10),
                                               ],
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
@@ -329,8 +320,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                         docRef['Mobilya Türü']
                                                             as String,
                                                     mdvNo: docRef['MDV No']
-                                                        as String,
-                                                    adet: docRef['Adet']
                                                         as String,
                                                     geldigiMudurluk: docRef[
                                                             'Geldiği Müdürlük']
@@ -652,8 +641,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                             as String,
                                                     mdvNo: docRef['MDV No']
                                                         as String,
-                                                    adet: docRef['Adet']
-                                                        as String,
                                                     geldigiMudurluk: docRef[
                                                             'Geldiği Müdürlük']
                                                         as String,
@@ -850,13 +837,6 @@ class ProductSearch extends SearchDelegate<dynamic> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                Text("Adet:",
-                                    style:
-                                        Theme.of(context).textTheme.headline1),
-                                Text(" \t${product.adet} ",
-                                    style:
-                                        Theme.of(context).textTheme.headline2),
-                                SizedBox(height: 10),
                               ],
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -869,7 +849,6 @@ class ProductSearch extends SearchDelegate<dynamic> {
                                     documentID: product.documnetId,
                                     mobilyaTuru: product.mobilyaTuru,
                                     mdvNo: product.mdvno,
-                                    adet: product.adet,
                                     geldigiMudurluk: product.geldigiMudurluk,
                                     not: product.not,
                                     imageUrl: product.url,
@@ -1005,11 +984,6 @@ class ProductSearch extends SearchDelegate<dynamic> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text("Adet:",
-                                style: Theme.of(context).textTheme.headline1),
-                            Text(" \t${product.adet} ",
-                                style: Theme.of(context).textTheme.headline2),
-                            SizedBox(height: 10),
                           ],
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1022,7 +996,6 @@ class ProductSearch extends SearchDelegate<dynamic> {
                                 documentID: product.documnetId,
                                 mobilyaTuru: product.mobilyaTuru,
                                 mdvNo: product.mdvno,
-                                adet: product.adet,
                                 geldigiMudurluk: product.geldigiMudurluk,
                                 not: product.not,
                                 imageUrl: product.url,

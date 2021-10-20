@@ -3,20 +3,13 @@ import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class UrunDetails extends StatefulWidget {
-  final String documentID,
-      mobilyaTuru,
-      mdvNo,
-      adet,
-      geldigiMudurluk,
-      not,
-      imageUrl;
+  final String documentID, mobilyaTuru, mdvNo, geldigiMudurluk, not, imageUrl;
 
   UrunDetails({
     Key? key,
     required this.documentID,
     required this.mobilyaTuru,
     required this.mdvNo,
-    required this.adet,
     required this.geldigiMudurluk,
     required this.not,
     required this.imageUrl,
@@ -100,18 +93,6 @@ class _UrunDetailsState extends State<UrunDetails> {
             ),
             Text(
               " \t${widget.mdvNo} ",
-              style:
-                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              "Adet",
-              style: Theme.of(context).textTheme.headline1,
-            ),
-            Text(
-              " \t${widget.adet} ",
               style:
                   Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
             ),

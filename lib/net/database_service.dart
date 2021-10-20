@@ -9,7 +9,6 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 Future<String> addProduct(
     String mobilyaTuru,
     String mdvno,
-    String adet,
     String geldigiMudurluk,
     String not,
     String kategori,
@@ -22,7 +21,6 @@ Future<String> addProduct(
   await _firestore.doc(documentID).set({
     'Mobilya Türü': mobilyaTuru,
     'MDV No': mdvno,
-    'Adet': adet,
     'Geldiği Müdürlük': geldigiMudurluk,
     //'GeldiğiMüdürlüksearchKey':g,
     'Gönderildiği Müdürlük': '',

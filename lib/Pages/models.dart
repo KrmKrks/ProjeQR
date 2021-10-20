@@ -19,7 +19,6 @@ final List<String> kategori = <String>[
 class Product {
   final String mobilyaTuru;
   final String mdvno;
-  final String adet;
   final String geldigiMudurluk;
   final String not;
   final String documnetId;
@@ -33,7 +32,6 @@ class Product {
   Product({
     required this.mobilyaTuru,
     required this.mdvno,
-    required this.adet,
     required this.geldigiMudurluk,
     required this.not,
     required this.documnetId,
@@ -49,7 +47,6 @@ class Product {
     return Product(
         mobilyaTuru: snapshot['Mobilya Türü'] as String,
         mdvno: snapshot['MDV No'] as String,
-        adet: snapshot['Adet'] as String,
         geldigiMudurluk: snapshot['Geldiği Müdürlük'] as String,
         not: snapshot['Not'] as String,
         documnetId: snapshot['Document ID'] as String,
