@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.projeqr">
+    package="com.cksoftwaree.qrdepo">
    <application
-        android:label="QrDepo"
+        android:label="QR Depo"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

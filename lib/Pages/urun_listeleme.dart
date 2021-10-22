@@ -22,7 +22,6 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mobilyaTuruController = TextEditingController();
 TextEditingController mdvNoController = TextEditingController();
-TextEditingController adetController = TextEditingController();
 TextEditingController geldigiMudurlukController = TextEditingController();
 TextEditingController gonderildigiMudurlukController = TextEditingController();
 TextEditingController notController = TextEditingController();
@@ -344,8 +343,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             mobilyaTuruController.text =
                                                 docRef['Mobilya Türü']
                                                     as String;
-                                            adetController.text =
-                                                docRef['Adet'] as String;
 
                                             notController.text =
                                                 docRef['Not'] as String;
@@ -378,14 +375,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                   mobilyaTuruController,
                                                                   "Mobilya Türü",
                                                                   context) as Widget,
-                                                              SizedBox(
-                                                                height: 20,
-                                                              ),
-                                                              buildTextFormField(
-                                                                      adetController,
-                                                                      "Adet",
-                                                                      context)
-                                                                  as Widget,
                                                               SizedBox(
                                                                 height: 20,
                                                               ),
@@ -436,9 +425,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                                       .update({
                                                                     'Mobilya Türü':
                                                                         mobilyaTuruController
-                                                                            .text,
-                                                                    'Adet':
-                                                                        adetController
                                                                             .text,
                                                                     'Gönderildiği Müdürlük':
                                                                         gonderildigiMudurlukController
@@ -612,15 +598,6 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text("Adet:",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1),
-                                                Text(" \t${docRef['Adet']} ",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline2),
-                                                SizedBox(height: 10),
                                               ],
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,

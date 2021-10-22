@@ -22,7 +22,6 @@ Future<String> addProduct(
     'Mobilya Türü': mobilyaTuru,
     'MDV No': mdvno,
     'Geldiği Müdürlük': geldigiMudurluk,
-    //'GeldiğiMüdürlüksearchKey':g,
     'Gönderildiği Müdürlük': '',
     'Not': not,
     'Document ID': documentID,
