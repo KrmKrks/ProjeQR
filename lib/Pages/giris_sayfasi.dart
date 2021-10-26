@@ -20,13 +20,13 @@ final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
 AuthService _authService = AuthService();
-bool loading = false;
-final _formKey = GlobalKey<FormState>();
+bool _loading = false;
+GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class _GirissayfasiState extends State<Girissayfasi> {
   @override
   Widget build(BuildContext context) {
-    return loading
+    return _loading
         ? Loading()
         : Scaffold(
             //resizeToAvoidBottomInset: false,
@@ -141,7 +141,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                               height: 50,
                               onPressed: () {
                                 setState(() {
-                                  loading = true;
+                                  _loading = true;
                                 });
                                 if (_formKey.currentState!.validate()) {
                                   _authService
@@ -153,7 +153,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                       .then((result) {
                                     if (result != null) {
                                       setState(() {
-                                        loading = false;
+                                        _loading = false;
                                       });
                                     } else if (result == null) {
                                       Navigator.of(context).pushReplacement(
@@ -164,7 +164,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                   });
                                 } else {
                                   setState(() {
-                                    loading = false;
+                                    _loading = false;
                                   });
                                 }
                               },
@@ -189,13 +189,11 @@ class _GirissayfasiState extends State<Girissayfasi> {
                               minWidth: double.maxFinite,
                               height: 50,
                               onPressed: () {
-                                setState(() => loading = true);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UyeOl(),
-                                  ),
-                                );
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => UyeOl()));
+
+                                _formKey.currentState!.reset();
                               },
                               color: Theme.of(context)
                                   .textTheme
