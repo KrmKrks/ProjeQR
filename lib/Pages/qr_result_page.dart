@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:projeqr/shared/theme_decoration.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class QrResult extends StatefulWidget {
   final String scanResult;
@@ -14,191 +16,204 @@ CollectionReference doc = FirebaseFirestore.instance.collection('products');
 class _QrResultState extends State<QrResult> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder(
-          stream: doc
-              .where('Document ID', isEqualTo: widget.scanResult)
-              .snapshots(),
-          builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  var docRef = snapshot.data!.docs[index];
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Mobilya Türü:"
-                        " \t${docRef['Mobilya Türü']} ",
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Adet:"
-                        " \t${docRef['Adet']}",
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                          " Müdürlük:"
-                          " \t${docRef['Müdürlük']}",
-                          style: Theme.of(context).textTheme.headline1),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                          "Not:"
-                          " \t${docRef['Not']}",
-                          style: Theme.of(context).textTheme.headline1),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      //TODO: 2 adet materialbutton ile hem QR görmek istediğinde QR göstericek, Fotoğrafını görmek istediğinde ulaşacağı buttonlar tasarlanmalı
-                    ],
-                  );
-                  //
-                  // Card(
-                  //   color: Theme.of(context).cardColor,
-                  //   shadowColor: Theme.of(context).shadowColor,
-                  //   child: ListTile(
-                  //     leading: Icon(
-                  //       Icons.account_circle_rounded,
-                  //       color: Theme.of(context).iconTheme.color,
-                  //     ),
-                  //     title: Text(
-                  //       "Mobilya Türü:" " \t${docRef['Mobilya Türü']} ",
-                  //       style: TextStyle(
-                  //           color: Theme.of(context).colorScheme.primary),
-                  //     ),
-                  //     subtitle: Column(
-                  //       children: <Widget>[
-                  //         Text(
-                  //           docRef['Adet'] as String,
-                  //           style: TextStyle(
-                  //               color: Theme.of(context).colorScheme.primary),
-                  //         ),
-                  //         Text(
-                  //           docRef['Müdürlük'] as String,
-                  //           style: TextStyle(
-                  //               color: Theme.of(context).colorScheme.primary),
-                  //         ),
-                  //         Text(
-                  //           docRef['Not'] as String,
-                  //           style: TextStyle(
-                  //               color: Theme.of(context).colorScheme.primary),
-                  //         ),
-                  //       ],
-                  //       mainAxisAlignment: MainAxisAlignment.start,
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //     ),
-                  //     trailing: IconButton(
-                  //       icon: Icon(Icons.edit),
-                  //       color: Theme.of(context).iconTheme.color,
-                  //       onPressed: () {
-                  //         mobilyaTuruController.text =
-                  //             docRef['Mobilya Türü'] as String;
-                  //         adetController.text = docRef['Adet'] as String;
-                  //         mudurlukController.text =
-                  //             docRef['Müdürlük'] as String;
-                  //         notController.text = docRef['Not'] as String;
-
-                  //         showDialog(
-                  //             context: context,
-                  //             builder: (context) => Dialog(
-                  //                   child: Container(
-                  //                     color: Theme.of(context).primaryColor,
-                  //                     child: Padding(
-                  //                       padding: const EdgeInsets.all(8.0),
-                  //                       child: ListView(
-                  //                         shrinkWrap: true,
-                  //                         children: <Widget>[
-                  //                           buildTextFormField(
-                  //                               mobilyaTuruController,
-                  //                               "Mobilya Türü",
-                  //                               context) as Widget,
-                  //                           SizedBox(
-                  //                             height: 20,
-                  //                           ),
-                  //                           buildTextFormField(
-                  //                               adetController,
-                  //                               "Adet Giriniz",
-                  //                               context) as Widget,
-                  //                           SizedBox(
-                  //                             height: 20,
-                  //                           ),
-                  //                           buildTextFormField(
-                  //                               mudurlukController,
-                  //                               "Gelen veya Giden Müdürlüğü Belirtiniz",
-                  //                               context) as Widget,
-                  //                           SizedBox(
-                  //                             height: 20,
-                  //                           ),
-                  //                           buildTextFormField(
-                  //                               notController,
-                  //                               "Eklemek istediğiniz notunuz var ise ekleyiniz",
-                  //                               context) as Widget,
-                  //                           SizedBox(
-                  //                             height: 20,
-                  //                           ),
-                  //                           FlatButton(
-                  //                             child: Padding(
-                  //                               padding:
-                  //                                   const EdgeInsets.all(8.0),
-                  //                               child:
-                  //                                   Text("Dökümanı Güncelle"),
-                  //                             ),
-                  //                             color: logoGreen,
-                  //                             onPressed: () {
-                  //                               snapshot
-                  //                                   .data!.docs[index].reference
-                  //                                   .update({
-                  //                                 'Mobilya Türü':
-                  //                                     mobilyaTuruController
-                  //                                         .text,
-                  //                                 'Adet': adetController.text,
-                  //                                 'Müdürlük':
-                  //                                     mudurlukController.text,
-                  //                                 'Not': notController.text,
-                  //                               }).whenComplete(() =>
-                  //                                       Navigator.pop(context));
-                  //                             },
-                  //                           ),
-                  //                           FlatButton(
-                  //                             child: Padding(
-                  //                               padding:
-                  //                                   const EdgeInsets.all(8.0),
-                  //                               child: const Text("Ürünü Sil"),
-                  //                             ),
-                  //                             color: logoGreen,
-                  //                             onPressed: () {
-                  //                               snapshot
-                  //                                   .data!.docs[index].reference
-                  //                                   .delete()
-                  //                                   .whenComplete(() =>
-                  //                                       Navigator.pop(context));
-                  //                             },
-                  //                           ),
-                  //                         ],
-                  //                       ),
-                  //                     ),
-                  //                   ),
-                  //                 ));
-                  //       },
-                  //     ),
-                  //   ),
-                  // );
-                },
-              );
-            } else
-              return Text('Herhangi bir ürün bulunamadı!');
-          }),
+    return Container(
+      decoration: themeDecoration(context, BorderRadius.circular(0)),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: StreamBuilder(
+            stream: doc
+                .where('Document ID', isEqualTo: widget.scanResult)
+                .snapshots(),
+            builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    var docRef = snapshot.data!.docs[index];
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Icon(
+                                Icons.arrow_back,
+                                size: 30,
+                              )),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          child: MaterialButton(
+                            minWidth: 300,
+                            child: Text(
+                              "Qr' ı görmek için dokunun!",
+                              style: Theme.of(context).textTheme.headline2,
+                            ),
+                            color: Theme.of(context)
+                                .textTheme
+                                .button!
+                                .backgroundColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => Dialog(
+                                        child: QrImage(
+                                          backgroundColor: Colors.white,
+                                          padding: const EdgeInsets.all(10),
+                                          data: docRef['Document ID'] as String,
+                                          size: 300,
+                                          embeddedImage: AssetImage(
+                                              'assets/Mini_logo.png'),
+                                          embeddedImageStyle:
+                                              QrEmbeddedImageStyle(
+                                            size: Size(40, 40),
+                                          ),
+                                        ),
+                                      ));
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Mobilya Türü:",
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                        Text(
+                          " \t${docRef['Mobilya Türü']} ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(fontSize: 20),
+                        ),
+                        SizedBox(height: 15),
+                        Text(
+                          "MDV No:",
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                        Text(
+                          " \t${docRef['MDV No']} ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Geldiği Müdürlük",
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                        Text(
+                          " \t${docRef['Geldiği Müdürlük']} ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Gönderildiği Müdürlük",
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                        Text(
+                          "\t${docRef['Gönderildiği Müdürlük']}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Not",
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                        Text(
+                          " \t${docRef['Not']} ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2
+                              ?.copyWith(fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          child: MaterialButton(
+                              minWidth: 300,
+                              child: Text(
+                                "Fotografi goster",
+                                style: Theme.of(context).textTheme.headline2,
+                              ),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .button!
+                                  .backgroundColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0))),
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => Dialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(2.0),
+                                      ),
+                                    ),
+                                    child: Container(
+                                      child: Image.network(
+                                        docRef['İmage Url'] as String,
+                                        errorBuilder: (BuildContext context,
+                                            Object exception,
+                                            StackTrace? stackTrace) {
+                                          return Container(
+                                            width: 100,
+                                            height: 100,
+                                            child: Center(
+                                              child: Text(
+                                                'Fotoğraf \nbulunamadı',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline2!
+                                                    .copyWith(
+                                                        color: Colors.red),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else
+                return Text('Herhangi bir ürün bulunamadı!');
+            }),
+      ),
     );
   }
 }
