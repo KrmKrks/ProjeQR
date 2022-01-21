@@ -58,15 +58,3 @@ class Product {
         url: snapshot['İmage Url'] as String);
   }
 }
-
-// var userRole ;
-
-// getRole() {
-//   FirebaseFirestore.instance
-//       .collection('Users')
-//       .doc(_auth.currentUser!.uid)
-//       .get()
-//       .then((value) {
-//     userRole = value.data()!['Role'].toString();
-//   });
-// }

@@ -25,7 +25,7 @@ class AppThemes {
       background: Color(0xFF80CF93).withOpacity(0.95),
     ),
     iconTheme: IconThemeData(color: Colors.amber[900], opacity: 0.8),
-    shadowColor: Colors.white,
+    shadowColor: Colors.black,
     textTheme: TextTheme(
       headline1: TextStyle(
         fontFamily: 'Roboto',
@@ -72,7 +72,6 @@ class AppThemes {
     ),
     iconTheme: IconThemeData(color: Colors.amber[800], opacity: 0.8),
     shadowColor: null,
-
     textTheme: TextTheme(
       headline1: TextStyle(
           decoration: TextDecoration.none,

@@ -99,36 +99,40 @@ class UrunListelemeState extends State<UrunListeleme> {
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            margin: EdgeInsets.only(left: 20),
-                            decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .cardColor
-                                    .withOpacity(0.9),
-                                borderRadius: BorderRadius.circular(10)),
-                            height: 90,
-                            width: 90,
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  queryIndex =
-                                      categories[index]['name'] as String;
-                                  queryType = false;
-                                });
-                              },
+                    return GestureDetector(
+                      onTap: () {
+                        queryIndex = categories[index]['name'] as String;
+                        setState(
+                          () {
+                            queryType = false;
+                          },
+                        );
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 10,
+                        shadowColor: Theme.of(context).shadowColor,
+                        margin: EdgeInsets.all(10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.all(10),
+                              height: 60,
+                              width: 60,
                               child: Image.asset(
                                   categories[index]['iconPath'] as String),
                             ),
-                          ),
-                          Text(
-                            categories[index]['name'] as String,
-                            style: Theme.of(context).textTheme.headline2,
-                          )
-                        ],
+                            Text(
+                              categories[index]['name'] as String,
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -189,6 +193,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                         .cardColor
                                         .withOpacity(0.5),
                                     shadowColor: Theme.of(context).shadowColor,
+                                    elevation: 10,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -203,6 +208,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                   docRef['İmage Url'] as String,
                                                   width: 100,
                                                   height: 100,
+                                                  fit: BoxFit.fill,
                                                   loadingBuilder: (context,
                                                           child, progress) =>
                                                       progress == null
@@ -284,7 +290,7 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                         .textTheme
                                                         .headline1),
                                                 Text(
-                                                    " \t${docRef['Mobilya Türü']} ",
+                                                    "${docRef['Mobilya Türü']} ",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline2),

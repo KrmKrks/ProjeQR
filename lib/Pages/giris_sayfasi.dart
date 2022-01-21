@@ -16,8 +16,8 @@ class Girissayfasi extends StatefulWidget {
   _GirissayfasiState createState() => _GirissayfasiState();
 }
 
-final TextEditingController emailController = TextEditingController();
-final TextEditingController passwordController = TextEditingController();
+late final TextEditingController _emailController;
+late final TextEditingController _passwordController;
 
 AuthService _authService = AuthService();
 bool _loading = false;
@@ -25,11 +25,24 @@ GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class _GirissayfasiState extends State<Girissayfasi> {
   @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController(text: "cag@hotmail.com");
+    _passwordController = TextEditingController(text: "123456");
+  }
+
+  @override
+  void dispose() {
+    _emailController;
+    _passwordController;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return _loading
         ? Loading()
         : Scaffold(
-            //resizeToAvoidBottomInset: false,
             body: Container(
               padding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).devicePixelRatio / 20,
@@ -40,7 +53,6 @@ class _GirissayfasiState extends State<Girissayfasi> {
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  //alignment: Alignment.topCenter,
                   margin: EdgeInsets.all(15),
                   child: ListView(
                     children: [
@@ -82,7 +94,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                             ),
 
                             TextFormField(
-                              controller: emailController,
+                              controller: _emailController,
                               style: TextStyle(
                                   color: Theme.of(context).colorScheme.primary),
                               decoration: InputDecoration(
@@ -108,7 +120,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
 
                             TextFormField(
                               obscureText: true,
-                              controller: passwordController,
+                              controller: _passwordController,
                               style: TextStyle(
                                   color: Theme.of(context).colorScheme.primary),
                               decoration: InputDecoration(
@@ -146,8 +158,8 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                 if (_formKey.currentState!.validate()) {
                                   _authService
                                       .signIn(
-                                    emailController.text.trim(),
-                                    passwordController.text.trim(),
+                                    _emailController.text.trim(),
+                                    _passwordController.text.trim(),
                                     context,
                                   )
                                       .then((result) {
