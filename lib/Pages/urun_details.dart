@@ -22,112 +22,105 @@ class UrunDetails extends StatefulWidget {
 class _UrunDetailsState extends State<UrunDetails> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: themeDecoration(context, BorderRadius.circular(0)),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(
-                    Icons.arrow_back,
-                    size: 30,
-                  )),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: MaterialButton(
-                child: Text(
-                  "Qr' ı görmek için dokunun!",
-                  style: Theme.of(context).textTheme.headline2,
+    var _themeHeadline1 = Theme.of(context).textTheme.headline1;
+    var _themeHeadline2 = Theme.of(context).textTheme.headline2;
+    return Scaffold(
+      body: Container(
+        decoration: themeDecoration(context, BorderRadius.circular(0)),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              expandedHeight: 300,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.network(
+                  widget.imageUrl,
+                  fit: BoxFit.fill,
                 ),
-                color: Theme.of(context).textTheme.button!.backgroundColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                            child: QrImage(
-                              backgroundColor: Colors.white,
-                              padding: const EdgeInsets.all(10),
-                              data: widget.documentID,
-                              size: 300,
-                              embeddedImage: AssetImage('assets/Mini_logo.png'),
-                              embeddedImageStyle: QrEmbeddedImageStyle(
-                                size: Size(40, 40),
-                              ),
-                            ),
-                          ));
-                },
               ),
             ),
-            SizedBox(
-              height: 15,
+            SliverToBoxAdapter(
+              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child:
+                      _textWidget(context, 'Mobilya Türü', _themeHeadline1!)),
             ),
-            Text(
-              "Mobilya Türü:",
-              style: Theme.of(context).textTheme.headline1,
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: _textWidget(
+                  context,
+                  '${widget.mobilyaTuru}',
+                  _themeHeadline2!.copyWith(fontSize: 20),
+                ),
+              ),
             ),
-            SizedBox(
-              height: 7,
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: _textWidget(
+                  context,
+                  'MDV No:',
+                  _themeHeadline1,
+                ),
+              ),
             ),
-            Text(
-              " \t${widget.mobilyaTuru} ",
-              style:
-                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: _textWidget(
+                  context,
+                  '${widget.mdvNo}',
+                  _themeHeadline2,
+                ),
+              ),
             ),
-            SizedBox(height: 15),
-            Text(
-              "MDV No:",
-              style: Theme.of(context).textTheme.headline1,
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: _textWidget(
+                  context,
+                  'Geldiği Müdürlük',
+                  _themeHeadline1,
+                ),
+              ),
             ),
-            Text(
-              " \t${widget.mdvNo} ",
-              style:
-                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: _textWidget(
+                  context,
+                  '${widget.geldigiMudurluk}',
+                  _themeHeadline2,
+                ),
+              ),
             ),
-            SizedBox(
-              height: 15,
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: _textWidget(
+                  context,
+                  'Not',
+                  _themeHeadline1,
+                ),
+              ),
             ),
-            Text(
-              "Geldiği Müdürlük",
-              style: Theme.of(context).textTheme.headline1,
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: _textWidget(
+                  context,
+                  '${widget.not}',
+                  _themeHeadline2.copyWith(fontSize: 20),
+                ),
+              ),
             ),
-            Text(
-              " \t${widget.geldigiMudurluk} ",
-              style:
-                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              "Not",
-              style: Theme.of(context).textTheme.headline1,
-            ),
-            Text(
-              " \t${widget.not} ",
-              style:
-                  Theme.of(context).textTheme.headline2?.copyWith(fontSize: 20),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: MaterialButton(
+            SliverToBoxAdapter(
+              child: Center(
+                child: MaterialButton(
+                  height: 45,
                   child: Text(
-                    "Fotografi goster",
+                    "Qr' ı görmek için dokunun!",
                     style: Theme.of(context).textTheme.headline2,
                   ),
                   color: Theme.of(context).textTheme.button!.backgroundColor,
@@ -135,41 +128,34 @@ class _UrunDetailsState extends State<UrunDetails> {
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   onPressed: () {
                     showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(2.0),
-                          ),
-                        ),
-                        child: Container(
-                          child: Image.network(
-                            widget.imageUrl,
-                            errorBuilder: (BuildContext context,
-                                Object exception, StackTrace? stackTrace) {
-                              return Container(
-                                width: 100,
-                                height: 100,
-                                child: Center(
-                                  child: Text(
-                                    'Fotoğraf \nbulunamadı',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline2!
-                                        .copyWith(color: Colors.red),
-                                  ),
+                        context: context,
+                        builder: (context) => Dialog(
+                              child: QrImage(
+                                backgroundColor: Colors.white,
+                                padding: const EdgeInsets.all(10),
+                                data: widget.documentID,
+                                size: 300,
+                                embeddedImage:
+                                    AssetImage('assets/Mini_logo.png'),
+                                embeddedImageStyle: QrEmbeddedImageStyle(
+                                  size: Size(40, 40),
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
-            ),
+                              ),
+                            ));
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),
+    );
+  }
+
+  Text _textWidget(BuildContext context, String string, TextStyle style) {
+    return Text(
+      string,
+      style: style,
     );
   }
 }

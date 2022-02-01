@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:projeqr/net/database_service.dart';
 import 'package:projeqr/pages/anasayfa.dart';
-import 'package:projeqr/pages/models.dart';
+import 'package:projeqr/models/models.dart';
 import 'package:projeqr/shared/loading.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';

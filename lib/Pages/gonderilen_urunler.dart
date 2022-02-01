@@ -5,7 +5,7 @@ import 'package:projeqr/net/database_service.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/pages/urun_details_send.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
-import 'package:projeqr/pages/models.dart';
+import 'package:projeqr/models/models.dart';
 
 class GonderilenUrunler extends StatefulWidget {
   GonderilenUrunler({

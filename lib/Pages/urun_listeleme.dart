@@ -6,7 +6,7 @@ import 'package:projeqr/net/database_service.dart';
 import 'package:projeqr/pages/urun_details.dart';
 import 'package:projeqr/shared/theme_decoration.dart';
 import 'package:projeqr/widget/build_textformfield_widget.dart';
-import 'models.dart';
+import '../models/models.dart';
 
 class UrunListeleme extends StatefulWidget {
   UrunListeleme({
@@ -278,13 +278,11 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             ),
                                           ),
                                         ),
-                                        Flexible(
+                                        Expanded(
                                           flex: 2,
-                                          fit: FlexFit.tight,
-                                          child: GestureDetector(
-                                            child: Column(
+                                          child: ListTile(
+                                            title: Column(
                                               children: [
-                                                SizedBox(height: 10),
                                                 Text("Mobilya Türü:",
                                                     style: Theme.of(context)
                                                         .textTheme
@@ -294,12 +292,19 @@ class UrunListelemeState extends State<UrunListeleme> {
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline2),
-                                                SizedBox(height: 10),
+                                                Divider(
+                                                  thickness: 1,
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1
+                                                      ?.color,
+                                                  endIndent: 10,
+                                                ),
                                                 Text("MDV No:",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline1),
-                                                Text(" \t${docRef['MDV No']} ",
+                                                Text("${docRef['MDV No']} ",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline2),
@@ -576,28 +581,33 @@ class UrunListelemeState extends State<UrunListeleme> {
                                             ),
                                           ),
                                         ),
-                                        Flexible(
+                                        Expanded(
                                           flex: 2,
-                                          fit: FlexFit.loose,
-                                          child: GestureDetector(
-                                            child: Column(
+                                          child: ListTile(
+                                            title: Column(
                                               children: [
-                                                SizedBox(height: 10),
                                                 Text("Mobilya Türü:",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline1),
                                                 Text(
-                                                    " \t${docRef['Mobilya Türü']} ",
+                                                    "${docRef['Mobilya Türü']} ",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline2),
-                                                SizedBox(height: 10),
+                                                Divider(
+                                                  thickness: 1,
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1
+                                                      ?.color,
+                                                  endIndent: 10,
+                                                ),
                                                 Text("MDV No:",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline1),
-                                                Text(" \t${docRef['MDV No']} ",
+                                                Text("${docRef['MDV No']} ",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headline2),
@@ -661,13 +671,6 @@ class UrunListelemeState extends State<UrunListeleme> {
 
 //---------------------------------------------------------------------------
 class ProductSearch extends SearchDelegate<dynamic> {
-  // @override
-  // ThemeData appBarTheme(BuildContext context) {
-  //   return ThemeData(
-  //     primaryColor: Theme.of(context).backgroundColor,
-  //   );
-  // }
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -991,10 +994,7 @@ class ProductSearch extends SearchDelegate<dynamic> {
                   ],
                 ),
               );
-              // return Visibility(
-              //     visible: true, child: Text('Herhangi Bir Sonuç Yok'));
             }).toList(),
-            //),
           ),
         );
       },

@@ -66,8 +66,7 @@ class _ScanQRState extends State<ScanQR> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       height: 70,
-
-                      onPressed: scan, //TIKLANAN YER BURASI
+                      onPressed: scan,
                     ),
 
                     //SizedBox(width: width),
