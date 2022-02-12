@@ -23,21 +23,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  qr_code_scanner: ^0.5.2
+  qr_code_scanner: ^0.6.1
   flutter_barcode_scanner: ^2.0.0
 
   # Flutter Fire
   firebase_core: ^1.6.0
-  firebase_auth: ^1.4.1
-  cloud_firestore: ^2.5.1
-  firebase_storage: "^9.0.0"
+  firebase_auth: ^3.3.7
+  cloud_firestore: ^3.1.8
+  firebase_storage: ^10.2.7
 
   qr_flutter: ^4.0.0
 
   font_awesome_flutter:
   google_fonts:
 
-  provider: 5.0.0
+  provider: ^6.0.2
   path_provider: ^2.0.2
 
   #image Picker
