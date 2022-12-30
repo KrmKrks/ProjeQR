@@ -66,12 +66,9 @@ class _UyeOlState extends State<UyeOl> {
                                   Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            15, 10, 0, 0),
+                                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                         child: Text('Kişisel Bilgiler',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1
+                                            style: Theme.of(context).textTheme.headline1
                                             // ?.copyWith(
                                             //     color: Color(0xFF83D2D4)
                                             //         .withOpacity(0.8)),
@@ -80,22 +77,16 @@ class _UyeOlState extends State<UyeOl> {
                                     ],
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(15, 0, 15, 7),
-                                    child: customTextFormField(
-                                            nameController, 'İsim', context)
-                                        as Widget,
+                                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                                    child: customTextFormField(nameController, 'İsim', context) as Widget,
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(15, 0, 15, 7),
-                                    child: customTextFormField(
-                                        surnameController,
-                                        'Soyİsim',
-                                        context) as Widget,
+                                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                                    child:
+                                        customTextFormField(surnameController, 'Soyİsim', context) as Widget,
                                   ),
                                 ],
                               ),
@@ -110,13 +101,10 @@ class _UyeOlState extends State<UyeOl> {
                                   Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            15, 10, 0, 0),
+                                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                         child: Text(
                                           'Kullanıcı Bilgileri',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1,
+                                          style: Theme.of(context).textTheme.headline1,
                                         ),
                                       ),
                                     ],
@@ -125,19 +113,17 @@ class _UyeOlState extends State<UyeOl> {
                                     height: 10,
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(15, 0, 15, 7),
-                                    child: customTextFormField(mailController,
-                                        'Mail Adresi', context) as Widget,
+                                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                                    child:
+                                        customTextFormField(mailController, 'Mail Adresi', context) as Widget,
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(15, 0, 15, 7),
-                                    child: customTextFormField(sicilController,
-                                        'THY Sicil No', context) as Widget,
+                                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                                    child: customTextFormField(sicilController, 'THY Sicil No', context)
+                                        as Widget,
                                   ),
                                 ],
                               ),
@@ -152,31 +138,22 @@ class _UyeOlState extends State<UyeOl> {
                                   Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            15, 10, 0, 0),
-                                        child: Text('Şifre Alanı',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1),
+                                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                        child:
+                                            Text('Şifre Alanı', style: Theme.of(context).textTheme.headline1),
                                       ),
                                     ],
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
                                     child: TextFormField(
                                       obscureText: true,
                                       controller: passwordController,
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                      decoration: themeInputDecoration(
-                                              context, 'Şifre Giriniz')
-                                          .copyWith(
+                                      style: Theme.of(context).textTheme.headline2,
+                                      decoration: themeInputDecoration(context, 'Şifre Giriniz').copyWith(
                                         icon: Icon(
                                           Icons.lock,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
+                                          color: Theme.of(context).colorScheme.primary,
                                         ),
                                       ),
                                       validator: (value) {
@@ -189,21 +166,16 @@ class _UyeOlState extends State<UyeOl> {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(15, 0, 15, 7),
+                                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 7),
                                     child: TextFormField(
                                       obscureText: true,
                                       controller: confirmpasswordController,
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                      decoration: themeInputDecoration(context,
-                                              'Şifreyi Tekrar Giriniz.')
-                                          .copyWith(
+                                      style: Theme.of(context).textTheme.headline2,
+                                      decoration:
+                                          themeInputDecoration(context, 'Şifreyi Tekrar Giriniz.').copyWith(
                                         icon: Icon(
                                           Icons.lock,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
+                                          color: Theme.of(context).colorScheme.primary,
                                         ),
                                       ),
                                       validator: (value) {
@@ -226,8 +198,7 @@ class _UyeOlState extends State<UyeOl> {
                               elevation: 0,
                               minWidth: double.maxFinite,
                               height: 50,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                               onPressed: () {
                                 setState(() {
                                   loadingUye = true;
@@ -250,9 +221,7 @@ class _UyeOlState extends State<UyeOl> {
                                         loadingUye = false;
                                       });
                                       Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Girissayfasi()));
+                                          MaterialPageRoute(builder: (context) => Girissayfasi()));
                                     }
                                   });
 
@@ -263,10 +232,7 @@ class _UyeOlState extends State<UyeOl> {
                                   });
                                 }
                               },
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .button!
-                                  .backgroundColor,
+                              color: Theme.of(context).textTheme.button!.backgroundColor,
                               child: Text(
                                 'ÜYE OL',
                                 style: Theme.of(context).textTheme.headline2,
