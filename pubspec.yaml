@@ -27,10 +27,11 @@ dependencies:
   flutter_barcode_scanner: ^2.0.0
 
   # Flutter Fire
-  firebase_core: ^1.6.0
-  firebase_auth: ^3.3.7
-  cloud_firestore: ^3.1.8
-  firebase_storage: ^10.2.7
+  firebase_core: ^2.12.0
+  firebase_auth: ^4.6.0
+  cloud_firestore: ^4.7.0
+  firebase_storage: ^11.2.0
+  
 
   qr_flutter: ^4.0.0
 

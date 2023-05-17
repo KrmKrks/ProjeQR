@@ -65,14 +65,12 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Image.asset(
-                                      Provider.of<ThemeProvider>(context)
-                                              .isDarkMode
+                                      Provider.of<ThemeProvider>(context).isDarkMode
                                           ? 'assets/THY-LOGO-DARK.png'
                                           : 'assets/THY-LOGO-WHITE.png',
                                       height: 220),
                                   Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(0, 0, 0, 170),
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 170),
                                       child: ChangeThemeButtonWidget()),
                                 ],
                               ),
@@ -83,10 +81,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                               textAlign: TextAlign.center,
                               style: GoogleFonts.openSans(
                                 color: Theme.of(context).colorScheme.primary,
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    ?.fontSize,
+                                fontSize: Theme.of(context).textTheme.headline1?.fontSize,
                               ),
                             ),
                             SizedBox(
@@ -95,15 +90,11 @@ class _GirissayfasiState extends State<Girissayfasi> {
 
                             TextFormField(
                               controller: _emailController,
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary),
+                              style: TextStyle(color: Theme.of(context).colorScheme.primary),
                               decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 10),
                                 labelText: "Mail Adresi",
-                                labelStyle: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
+                                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
                                 icon: Icon(
                                   Icons.account_circle,
                                   color: Theme.of(context).iconTheme.color,
@@ -121,15 +112,11 @@ class _GirissayfasiState extends State<Girissayfasi> {
                             TextFormField(
                               obscureText: true,
                               controller: _passwordController,
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary),
+                              style: TextStyle(color: Theme.of(context).colorScheme.primary),
                               decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 10),
                                 labelText: "Parola",
-                                labelStyle: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
+                                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
                                 icon: Icon(
                                   Icons.lock,
                                   color: Theme.of(context).iconTheme.color,
@@ -169,9 +156,7 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                       });
                                     } else if (result == null) {
                                       Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AnaSayfa()));
+                                          MaterialPageRoute(builder: (context) => AnaSayfa()));
                                     }
                                   });
                                 } else {
@@ -180,13 +165,9 @@ class _GirissayfasiState extends State<Girissayfasi> {
                                   });
                                 }
                               },
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .button!
-                                  .backgroundColor,
+                              color: Theme.of(context).textTheme.button!.backgroundColor,
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
+                                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
                               child: Text(
                                 'Giriş Yap',
                                 style: Theme.of(context).textTheme.headline2,
@@ -201,21 +182,15 @@ class _GirissayfasiState extends State<Girissayfasi> {
                               minWidth: double.maxFinite,
                               height: 50,
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => UyeOl()));
+                                Navigator.of(context)
+                                    .pushReplacement(MaterialPageRoute(builder: (context) => UyeOl()));
 
                                 _formKey.currentState!.reset();
                               },
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .button!
-                                  .backgroundColor,
+                              color: Theme.of(context).textTheme.button!.backgroundColor,
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
-                              child: Text('Üye ol',
-                                  style: Theme.of(context).textTheme.headline2),
+                                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                              child: Text('Üye ol', style: Theme.of(context).textTheme.headline2),
                             ),
 
                             Align(
